@@ -1,0 +1,183 @@
+@import url('reset.css');
+/* General Demo Style */
+body{
+	background-color: transparent;
+    background-repeat: repeat, no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: auto, cover;
+    -moz-background-size: auto, cover;
+    -o-background-size: auto, cover;
+    background-size: auto, cover;
+	color: #fff;
+	font-family: 'Josefin Slab', Arial, sans-serif;
+	font-size: 13px;
+	/*background-image: url(../images/pattern.png), url(../images/6.jpg);*/
+}
+.container{
+	position:relative;
+}
+a{
+	color: #fff;
+	text-decoration: none;
+}
+.clr{
+	clear: both;
+}
+.content{
+	position:relative;
+    width:650px;
+    margin: 0 auto;
+}
+h1{
+	margin:0px;
+	padding:20px;
+	font-size:42px;
+	color:#fff;
+	text-align:left;
+	font-weight:400;
+    text-align:left;
+}
+h1 span{
+	font-size:22px;
+	color:#ddd;
+	padding-top:10px;
+}
+/* Header Style */
+.header{
+	font-family:'Arial Narrow', Arial, sans-serif;
+	line-height: 24px;
+	font-size: 11px;
+	background: #000;
+	opacity: 0.9;
+	/*text-transform: uppercase;*/
+	z-index: 9999;
+	position: relative;
+	-moz-box-shadow: 1px 0px 2px #000;
+	-webkit-box-shadow: 1px 0px 2px #000;
+	box-shadow: 1px 0px 2px #000;
+}
+.header a{
+	padding: 0px 10px;
+	letter-spacing: 1px;
+	color: #ddd;
+	display: block;
+	float: left;
+}
+.header a:hover{
+	color: #fff;
+}
+.header span.right{
+	float: right;
+}
+.header span.right a{
+	float: none;
+	display: inline;
+}
+
+.more ul{
+	/*text-transform:uppercase;*/
+	font-size:11px;
+	padding:50px 0px 30px 20px;
+	height:30px;
+	clear:both;
+	font-family: 'Arial Narrow', Arial, sans-serif;
+	width:830px;
+	margin:0 auto;
+    color:#fff;
+}
+.more ul li{
+	float:left;
+	margin:0px 2px;
+}
+.more ul li.selected a,
+.more ul li.selected a:hover{
+	background:#000;
+	color:#fff;
+	text-shadow:none;
+}
+.more ul li a{
+	text-shadow:1px 1px 1px #fff;
+	color:#555;
+	background:#f7f7f7;
+	padding:3px 6px;
+	-moz-box-shadow:1px 1px 2px rgba(0,0,0,0.6);
+	-webkit-box-shadow:1px 1px 2px rgba(0,0,0,0.6);
+	box-shadow:1px 1px 2px rgba(0,0,0,0.6);
+}
+
+
+.more ul li a:hover{
+	background:#000;
+	color:#fff;
+	text-shadow:none;
+}
+
+
+
+
+.content{
+	margin: 0 20px;
+}
+
+
+.bmenu{
+    padding: 50px 0px;
+    margin: 0 auto;
+    position: relative;
+    background: rgba(0,0,0,0.7);
+    width: 600px;
+    height: 500px;
+    -webkit-border-radius: 300px;
+    -moz-border-radius: 300px;
+    border-radius: 300px;
+    -webkit-transition: background-color 0.5s ease-in-out;
+    -moz-transition: background-color 0.5s ease-in-out;
+    -o-transition: background-color 0.5s ease-in-out;
+    -ms-transition: background-color 0.5s ease-in-out;
+    transition: background-color 0.5s ease-in-out;
+}
+
+.bmenu:hover{
+    background: rgba(0,0,0,0.2);
+}
+
+.bmenu li{
+    font-size: 40px;
+    display: block;
+    line-height: 66px;
+}
+
+.bmenu li a{
+    white-space: nowrap;
+    /*color: transparent;*/
+    display: block;
+    text-align: center;
+    /*text-transform: uppercase;*/
+    text-shadow: 0px 0px 3px #fff;
+    letter-spacing: 1px;
+    -moz-transform: scale(0.8); 
+    -ms-transform: scale(0.8); 
+    -o-transform: scale(0.8); 
+    -webkit-transform: scale(0.8); 
+    transform: scale(0.8);
+    -webkit-transition: all 0.4s linear;
+    -moz-transition: all 0.4s linear;
+    -o-transition: all 0.4s linear;
+    -ms-transition: all 0.4s linear;
+    transition: all 0.4s linear;
+}
+
+.bmenu:hover li a{
+    text-shadow: 0px 0px 10px #fff;
+}
+.bmenu li a:hover{
+    text-shadow: none;
+    color: #fff;
+    background: rgba(129,6,29,0.8);
+    -moz-transform: scale(1); 
+    -ms-transform: scale(1); 
+    -o-transform: scale(1); 
+    -webkit-transform: scale(1); 
+    transform: scale(1); 
+}
