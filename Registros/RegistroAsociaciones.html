@@ -15,57 +15,37 @@
 <body>
 <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="formulario.css" media="screen">
+<link rel="stylesheet" href="formularioAsociaciones.css" media="screen">
 
   <div class="wrapper">
     <form class="form" method="post" action="yourpage.html">
      <fieldset>
-       <h1>Regístrate</h1>
-  </legend>
-      <input type="text" class="nombre" placeholder="Nombre"required>
+  <legend id= "direccionPersona">
+  <h1>  Registro de Asociaciones </h1>
+  </legend><br>
+      <input type="text" class="nombreA" placeholder="Nombre de la Asociación"required>
       <div>
-        <p class="nombre-help">Por favor ingrese su nombre.</p>
+        <p class="nombreA-help">Por favor ingrese el  nombre de la asociación.</p>
       </div>
-      <input type="text" class="pApellido" placeholder="Primer Apellido"required>
+            
+     
+        <TEXTAREA class="descripcionA" ROWS=2 COLS=20 
+        type="text field" placeholder="Descripción de la asociación" required></TEXTAREA>
+      
       <div>
-        <p class="pApellido-help">Por favor ingrese su primer apellido.</p>
+        <p "Descripción de la asociación" class="descripcionA-help">Por favor ingrese una descripción de la asociación.</p>
       </div>
-      <input type="text" class="sApellido" placeholder="Segundo Apellido"required>
-      <div>
-        <p class="sApellido-help">Por favor ingrese su segundo apellido.</p>
-      </div>
-      <div class="item">
-        <table>
-          <tr>
-            <td><select id = "tipoTelefono" class="tipoTelefono"required>
-                <option>Casa</option>
-                <option>Celular </option>
-              </select></td>
-            <td><input type="tel" class="telefono" placeholder="Teléfono"></td>
-          </tr>
-        </table>
-      </div>
-      <div>
-        <p class="telefono-help">Por favor ingrese su número telefónico.</p>
-      </div>
-      <input  type="radio" name="genero" value="femenino" required>
-      <img src= "img/femenino.svg" width="50" height="42" >
-      <input type="radio" name="genero" value="masculino" required>
-      <img src= "img/masculino.svg" width="50" height="42" ><br>
+     
+ 
       </br>
-      <input type="email" class="email" placeholder="Email"required>
-      <div>
-        <p class="email-help">Por favor ingrese su dirección de correo electrónico.</p>
-      </div>
-      <input type="password" class="password" placeholder="Contraseña"required>
-      <div>
-        <p class="password-help">Por favor ingrese su cantraseña.</p>
-      </div>
+      
+     
       
       <br><fieldset>
       <legend id= "fotoPersona">
       <img src= "img/foto.svg" width="60" height="60">
-      <h2>Elija una foto de perfil</h2>
+      <h2>Elija una foto de la Asociación</h2>
+      
       </legend><br>
       
       <div class="row mt ">
@@ -128,43 +108,18 @@
 
 <script>
 
-$(".nombre").focus(function(){
-  $(".nombre-help").slideDown(500);
+$(".nombreA").focus(function(){
+  $(".nombreA-help").slideDown(500);
   //alert('hola');
 }).blur(function(){
-  $(".nombre-help").slideUp(500);
+  $(".nombreA-help").slideUp(500);
 });
 
-$(".pApellido").focus(function(){
-  $(".pApellido-help").slideDown(500);
+$(".descripcionA").focus(function(){
+  $(".descripcionA-help").slideDown(500);
   //alert('hola');
 }).blur(function(){
-  $(".pApellido-help").slideUp(500);
-});
-
-$(".sApellido").focus(function(){
-  $(".sApellido-help").slideDown(500);
-  //alert('hola');
-}).blur(function(){
-  $(".sApellido-help").slideUp(500);
-});
-
-$(".email").focus(function(){
-  $(".email-help").slideDown(500);
-}).blur(function(){
-  $(".email-help").slideUp(500);
-});
-
-$(".telefono").focus(function(){
-  $(".telefono-help").slideDown(500);
-}).blur(function(){
-  $(".telefono-help").slideUp(500);
-});
-
-$(".password").focus(function(){
-  $(".password-help").slideDown(500);
-}).blur(function(){
-  $(".password-help").slideUp(500);
+  $(".descripcionA-help").slideUp(500);
 });
 
 $(".barrio").focus(function(){
@@ -175,7 +130,7 @@ $(".barrio").focus(function(){
 
 </script>
 
-
+ 
   <!-- Placed at the end of the document so the pages load faster -->
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
