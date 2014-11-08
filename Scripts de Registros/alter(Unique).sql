@@ -1,0 +1,1 @@
+alter table persona add unique (email_Persona);
