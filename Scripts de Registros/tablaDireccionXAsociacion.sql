@@ -15,4 +15,4 @@ CREATE TABLE IF NOT EXISTS `petsrescue`.`DireccionXAsociacion` (
 ENGINE = InnoDB;
 
 ALTER TABLE direccionxasociacion add foreign key (idAsociaciones) references asociaciones(idAsociaciones);
-alter table direccionxasociacion add foreign key (idDireccion) references direccion(idDireccion);
+alter table direccionxasociacion add foreign key (idDireccion) references direccion(idDireccion_pk);
