@@ -98,22 +98,44 @@ end//
 DELIMITER ;
 
 #Registrar una mascota
-DROP PROCEDURE IF EXISTS proc_registrar_mascota;
+DROP PROCEDURE IF EXISTS proc_insertar_mascota;
 
 DELIMITER //
-CREATE PROCEDURE proc_registrar_mascota(
+CREATE PROCEDURE proc_insertar_mascota(
   in nombreMascota varchar(100) , numeroChip_mascota int, estado_mascota int, 
-	raza_mascota int, tamano_mascota int, tipo_mascota int
+	raza_mascota int, tamano_mascota int, tipo_mascota int, color_mascota int
 )
 
 begin
 
 INSERT INTO Mascota(
-  nombre_mascota, chipNumber_mascota, idEstadoMascota, idRazaMascota, idTamanoMascota,idTipoMascota 
+  nombre_mascota, chipNumber_mascota, idEstadoMascota, idRazaMascota, idTamanoMascota,idTipoMascota, idcolormascota 
 )
 VALUES(
   nombreMascota , numeroChip_mascota , estado_mascota , 
-	raza_mascota , tamano_mascota , tipo_mascota 
+	raza_mascota , tamano_mascota , tipo_mascota, color_mascota 
+);
+end//
+DELIMITER ;
+
+#Registrar una mascota perdida
+DROP PROCEDURE IF EXISTS proc_insertar_mascota_perdida;
+
+DELIMITER //
+CREATE PROCEDURE proc_insertar_mascota_perdida( pidMascota int, pidDueno int, pidFotoMascotaPerdida int, 
+pFechaPerdida date, pRecompensa int, pObservaciones varchar(2000)
+
+)
+
+begin
+
+INSERT INTO mascotasperdidas(
+  idMascota, idDueno, idFotoMascotaPerdida, fecha_perdida, recompensa, Observaciones
+)
+VALUES(
+pidMascota, pidDueno, pidFotoMascotaPerdida, 
+pFechaPerdida, pRecompensa, pObservaciones
+ 
 );
 end//
 DELIMITER ;

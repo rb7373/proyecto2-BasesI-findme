@@ -1,0 +1,47 @@
+CREATE OR REPLACE PACKAGE PAQUETECONSULTAS
+AS
+
+TYPE cursorTypeARTICULO IS REF CURSOR;
+--TYPE cursorTypeARTICULO IS REF CURSOR RETURN ARTICULO%ROWTYPE;
+TYPE cursorTypeARTICULOTOTAL IS REF CURSOR;
+
+TYPE cursorType IS REF CURSOR;
+
+procedure consultaXapellidoAutor(apellido_autor VARCHAR2, cursor_out OUT cursorType);
+procedure consultaXTitulo(titulo_libro VARCHAR2, cursor_out OUT cursorTypeARTICULO);
+procedure consultaTotal(titulo_libro VARCHAR2,nombre_autor VARCHAR2 ,apellido_autor VARCHAR2,nombre_editorial varchar2, cursor_out OUT cursorTypeARTICULOTOTAL);
+
+
+procedure consultaXeditorial(nombre_editorial varchar2, cursor_out OUT cursorType);
+
+procedure consultaXnombreAutor(nombre_autor VARCHAR2, cursor_out OUT cursorType);
+
+
+procedure librosPrestXnomb(nombre_persona VARCHAR2, cursor_out OUT cursorType);
+
+procedure consultaLibrosPrestados(nombre_persona VARCHAR2, apellido1 VARCHAR2, apellido2 VARCHAR2, cursor_out OUT cursorType);
+
+procedure LibrosPrestXNombreYapellido1(nombre_persona VARCHAR2, apellido1 VARCHAR2, cursor_out OUT cursorType);
+
+procedure librosPrestXnomYsegAp(nombre_persona VARCHAR2, apellido2 VARCHAR2, cursor_out OUT cursorType);
+
+
+
+function consultaXAutor(nombre_autor VARCHAR2,apellido_autor VARCHAR2) return SYS_REFCURSOR;
+
+
+function consultaXtituloYNombreAutor(titulo_libro VARCHAR2,nombre_autor VARCHAR2)return SYS_REFCURSOR;
+
+function consultaXtituloYApellidoAutor(titulo_libro VARCHAR2,apellido_autor VARCHAR2)return SYS_REFCURSOR;
+
+function consultaXtituloYeditorial(nombre_libro VARCHAR2, nombre_editorial varchar2)return SYS_REFCURSOR;
+
+
+
+
+function top(parametro NUMBER) return SYS_REFCURSOR;
+
+
+procedure consultaEstadoLibro(estado_libro NUMBER, cursor_out OUT cursorType);
+
+END paqueteConsultas;

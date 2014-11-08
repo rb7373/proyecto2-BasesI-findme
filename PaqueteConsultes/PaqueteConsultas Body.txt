@@ -1,0 +1,302 @@
+CREATE OR REPLACE PACKAGE BODY PAQUETECONSULTAS
+
+is
+
+--------------*****Consulta de libros NO prestados****-------
+
+procedure consultaEstadoLibro(estado_libro NUMBER, cursor_out OUT cursorType) AS
+BEGIN
+  OPEN cursor_out FOR
+  select *
+      FROM ARTICULO
+      where estado_id = estado_libro
+      order by TITULO;
+END;
+
+------------------********Consulta de Libros Prestados***--------------------------------
+
+
+procedure librosPrestXnomb(nombre_persona VARCHAR2, cursor_out OUT cursorType) AS
+BEGIN
+  OPEN cursor_out FOR
+  select *
+      FROM ARTICULO
+      inner join PRESTAMO
+      on PRESTAMO.ARTICULO_ID = ARTICULO.ARTICULO_ID
+      inner join PERSONA
+      on PERSONA.PERSONA_ID= PRESTAMO.PERSONA_ID
+      where PERSONA.PERSONA_NOMBRE like '%' || nombre_persona || '%'
+      order by ARTICULO.TITULO;
+END;
+
+----La siguiente desplegara si se insertan TODOS los campos(NOMBRE,APELLIDO 1,APELLIDO 2)
+
+procedure consultaLibrosPrestados(nombre_persona VARCHAR2, apellido1 VARCHAR2, apellido2 VARCHAR2, cursor_out OUT cursorType) AS
+BEGIN
+  OPEN cursor_out FOR
+  select *
+      FROM ARTICULO
+      inner join PRESTAMO
+      on PRESTAMO.ARTICULO_ID = ARTICULO.ARTICULO_ID
+      inner join PERSONA
+      on PERSONA.PERSONA_ID= PRESTAMO.PERSONA_ID
+      where PERSONA.PERSONA_NOMBRE like '%' || nombre_persona || '%' and PERSONA.PERSONA_PAPELLIDO like '%'||apellido1 ||'%' and PERSONA.PERSONA_SAPELLIDO like '%' ||apellido2||'%'
+      order by ARTICULO.TITULO;
+END;
+
+----La siguiente desplegara si se insertan NOMBRE Y PRIMER APELLIDO
+
+procedure LibrosPrestXNombreYapellido1(nombre_persona VARCHAR2, apellido1 VARCHAR2, cursor_out OUT cursorType) AS
+BEGIN
+  OPEN cursor_out FOR
+  select *
+      FROM ARTICULO
+      inner join PRESTAMO
+      on PRESTAMO.ARTICULO_ID = ARTICULO.ARTICULO_ID
+      inner join PERSONA
+      on PERSONA.PERSONA_ID= PRESTAMO.PERSONA_ID
+      where PERSONA.PERSONA_NOMBRE like '%' || nombre_persona || '%' and PERSONA.PERSONA_PAPELLIDO like '%'||apellido1 ||'%'
+      order by ARTICULO.TITULO;
+END;
+
+----La sig desplegara si se insertan NOMBRE Y SEGUNDO APELLIDO
+
+procedure librosPrestXnomYsegAp(nombre_persona VARCHAR2, apellido2 VARCHAR2, cursor_out OUT cursorType) AS
+BEGIN
+  OPEN cursor_out FOR
+  select *
+      FROM ARTICULO
+      inner join PRESTAMO
+      on PRESTAMO.ARTICULO_ID = ARTICULO.ARTICULO_ID
+      inner join PERSONA
+      on PERSONA.PERSONA_ID= PRESTAMO.PERSONA_ID
+      where PERSONA.PERSONA_NOMBRE like '%' || nombre_persona || '%' and PERSONA.PERSONA_SAPELLIDO like '%' ||apellido2||'%'
+      order by ARTICULO.TITULO;
+END;
+
+----El sig se usará en caso de que el usuario solo se ingrese la editorial
+
+procedure consultaXeditorial(nombre_editorial varchar2, cursor_out OUT cursorType) AS
+BEGIN
+  OPEN cursor_out FOR
+  select *
+    from ARTICULO
+    inner join LIBRO
+    on LIBRO.ARTICULO_ID = ARTICULO.ARTICULO_ID
+    inner join EDITORIAL
+    on EDITORIAL.EDITORIAL_ID = LIBRO.EDITORIAL_ID
+    where EDITORIAL.EDITORIAL_NOMBRE like '%' ||  nombre_editorial || '%'
+    order by ARTICULO.TITULO;
+  end;
+
+---El siguiente se usará en caso que el usuario solo el ingrese el NOMBRE de autor
+
+procedure consultaXnombreAutor(nombre_autor VARCHAR2, cursor_out OUT cursorType) AS
+BEGIN
+  OPEN cursor_out FOR
+  select *
+  FROM ARTICULO
+  inner join LIBRO
+  on LIBRO.ARTICULO_ID = ARTICULO.ARTICULO_ID
+  inner join LIBROXAUTOR
+  on LIBROXAUTOR.LIBRO_ID= LIBRO.LIBRO_ID
+  inner join AUTOR
+  on AUTOR.AUTOR_ID = LIBROXAUTOR.AUTOR_ID
+  where AUTOR.AUTOR_NOMBRE like '%' ||  nombre_autor || '%'
+  order by ARTICULO.TITULO;
+  
+END;
+
+-----El siguiente se usará en caso que el usuario solo ingrese el título
+
+
+
+Procedure consultaXTitulo(titulo_libro VARCHAR2, cursor_out OUT cursorTypeARTICULO) AS
+BEGIN
+  OPEN cursor_out FOR
+  select *
+  from ARTICULO
+  where TITULO like '%' || titulo_libro || '%' and TIPOARTICULO_ID = 1
+  order by TITULO;
+END consultaXTitulo;
+
+----El sig se llamara si solo se insertan TODOS los campos
+procedure consultaTotal(titulo_libro VARCHAR2,nombre_autor VARCHAR2 ,apellido_autor VARCHAR2,nombre_editorial varchar2, cursor_out OUT cursorTypeARTICULOTOTAL) AS
+BEGIN
+  OPEN cursor_out FOR
+  select *
+  from ARTICULO
+      inner join LIBRO
+      on LIBRO.ARTICULO_ID = ARTICULO.ARTICULO_ID
+      inner join EDITORIAL
+      on EDITORIAL.EDITORIAL_ID = LIBRO.EDITORIAL_ID
+      inner join LIBROXAUTOR
+      on LIBROXAUTOR.LIBRO_ID= LIBRO.LIBRO_ID
+      inner join AUTOR
+      on AUTOR.AUTOR_ID = LIBROXAUTOR.AUTOR_ID
+      where AUTOR.AUTOR_NOMBRE like '%' || nombre_autor || '%' and AUTOR.AUTOR_PAPELLIDO like '%' ||  apellido_autor || '%' and ARTICULO.TITULO like '%'||titulo_libro ||'%' and EDITORIAL.EDITORIAL_NOMBRE like '%' ||  nombre_editorial ||'%'
+      order by ARTICULO.TITULO;
+
+
+  END;
+
+
+----------******PROCEDIMIENTOS: CONSULTAS DE LIBROS******------------------------------
+
+----El sig se usará en caso de que el usuario solo se ingrese la editorial
+
+function consultaXeditorial(nombre_editorial varchar2)return SYS_REFCURSOR
+  is
+  el_cursor SYS_REFCURSOR;
+
+  begin
+    open el_cursor for
+    select ARTICULO.TITULO
+    from ARTICULO
+    inner join LIBRO
+    on LIBRO.ARTICULO_ID = ARTICULO.ARTICULO_ID
+    inner join EDITORIAL
+    on EDITORIAL.EDITORIAL_ID = LIBRO.EDITORIAL_ID
+    where EDITORIAL.EDITORIAL_NOMBRE like '%' ||  nombre_editorial || '%'
+    order by ARTICULO.TITULO;
+    return el_cursor;
+  end;
+
+
+
+---El siguiente se usara en caso que el usuario solo ingrese el APELLIDO de autor
+
+procedure consultaXapellidoAutor(apellido_autor VARCHAR2, cursor_out OUT cursorType) AS
+BEGIN
+  OPEN cursor_out FOR
+  select *
+  FROM ARTICULO
+  inner join LIBRO
+  on LIBRO.ARTICULO_ID = ARTICULO.ARTICULO_ID
+  inner join LIBROXAUTOR
+  on LIBROXAUTOR.LIBRO_ID= LIBRO.LIBRO_ID
+  inner join AUTOR
+  on AUTOR.AUTOR_ID = LIBROXAUTOR.AUTOR_ID
+  where AUTOR.AUTOR_PAPELLIDO like '%'||apellido_autor||'%'
+  order by ARTICULO.TITULO;
+
+END;
+
+------El siguiente se usara en caso que el usuario solo ingrese NOMBRE Y APELLIDO del AUTOR
+
+function consultaXAutor(nombre_autor VARCHAR2,apellido_autor VARCHAR2) return SYS_REFCURSOR
+IS
+
+cursor_resultado SYS_REFCURSOR;
+
+BEGIN
+  open cursor_resultado for
+  select ARTICULO.TITULO
+  FROM ARTICULO
+  inner join LIBRO
+  on LIBRO.ARTICULO_ID = ARTICULO.ARTICULO_ID
+  inner join LIBROXAUTOR
+  on LIBROXAUTOR.LIBRO_ID= LIBRO.LIBRO_ID
+  inner join AUTOR
+  on AUTOR.AUTOR_ID = LIBROXAUTOR.AUTOR_ID
+  where AUTOR.AUTOR_NOMBRE like '%' ||  nombre_autor || '%' and AUTOR.AUTOR_PAPELLIDO like '%'||apellido_autor||'%'
+  order by ARTICULO.TITULO;
+
+  return cursor_resultado;
+
+  END;
+
+
+
+
+-----El siguiente buscara en caso que solo se ingrese TITULO Y NOMBRE de AUTOR
+
+function consultaXtituloYNombreAutor(titulo_libro VARCHAR2,nombre_autor VARCHAR2)return SYS_REFCURSOR
+IS
+cursor_resultado SYS_REFCURSOR;
+
+
+BEGIN
+      open cursor_resultado for
+      select ARTICULO.TITULO
+      FROM ARTICULO
+      inner join LIBRO
+      on LIBRO.ARTICULO_ID = ARTICULO.ARTICULO_ID
+      inner join LIBROXAUTOR
+      on LIBROXAUTOR.LIBRO_ID= LIBRO.LIBRO_ID
+      inner join AUTOR
+      on AUTOR.AUTOR_ID = LIBROXAUTOR.AUTOR_ID
+      where AUTOR.AUTOR_NOMBRE like '%' ||  nombre_autor || '%' and ARTICULO.TITULO like '%'||titulo_libro ||'%'
+      order by ARTICULO.TITULO;
+
+      return cursor_resultado;
+
+  END;
+ -----El siguinte buscara en caso que solo se ingrese TITULO Y APELLIDO
+
+function consultaXtituloYApellidoAutor(titulo_libro VARCHAR2,apellido_autor VARCHAR2)return SYS_REFCURSOR
+IS
+cursor_resultado SYS_REFCURSOR;
+
+
+BEGIN
+      open cursor_resultado for
+      select ARTICULO.TITULO
+      FROM ARTICULO
+      inner join LIBRO
+      on LIBRO.ARTICULO_ID = ARTICULO.ARTICULO_ID
+      inner join LIBROXAUTOR
+      on LIBROXAUTOR.LIBRO_ID= LIBRO.LIBRO_ID
+      inner join AUTOR
+      on AUTOR.AUTOR_ID = LIBROXAUTOR.AUTOR_ID
+      where AUTOR.AUTOR_PAPELLIDO like '%' ||  apellido_autor || '%' and ARTICULO.TITULO like '%'||titulo_libro ||'%'
+      order by ARTICULO.TITULO;
+
+      return cursor_resultado;
+
+  END;
+------El siguiente buscara en caso que solo se ingrese titulo y editorial
+function consultaXtituloYeditorial(nombre_libro VARCHAR2 ,nombre_editorial varchar2)return SYS_REFCURSOR
+  is
+  el_cursor SYS_REFCURSOR;
+
+  begin
+    open el_cursor for
+    select ARTICULO.TITULO
+    from ARTICULO
+    inner join LIBRO
+    on LIBRO.ARTICULO_ID = ARTICULO.ARTICULO_ID
+    inner join EDITORIAL
+    on EDITORIAL.EDITORIAL_ID = LIBRO.EDITORIAL_ID
+    where EDITORIAL.EDITORIAL_NOMBRE like '%' ||  nombre_editorial || '%' and ARTICULO.TITULO like '%' || nombre_libro || '%'
+    order by ARTICULO.TITULO;
+    return el_cursor;
+  end;
+
+
+
+
+
+
+
+-------*****Top*****-----------
+
+function top(parametro NUMBER) return SYS_REFCURSOR
+IS
+cursor_resultado SYS_REFCURSOR;
+
+BEGIN
+    open cursor_resultado for
+
+    select articulo_id
+    from (select articulo_id, count(*) cantidad
+    from prestamo
+    group by articulo_id
+    order by cantidad desc)
+    where rownum<=parametro;
+
+return cursor_resultado;
+END;
+
+
+end paqueteConsultas;

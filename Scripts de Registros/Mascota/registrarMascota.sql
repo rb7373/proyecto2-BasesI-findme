@@ -17,7 +17,7 @@ begin
 	declare temp_tamanoID int;
 	declare temp_tipoID int;
     declare temp_colorID int;
-	declare temp_mascotaID int;
+	
 
 	#Se optienen los IDs necesarios para el registro
 	select obtener_estadoMascota_id(estado_mascota) into temp_estadoID;
@@ -28,9 +28,38 @@ begin
 
 	#Se registra la mascota
 	call proc_insertar_mascota(pnombre_mascota, chipNumber_mascota, temp_estadoID, temp_razaID, temp_tamanoID,
-	temp_tipoID);
+	temp_tipoID, temp_colorID);
 	
+
+
+end  //
+
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS proc_registrar_mascota_Perdida;
+
+DELIMITER //
+
+CREATE PROCEDURE proc_registrar_mascota_Perdida(pnombre_mascota varchar(100), chipNumber_mascota int, estado_mascota varchar(100), 
+
+raza_mascota varchar(100), tamano_mascota varchar(100), tipo_mascota varchar(100), color_mascota varchar(100), pid_Dueno int,
+pFecha_Perdida date, pRecompensa int, pObservaciones varchar(2000), pidFotoMascotaPerdida blob)
+
+begin
+	#Declaracion de variables temporales
+	declare temp_mascotaID int;
+
+	#Se registra en primera instancia la mascota
+	call proc_registrar_mascota(pnombre_mascota, chipNumber_mascota, estado_mascota, raza_mascota, tamano_mascota,
+	tipo_mascota, color_mascota);
+	
+	#Se obtiene el ID de la mascota recien registrada
 	select last_insert_id() into temp_mascotaID;
+
+	#Se registra la mascota perdida
+#	call proc_insertar_mascota_perdida( temp_mascotaID, pid_Dueno, pidFotoMascotaPerdida, 
+#	pFechaPerdida, pRecompensa , pObservaciones );
+
 
 
 end  //
