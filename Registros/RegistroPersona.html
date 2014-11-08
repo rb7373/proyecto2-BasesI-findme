@@ -57,6 +57,12 @@
       <div>
         <p class="email-help">Por favor ingrese su dirección de correo electrónico.</p>
       </div>
+      
+      <input type="text" class="userName" placeholder="Nombre de Usuario"required>
+      <div>
+        <p class="userName-help">Por favor ingrese el nombre de usuario deseado.</p>
+      </div>
+      
       <input type="password" class="password" placeholder="Contraseña"required>
       <div>
         <p class="password-help">Por favor ingrese su cantraseña.</p>
@@ -118,6 +124,14 @@
         <div>
           <p class="barrio-help">Por favor ingrese su barrio.</p>
         </div>
+        
+        <TEXTAREA class="descripcionD" ROWS=2 COLS=20 
+        type="text field" placeholder="Detalle la dirección" required></TEXTAREA>
+      
+      <div>
+        <p class="descripcionD-help">Por favor ingrese más detalles sobre la dirección.</p>
+      </div>
+      
       </fieldset>
       <p></p>
       <input type="submit" class="submit" value="Listo">
@@ -149,6 +163,13 @@ $(".sApellido").focus(function(){
   $(".sApellido-help").slideUp(500);
 });
 
+$(".userName").focus(function(){
+  $(".userName-help").slideDown(500);
+  //alert('hola');
+}).blur(function(){
+  $(".userName-help").slideUp(500);
+});
+
 $(".email").focus(function(){
   $(".email-help").slideDown(500);
 }).blur(function(){
@@ -171,6 +192,13 @@ $(".barrio").focus(function(){
   $(".barrio-help").slideDown(500);
 }).blur(function(){
   $(".barrio-help").slideUp(500);
+});
+
+$(".descripcionD").focus(function(){
+  $(".descripcionD-help").slideDown(500);
+  //alert('hola');
+}).blur(function(){
+  $(".descripcionD-help").slideUp(500);
 });
 
 </script>

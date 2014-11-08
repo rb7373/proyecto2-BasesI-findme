@@ -186,7 +186,7 @@ input[type="submit"]:hover {
 	opacity: 1;
 	cursor: pointer;
 }
-.nombre-help, .email-help, .pApellido-help, .sApellido-help, .telefono-help, .password-help, .provincias-help, .distritos-help, .barrio-help, .descripcionA-help{
+.nombre-help, .email-help, .pApellido-help, .sApellido-help, .telefono-help, .password-help, .provincias-help, .distritos-help, .barrio-help, .descripcionA-help, .userName-help, .descripcionD-help{
 	display: none;
 	padding: 0px;
 	margin: 0px 0px 15px 0px;
@@ -221,6 +221,22 @@ input[type="submit"]:hover {
 #fotoPersona{
 	font: 14px Oswald;
 	color: #FFF;
+}
+
+textarea {
+	height: 100px;
+	line-height: 150%;
+	resize: vertical;
+	width: 240px;
+	padding: 15px 0px 15px 8px;
+	border-radius: 5px;
+	box-shadow: inset 4px 6px 10px -4px rgba(0,0,0,0.3), 0 1px 1px -1px rgba(255,255,255,0.3);
+	background: rgba(0,0,0,0.2);
+ @include disable;
+	border: 1px solid rgba(0,0,0,1);
+	margin-bottom: 10px;
+	color: #6E6E6E;
+	text-shadow: #000 0px 1px 5px;
 }
 
 /*****************Cargar Imagen*****************/
