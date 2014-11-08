@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>PetRescue</title>
+<link rel="shortcut icon" href="assets/img/favicon.png">
+<style type="text/css">
+    .box{
+       
+        display: none;
+       
+    }
+</style>
+
+<script src="jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('input[type="radio"]').click(function(){
+            if($(this).attr("value")=="Sí"){
+                $(".box").hide();
+                $(".donacion-help").show();
+            }
+            if($(this).attr("value")=="No"){
+                $(".box").hide();
+            }
+        });
+    });
+</script>
+</head>
+
+<body>
+<link rel="stylesheet" href="formCasaCuna.css" media="screen">
+<div class="wrapper">
+  <form class="form" method="post" action="yourpage.html">
+    <fieldset>
+      <legend>
+      <h1> Casa Cuna </h1>
+      </legend>
+      <br>
+      <div >
+        <select class = "tipoMascota">
+          <option>Por favor seleccione el tipo  mascota</option>
+          <option>Perro</option>
+          <option>Gato</option>
+          <option>Conejo</option>
+        </select>
+      </div>
+      <br>
+      <div >
+        <select class="tamannoMascota">
+          <option>Por favor seleccione el tamaño de la mascota</option>
+          <option>Grande</option>
+          <option>Pequeña</option>
+          <option>Mediana</option>
+        </select>
+      </div>
+      <table>
+        <tr>
+          <td><input  class ="donacion" type="radio" name="donacion" value="Sí" data-id = "si" required>
+            <label id = "labels">Necesito donación</label>
+            <input class ="donacion" type="radio" name="donacion" value="No"data-id = "no" required>
+            <label id = "labels"> No necesito donación</label></td>
+        </tr>
+      </table>
+      <br>
+      </br>
+      <div class ="donacion-help box">
+        
+        <fieldset>
+          <legend id = "labels"><img src= "img/donate.svg" width="100" height="92"></legend>
+          <h2>Tipo de donación</h2>
+          <br>
+          </br>
+          <input  type="checkbox" name="donacion" value="Alimento" required>
+          <img src= "img/bones4.svg" width="80" height="72" ><br>
+          <input type="checkbox" name= "donacion" value="Dinero" required>
+          <img src= "img/bills.svg" width="80" height="72" ><br>
+          <input type="checkbox" name= "donacion" value="Vacuna" required>
+          <img src= "img/injection.svg" width="80" height="72"><br>
+          <input type="checkbox" name= "donacion" value="Transporte" required>
+          <img src= "img/transport.svg"width="80" height="72"><br>
+        </fieldset>
+        
+      
+      </div>
+      <br>
+      <input type="submit" class="submit" value="Listo">
+    </fieldset>
+  </form>
+</div>
+
+</body>
+</html>
