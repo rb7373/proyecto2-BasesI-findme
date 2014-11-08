@@ -28,6 +28,7 @@ call proc_insertar_tipo_mascota('Mono');
 call proc_insertar_tipo_mascota('Hamster');
 
 #Llenar el catálogo Raza Mascota
+<<<<<<< HEAD
 call proc_insertar_raza_mascota('Labrador', 1);
 call proc_insertar_raza_mascota('Puddle', 1);
 call proc_insertar_raza_mascota('Chihuahua', 1);
@@ -42,3 +43,19 @@ call proc_insertar_raza_mascota('Raza Única', 1);
 call proc_insertar_raza_mascota('Raza Única', 2);
 call proc_insertar_raza_mascota('Bengala', 2);
 call proc_insertar_raza_mascota('Angola', 2);
+=======
+call proc_insertar_raza_mascota('Labrador', 10);
+call proc_insertar_raza_mascota('Puddle', 10);
+call proc_insertar_raza_mascota('Chihuahua', 10);
+call proc_insertar_raza_mascota('Buldog', 10);
+call proc_insertar_raza_mascota('French Puddle', 10);
+call proc_insertar_raza_mascota('Doberman', 10);
+call proc_insertar_raza_mascota('Doberman Pincher', 10);
+call proc_insertar_raza_mascota('Pitbull', 10);
+call proc_insertar_raza_mascota('American Satanford', 10);
+call proc_insertar_raza_mascota('Salchicha', 10);
+call proc_insertar_raza_mascota('Raza Única', 10);
+call proc_insertar_raza_mascota('Raza Única', 11);
+call proc_insertar_raza_mascota('Bengala', 11);
+call proc_insertar_raza_mascota('Angola', 11);
+>>>>>>> origin/master
