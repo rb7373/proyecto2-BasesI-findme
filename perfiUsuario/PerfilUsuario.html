@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html">
+<title>PetRescue</title>
+<meta name="author" content="Jake Rocheleau">
+<link rel="shortcut icon" href="http://designshack.net/favicon.ico">
+<link rel="icon" href="http://designshack.net/favicon.ico">
+<link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
+<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+</head>
+
+<body>
+<!--Acá irían los links del menú-->
+<div id="topbar"> <a href="http://designshack.net">Back to Design Shack</a> </div>
+<div id="w">
+  <div id="content" class="clearfix">
+    <div id="userphoto"><img src="images/avatar.png" alt="default avatar"></div>
+    <h1>Bienvenido Usuario</h1>
+    <nav id="profiletabs">
+      <ul class="clearfix">
+        <li><a href="#inicio" class="sel">Inicio</a></li>
+        <li><a href="#mPerdida">Mascotas Perdidas</a></li>
+        <li><a href="#mEncontrada">Mascotas Encontradas</a></li>
+        <li><a href="#mAdoptadas">Adopciones</a></li>
+      </ul>
+    </nav>
+    <section id="inicio">
+      <p>Aquí va la informacion de la persona.</p>
+      <p class="setting"><span>Correo Electrónico<img src="images/edit.png" alt="*Edit*"></span> lolno@gmail.com</p>
+      <p class="setting"><span>Contraseña<img src="images/edit.png" alt="*Edit*"></span> 123456</p>
+      <p class="setting"><span>Dirección <img src="images/edit.png" alt="*Edit*"></span> None</p>
+      <p class="setting"><span>Otros <img src="images/edit.png" alt="*Edit*"></span> None</p>
+    </section>
+    <section id="mPerdida" class="hidden">
+      <p>Aqui van los links de las mascotas que han reportado como perdidas.</p>
+      <ul id="listaPerfiles" class="clearfix">
+        <li><a href="#"><img src="images/dogAvatar.svg" width="22" height="22"> Doggy</a></li>
+        <li><a href="#"><img src="images/dogAvatar.svg" width="22" height="22"> Poppy</a></li>
+        <li><a href="#"><img src="images/dogAvatar.svg" width="22" height="22"> Handsome</a></li>
+      </ul>
+    </section>
+    <section id="mEncontrada" class="hidden">
+      <p>Aqui van los links de las mascotas que han reportado como encontradas.</p>
+      <ul id="listaPerfiles" class="clearfix">
+        <li><a href="#"><img src="images/dogAvatar.svg" width="22" height="22"> Doggy</a></li>
+        <li><a href="#"><img src="images/dogAvatar.svg" width="22" height="22"> Poppy</a></li>
+        <li><a href="#"><img src="images/dogAvatar.svg" width="22" height="22"> Handsome</a></li>
+      </ul>
+    </section>
+    <section id="mAdoptadas" class="hidden">
+      <p>Aqui van los links de las mascotas que han sido adoptadas.</p>
+      <ul id="listaPerfiles" class="clearfix">
+        <li><a href="#"><img src="images/dogAvatar.svg" width="22" height="22"> Doggy</a></li>
+        <li><a href="#"><img src="images/dogAvatar.svg" width="22" height="22"> Poppy</a></li>
+        <li><a href="#"><img src="images/dogAvatar.svg" width="22" height="22"> Handsome</a></li>
+      </ul>
+    </section>
+  </div>
+  <!-- @end #content --> 
+</div>
+<!-- @end #w --> 
+<script type="text/javascript">
+$(function(){
+  $('#profiletabs ul li a').on('click', function(e){
+    e.preventDefault();
+    var newcontent = $(this).attr('href');
+    
+    $('#profiletabs ul li a').removeClass('sel');
+    $(this).addClass('sel');
+    
+    $('#content section').each(function(){
+      if(!$(this).hasClass('hidden')) { $(this).addClass('hidden'); }
+    });
+    
+    $(newcontent).removeClass('hidden');
+  });
+});
+</script>
+</body>
+</html>
