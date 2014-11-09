@@ -118,3 +118,21 @@ end  //
 
 DELIMITER ;
 
+
+#Inserción en la tabla DIRECCIONXReportePerdida
+DROP PROCEDURE IF EXISTS proc_insertar_direccionXreporteEncuentro;
+
+DELIMITER //
+
+CREATE PROCEDURE proc_insertar_direccionXreporteEncuentro(
+  pdireccion_id int,pReporteEncuentro_id int)
+
+begin
+
+INSERT INTO direccionxreporteencuentro(direccionEncuentro_id,mascotaEncontrada_id)
+VALUES(pdireccion_id,pReporteEncuentro_id);
+
+end  //
+
+DELIMITER ;
+
