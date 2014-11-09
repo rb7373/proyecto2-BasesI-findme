@@ -23,14 +23,14 @@
   <legend id= "direccionPersona">
   <h1>  Registro de Asociaciones </h1>
   </legend><br>
-      <input type="text" class="nombreA" placeholder="Nombre de la Asociación"required>
+      <input type="text" id= "nombreAsociacionPHP"class="nombreA" placeholder="Nombre de la Asociación"required>
       <div>
         <p class="nombreA-help">Por favor ingrese el  nombre de la asociación.</p>
       </div>
             
      
         <TEXTAREA class="descripcionA" ROWS=2 COLS=20 
-        type="text field" placeholder="Descripción de la asociación" required></TEXTAREA>
+        type="text field" id= "descripcionAsociacionPHP"placeholder="Descripción de la asociación" required></TEXTAREA>
       
       <div>
         <p "Descripción de la asociación" class="descripcionA-help">Por favor ingrese una descripción de la asociación.</p>
@@ -64,14 +64,14 @@
         <br>
         </br>
         <div>
-          <select class="paises">
+          <select class="paises" id="paisesPHP">
             <option>Por favor seleccione un país</option>
             <option>Costa Rica</option>
           </select>
         </div>
         <br>
         <div class = "provincia-help">
-          <select class="provincias">
+          <select class="provincias" id="provinciasPHP">
             <option>Por favor seleccione una provincia</option>
             <option>San José</option>
             <option>Alajuela</option>
@@ -83,24 +83,24 @@
         </div>
         <br>
         <div class = "canton-help">
-          <select class="distrito">
+          <select class="canton" id="cantonPHP">
             <option>Por favor seleccione un cantón</option>
           </select>
         </div>
         <br>
         <div class = "distrito-help">
-          <select class="distrito">
+          <select class="distrito" id="distritoPHP">
             <option>Por favor seleccione un distrito</option>
           </select>
         </div>
         <br>
-        <input type="text" id = "barrio" class="barrio" placeholder="Barrio"required>
+        <input type="text" id = "barrioPHP" class="barrio" placeholder="Barrio"required>
         <div>
           <p class="barrio-help">Por favor ingrese su barrio.</p>
         </div>
         
         <TEXTAREA class="descripcionD" ROWS=2 COLS=20 
-        type="text field" placeholder="Detalle la dirección" required></TEXTAREA>
+        type="text field" id= "descripcionDireccionPHP"placeholder="Detalle la dirección" required></TEXTAREA>
       
       <div>
         <p class="descripcionD-help">Por favor ingrese más detalles sobre la dirección.</p>
@@ -108,7 +108,7 @@
       
       </fieldset>
       <p></p>
-      <input type="submit" class="submit" value="Listo">
+      <input type="submit" class="submit" id="enviarPHP" value="Listo">
       </fieldset>
     </form>
     
