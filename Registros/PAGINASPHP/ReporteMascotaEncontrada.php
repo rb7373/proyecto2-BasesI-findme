@@ -81,8 +81,6 @@
 
 			header('Content-Type: text/html; charset=UTF-8');
 			
-			
-			
 			$blobObj = new BobDemo();
 			
 			if ($blobObj){
