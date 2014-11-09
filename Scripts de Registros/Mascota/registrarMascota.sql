@@ -104,11 +104,20 @@ DELIMITER //
 CREATE PROCEDURE proc_registrar_mascota_Encontrada(pnombre_mascota varchar(100), chipNumber_mascota int, estado_mascota varchar(100), 
 
 raza_mascota varchar(100), tamano_mascota varchar(100), tipo_mascota varchar(100), color_mascota varchar(100), pid_Rescatador int,
-pFecha_Encontrada date,  pObservaciones varchar(2000), pidFotoMascotaEncontrada blob)
+pFecha_Encontrada date,  pObservaciones varchar(2000), pidFotoMascotaEncontrada blob,
+
+pnombreProvincia varchar(45),pNombreCanton varchar(100),
+   pnombreDistrito varchar(100),pnombrebarrio varchar(100),pdescripcion_direccion varchar(1000))
 
 begin
 	#Declaracion de variables temporales
+	declare temp_provinciaID int;
+	declare temp_cantonID int;
+	declare temp_distritoID int;
+    declare temp_barrioID int;
+	declare temp_direccionID int;
 	declare temp_mascotaID int;
+	declare temp_repEncuentroID int;
 
 	#Se registra en primera instancia la mascota
 	call proc_registrar_mascota(pnombre_mascota, chipNumber_mascota, estado_mascota, raza_mascota, tamano_mascota,
@@ -120,8 +129,22 @@ begin
 	#Se registra la mascota encontrada
 	call proc_insertar_mascota_encontrada( temp_mascotaID, pid_Rescatador, pidFotoMascotaEncontrada, 
 	pFecha_Encontrada ,  pObservaciones );
+	select last_insert_id() into temp_repEncuentroID;
 
+	select obtener_provincia_id(pnombreProvincia) into temp_provinciaID;
+-- 
+-- 
+	select obtener_canton_id(pNombreCanton) into temp_cantonID;
+ 	select obtener_distrito_id(pnombreDistrito) into temp_distritoID;
+-- 
+--     
+	call proc_insertar_barrio(pnombrebarrio,temp_distritoID);
+    select last_insert_id() into temp_barrioID;
+    
+	call proc_insertar_direccion(temp_provinciaID,temp_cantonID,temp_distritoID,temp_barrioID,pdescripcion_direccion);
+	select last_insert_id() into temp_direccionID;
 
+	call  proc_insertar_direccionXreporteEncuentro(temp_direccionID, temp_repEncuentroID);
 
 end  //
 
