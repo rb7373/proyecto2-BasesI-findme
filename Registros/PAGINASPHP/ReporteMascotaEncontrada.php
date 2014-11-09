@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <!-- Cargar Imagen -->
-<link href="assets/css/croppic.css" rel="stylesheet">
-<link rel="shortcut icon" href="assets/img/favicon.png">
+<link href="../assets/css/croppic.css" rel="stylesheet">
+<link rel="shortcut icon" href="../assets/img/favicon.png">
 
 <title>PetRescue</title>
-<script src="jquery-1.11.1.min.js"></script>
+<script src="../jquery-1.11.1.min.js"></script>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 </head>
@@ -15,12 +15,12 @@
 <body>
 <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="reporteMascotaEncontrada.css" media="screen">
+<link rel="stylesheet" href="../reporteMascotaEncontrada.css" media="screen">
 <div class="wrapper">
-  <form class="form" method="post" action="yourpage.html">
+  <form class="form" method="post" action="../yourpage.html">
     <fieldset>
       <legend id= "direccionPersona">
-      <h1><img src= "img/mascota.svg" width="60" height="60"> Reporta la mascota encontrada</h1>
+      <h1><img src= "../img/mascota.svg" width="60" height="60"> Reporta la mascota encontrada</h1>
       </legend><br>
       <input type="text" class="nombre" id ="nombrePHP" placeholder="Nombre"required>
       <div>
@@ -63,7 +63,7 @@
       
       <br><br><fieldset>
       <legend id= "fotoMascota">
-      <img src= "img/foto.svg" width="60" height="60">
+      <img src= "../img/foto.svg" width="60" height="60">
       <h2>Elija una foto de la mascota encontrada</h2>
       </legend><br>
       
@@ -76,7 +76,7 @@
       
       <fieldset>
         <legend id= "direccionPersona">
-        <img src= "img/direccion.svg" width="60" height="60">
+        <img src= "../img/direccion.svg" width="60" height="60">
         <h2>Datos Importantes</h2>
         </legend>
         <br>
@@ -227,9 +227,9 @@ $(".barrio").focus(function(){
 
 <!-- Placed at the end of the document so the pages load faster -->
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="croppic.min.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../croppic.min.js"></script>
+<script src="../assets/js/main.js"></script>
 <script>
 		var croppicHeaderOptions = {
 				uploadUrl:'img_save_to_file.php',
