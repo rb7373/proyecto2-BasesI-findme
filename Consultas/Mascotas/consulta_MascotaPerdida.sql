@@ -19,8 +19,8 @@ begin
 	on  razamascota.idRazaMascota =  mascota.idRazaMascota
 	inner join colormascota
 	on colormascota.idColorMascota = mascota.idColorMascota
-    where mascotasperdidas.fecha_perdida <= ifnull(pFechaExtravio, mascotasperdidas.fecha_perdida) and mascota.nombre_mascota like ifnull( '%'|| pnombreMascota ||'%', mascota.nombre_mascota) 
-	and mascota.chipNumber_mascota = ifnull(pnumero_chip, mascota.chipNumber_mascota ) and tipomascota.tipo = ifnull(ptipoMascota, tipomascota.tipo )  and razamascota.raza like ifnull('%'|| prazaMascota ||'%', razamascota.raza) 
+    where mascotasperdidas.fecha_perdida <= ifnull(pFechaExtravio, mascotasperdidas.fecha_perdida) and mascota.nombre_mascota like ifnull( concat('%', pnombreMascota ,'%'), mascota.nombre_mascota) 
+	and mascota.chipNumber_mascota = ifnull(pnumero_chip, mascota.chipNumber_mascota ) and tipomascota.tipo = ifnull(ptipoMascota, tipomascota.tipo )  and razamascota.raza like ifnull(concat('%', prazaMascota ,'%'), razamascota.raza) 
 	and colormascota.Color = ifnull(pcolorMascota ,colormascota.Color)
     order by mascota.nombre_mascota;
 
