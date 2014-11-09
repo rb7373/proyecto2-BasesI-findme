@@ -5,7 +5,6 @@
 <!-- Cargar Imagen -->
 <link href="../assets/css/croppic.css" rel="stylesheet">
 <link rel="shortcut icon" href="../assets/img/favicon.png">
-
 <title>PetRescue</title>
 <script src="../jquery-1.11.1.min.js"></script>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -21,7 +20,8 @@
     <fieldset>
       <legend id= "direccionPersona">
       <h1><img src= "../img/mascota.svg" width="60" height="60"> Reporta la mascota encontrada</h1>
-      </legend><br>
+      </legend>
+      <br>
       <input type="text" class="nombre" id ="nombrePHP" placeholder="Nombre"required>
       <div>
         <p class="nombre-help">Por favor ingresa el nombre de tu mascota.</p>
@@ -30,16 +30,95 @@
       <div>
         <p class="chipNumber-help">Por favor ingresa el número de chip de tu mascota.</p>
       </div>
+      
       <select class="tipoMascota" Id = "tipoMascotaPHP">
-        <option>Tipo Mascota</option>
-        <option>Perro</option>
-        <option>Gato</option>
+      <option>Tipo Mascota</option>
+      	 <?php
+
+			header('Content-Type: text/html; charset=UTF-8');
+			
+			require("Conexion/conexionBasicaPHP.php");
+			
+			$blobObj = new BobDemo();
+			
+			if ($blobObj){
+			
+				echo 'Conexion EXE';
+				echo '<br>';
+				
+				$resultado = $blobObj->obtenerTiposMascotas();
+			
+				//print_r($resultado);
+			
+				if ($resultado!= null){
+			
+						foreach ($resultado as $row){
+							
+							//$row = $row[0];
+							
+							$tipo = $row['tipo'];
+							
+							echo '<option>'.$tipo.'</option>';
+							
+							echo '<br>';
+						}
+				}
+			
+			
+			}
+			else{
+			
+				echo 'Error de conexión';
+				echo '<br>';
+			
+			}
+			
+			?>
       </select>
+      
       <select class="razaMascota" Id = "razaMascotaPHP">
-        <option>Raza</option>
-        <option>Chihuahua</option>
-        <option>Maltés</option>
-      </select>
+      	 <?php
+
+			header('Content-Type: text/html; charset=UTF-8');
+			
+			
+			
+			$blobObj = new BobDemo();
+			
+			if ($blobObj){
+			
+				echo 'Conexion EXE';
+				echo '<br>';
+				
+				$resultado = $blobObj->obtenerRazasMascotas();
+			
+				//print_r($resultado);
+			
+				if ($resultado!= null){
+			
+						foreach ($resultado as $row){
+							
+							//$row = $row[0];
+							
+							$raza = $row['raza'];
+							
+							echo '<option>'.$raza.'</option>';
+							
+							echo '<br>';
+						}
+				}
+			
+			
+			}
+			else{
+			
+				echo 'Error de conexión';
+				echo '<br>';
+			
+			}
+			
+			?>
+       </select>
       <select class="tamannoMascota" Id = "tamannoMascotaPHP">
         <option>Tamaño</option>
         <option>Pequeño</option>
@@ -53,27 +132,26 @@
         <option>Café</option>
         <option>Pintado</option>
       </select>
-      
-     <TEXTAREA class="observacionesM" ROWS=2 COLS=20 
+      <TEXTAREA class="observacionesM" ROWS=2 COLS=20 
         type="text field" placeholder="Observaciones" id = "observacionesPHP"required></TEXTAREA>
-      
       <div>
         <p "Descripción de la asociación" class="observacionesM-help">Por favor ingrese otros rasgos importantes de la mascota.</p>
       </div>
-      
-      <br><br><fieldset>
-      <legend id= "fotoMascota">
-      <img src= "../img/foto.svg" width="60" height="60">
-      <h2>Elija una foto de la mascota encontrada</h2>
-      </legend><br>
-      
-      <div class="row mt ">
-			<div class="col-lg-4 ">
-				<div id="cropContainerModal"></div>
-			</div>
-	  </div>
-      </fieldset><br>
-      
+      <br>
+      <br>
+      <fieldset>
+        <legend id= "fotoMascota">
+        <img src= "../img/foto.svg" width="60" height="60">
+        <h2>Elija una foto de la mascota encontrada</h2>
+        </legend>
+        <br>
+        <div class="row mt ">
+          <div class="col-lg-4 ">
+            <div id="cropContainerModal"></div>
+          </div>
+        </div>
+      </fieldset>
+      <br>
       <fieldset>
         <legend id= "direccionPersona">
         <img src= "../img/direccion.svg" width="60" height="60">
@@ -122,60 +200,13 @@
   </form>
 </div>
 
-<!--Funcion Ajax de verificacion a la mysql-->
+<!--Funcion Ajax de verificacion a la mysql--> 
 
 <script type="text/javascript">
-function existeMascotaEncontrada()
-            {
-				var nombreMascotaEncontrada = document.getElementById('nombrePHP').value ;
-				var numeroChipMascotaEncontrada = document.getElementById('chipNumberPHP').value;
-				var tipoMascotaEncontrada = document.getElementById('tipoMascotaPHP').value;
-				var razaMascotaEncontrada = document.getElementById('razaMascotaPHP').value;
-				
-				if (titulo != "" && autorNombre != "" && autorApellido != "" && edicion != "" )
-				{
-				
-						var url = 'tituloLibro='+titulo + '&autorNombre=' + autorNombre +
-						 '&apellidoautorLibro='+ autorApellido + '&edicionLibro='+ edicion ;
-		
-						var xmlhttp;
-						if (window.XMLHttpRequest)
-						  {// code for IE7+, Firefox, Chrome, Opera, Safari
-						  xmlhttp=new XMLHttpRequest();
-						  }
-						else
-						  {// code for IE6, IE5
-						  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-						  }
-						   xmlhttp.open("POST","ConexionPHP/verificaLibro.php",true);
-						   xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-								  xmlhttp.onreadystatechange=function(){
-									  if (xmlhttp.readyState==4 && xmlhttp.status==200){
-										  document.getElementById("mensajeExisteLibro").innerHTML=xmlhttp.responseText;
-										  }
-									}
-               			 xmlhttp.send(url);
-						 
-				}
-				else{
-					alert('DATOS INCOMPLETOS: Por favor, ingrese todos los datos.');
-			
-				}
-            }
-			
-function send(existe){
-  if (existe == 1) {	
-	return true;
-  }
-  else{
-	return false;
-  }
- }
 
-</script>
+</script> 
 
-
-<!--Animaciones de los inputs-->
+<!--Animaciones de los inputs--> 
 <script>
 
 $(".nombre").focus(function(){
@@ -223,13 +254,13 @@ $(".barrio").focus(function(){
   $(".barrio-help").slideUp(500);
 });
 
-</script>
+</script> 
 
-<!-- Placed at the end of the document so the pages load faster -->
-  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="../assets/js/bootstrap.min.js"></script>
-<script src="../croppic.min.js"></script>
-<script src="../assets/js/main.js"></script>
+<!-- Placed at the end of the document so the pages load faster --> 
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script> 
+<script src="../assets/js/bootstrap.min.js"></script> 
+<script src="../croppic.min.js"></script> 
+<script src="../assets/js/main.js"></script> 
 <script>
 		var croppicHeaderOptions = {
 				uploadUrl:'img_save_to_file.php',
