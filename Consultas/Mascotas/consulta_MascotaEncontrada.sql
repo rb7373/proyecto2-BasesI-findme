@@ -12,7 +12,7 @@ begin
 
 	select * from mascotasencontradas
     inner join mascota
-    on mascotasencontradas.idMascotasEncontradas = mascota.idMascota
+    on mascotasencontradas.idMascota = mascota.idMascota
 	inner join tipomascota
 	on tipomascota.idTipoMascota = mascota.idTipoMascota
 	inner join razamascota
