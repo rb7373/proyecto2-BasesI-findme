@@ -11,17 +11,11 @@ $genero = $_POST["genero"];
 $correo = $_POST["email"];
 $username = $_POST["userName"];
 $contrasenna = $_POST["password"];
-$provincia = $_POST["provincias.text()"];
+$provincia = $_POST["provincias"];
 $canton = $_POST["cantones"];
 $distrito = $_POST["distritos"];
 $barrio = $_POST["barrios"];
 $descripcionD = $_POST["descripcionD"];
-//$tipoTelefono = $_POST["tipoTelefono"];
-/*
-
-$tipoTelefono = $_POST["tipoTelefono"];
-$telefono = $_POST["telefono"];
-*/
 
 echo $nombre;
 echo "<br>";
@@ -55,9 +49,19 @@ echo "<br>";
 echo "Barrio: ";
 echo $barrio;
 
-
 /*La siquiente función verifica que la persona no haya sido registrada anteriormente*/
 
 $existePersona = False;
+
+$stmt = $conn->query('call obtenerPersonas()');
+
+
+foreach ($stmt as $row) {
+	echo $row['email_Persona'];
+	if($row['email_Persona'] == $correo){
+		$existePersona = True;
+	}
+
+}
 
 ?>

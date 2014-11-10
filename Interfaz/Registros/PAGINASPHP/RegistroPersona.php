@@ -161,16 +161,18 @@ display:inline;
       <input type="radio" name="genero" value="1" id ="generoPHP"required>
       <img src= "../img/masculino.svg" width="50" height="42" ><br>
       </br>
-      <p id = "mensajeExistePersona"></p>
-      <input type="email" name = "email"class="email" placeholder="Email" id ="emailPHP" onkeyup="existePersona(emailPHP.value)"required>
+      
+      <input type="email" name = "email"class="email" placeholder="Email" id ="emailPHP"  required>
       <div>
         <p class="email-help">Por favor ingrese su dirección de correo electrónico.</p>
+        <p id = mensajeConfirmacion>
+   		</p>
      </div>
       
-      <input type="text" name="userName" class="userName" id ="userNamePHP"placeholder="Nombre de Usuario" onKeyUp="existeUsuario(userNamePHP.value)"required>
+      <input type="text" name="userName" class="userName" id ="userNamePHP"placeholder="Nombre de Usuario"required>
       <div>
         <p class="userName-help">Por favor ingrese el nombre de usuario deseado.</p>
-        <p id = "mensajeExiste-usuario"></p>
+      
       </div>
       
       <input type="password" name="password" class="password" id ="passwordPHP"placeholder="Contraseña"required>
@@ -251,6 +253,8 @@ display:inline;
       <input type="submit" class="submit" value="Listo">
       </fieldset>
     </form>
+   <p id = mensajeConfirmacion>
+   </p>
     
   </div>
 
@@ -388,6 +392,7 @@ $(".descripcionD").focus(function(){
  
  
  };
+ 
 
 function existeUsuario(username)
             {
@@ -407,7 +412,7 @@ function existeUsuario(username)
                   {
                   if (xmlhttp.readyState==4 && xmlhttp.status==200)
                     {
-                    document.getElementById("mensajeExiste-usuario").innerHTML=xmlhttp.responseText;
+                    document.getElementById("mensajeConfirmacion").innerHTML=xmlhttp.responseText;
                     }
                   }
                 xmlhttp.open("POST","ProcedimientosPHP/verificarUsername.php",true);
@@ -433,7 +438,7 @@ function existePersona(correo)
                   {
                   if (xmlhttp.readyState==4 && xmlhttp.status==200)
                     {
-                    document.getElementById("mensajeExistePersona").innerHTML=xmlhttp.responseText;
+                    document.getElementById("mensajeConfirmacion").innerHTML=xmlhttp.responseText;
                     }
                   }
                 xmlhttp.open("POST","ProcedimientosPHP/verificarPersona.php",true);

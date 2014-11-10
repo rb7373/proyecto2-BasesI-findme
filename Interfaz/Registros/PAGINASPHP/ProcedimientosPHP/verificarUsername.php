@@ -10,7 +10,7 @@ $stmt = $conn->query('call obtenerUsernames()');
 
 
 
-foreach ($stmt as $row){ {
+foreach ($stmt as $row) {
 	
 	$username = $row['username']; // se debe poner exactamente el mismo nombre de columna.
 	if($username == $usuario){
@@ -28,6 +28,5 @@ else{
 	echo "<input name='existeU' id='existeU' type='hidden' value='1'>";
 }
 
-}
 
 ?>

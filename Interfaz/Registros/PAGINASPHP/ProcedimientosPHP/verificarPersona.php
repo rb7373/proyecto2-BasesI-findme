@@ -10,7 +10,7 @@ $stmt = $conn->query('call obtenerPersonas()');
 
 
 
-foreach ($stmt as $row){ {
+foreach ($stmt as $row) {
 	
 	$email = $row['email_Persona']; // se debe poner exactamente el mismo nombre de columna.
 	if($email == $correo){
@@ -28,4 +28,4 @@ else{
 	echo "<input name='existePersona' id='existePersona' type='hidden' value='1'>";
 }
 
-}
+?>
