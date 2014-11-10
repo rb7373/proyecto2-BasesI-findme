@@ -161,8 +161,6 @@ display:inline;
       <select class="tipoMascota" id = "tipoMascotaPHP" onChange="return cambiarRazas(), cambiarColores(), cambiarTamanos(), llenarProvincias()">
       <option value =''>Tipo Mascota</option>
       	 <?php
-		 
-		 
 
 			header('Content-Type: text/html; charset=UTF-8');
 			

@@ -205,7 +205,7 @@ display:inline;
         </div>
         <br>
         <div class = "provincia-help">
-          <select class="provincias" >
+          <select class="provincias" id = "provinciasPHP" onChange="return cambiarCantones()">
            <?php
 				
 			$stmt = $conn->query('call proc_obtenerProvincia();');
@@ -220,15 +220,15 @@ display:inline;
         </div>
         <br>
         <div class = "canton-help">
-          <select class="distrito">
-            <option>Por favor seleccione un cantón</option>
+          <select class="distrito" id = "cantonPHP"  onChange="return cambiarDistrito()">
+          <option>Por favor seleccione un cantón:</option>
           </select>
         </div>
         <br>
         <div class = "distrito-help">
-          <select class="distrito">
-            <option>Por favor seleccione un distrito</option>
-          </select>
+          <select class="distrito" id = "distritoPHP">
+          <option>Por favor seleccione un distrito:</option>
+         </select>
         </div>
         <br>
         <input type="text" id = "barrio" class="barrio" placeholder="Barrio"required>
@@ -351,6 +351,42 @@ $(".descripcionD").focus(function(){
 		var cropContainerModal = new Croppic('cropContainerModal', croppicContainerModalOptions);
 		
 	</script>
+    
+    
+ <script>
+    function cambiarCantones(){
+	alert('Estoy cambiando Colores');
+	     $.ajax({
+         type: "GET", 
+         url: "ProcedimientosPHP/changeCanton.php",
+         data: "catID="+$("#provinciasPHP").val(),
+		 success: function(html) {
+             $("#cantonPHP").html(html);
+         }
+		 
+     });
+
+ 
+ 
+ };
+ 
+   function cambiarDistrito(){
+	alert('Estoy cambiando Distritos');
+	     $.ajax({
+         type: "GET", 
+         url: "ProcedimientosPHP/changeDistrito.php",
+         data: "catID="+$("#cantonPHP").val(),
+		 success: function(html) {
+             $("#distritoPHP").html(html);
+         }
+		 
+     });
+
+ 
+ 
+ };
+    
+    </script>
     
 </body>
 </html>
