@@ -1,3 +1,4 @@
+<?php include('config.php');?>
 <!doctype html>
 <html>
 <style>
@@ -150,25 +151,70 @@ display:inline;
       </legend>
       <br>
       <div >
-        <select class = "tipoMascota">
-          <option>Por favor seleccione el tipo  mascota</option>
-          <option>Perro</option>
-          <option>Gato</option>
-          <option>Conejo</option>
+        <select class = "tipoMascota" id = "tipoMascotaPHP" onChange=" cambiarTamanos()">
+           <option value =''>Tipo Mascota</option>
+           
+            <?php
+
+			header('Content-Type: text/html; charset=UTF-8');
+			
+			require("Conexion/conexionBasicaPHP.php");
+			
+			$blobObj = new BobDemo();
+			
+			if ($blobObj){
+			
+				echo 'Conexion EXE';
+				echo '<br>';
+				
+				/*BlobObj es la conexion, ahi nada mas le ponen
+				el procedimiento que se ocupa llamar*/
+				
+				$resultado = $blobObj->obtenerTiposMascotas();
+			
+				//print_r($resultado);
+			
+				if ($resultado!= null){
+			
+						foreach ($resultado as $row){
+							
+													
+							/*Estas variables rcogen lo que mando 
+							el procedimiento*/
+							$tipo = $row['tipo'];
+							$tipoID = $row['idTipoMascota'];
+							
+							/*Luego hacen un echo para desplegarlo en forma de opciones.
+							No olviden el Break! <br>*/
+							echo '<option value = '.$tipoID.'>'.$tipo.'</option>';
+							
+							echo '<br>';
+						}
+				}
+			
+			
+			}
+			else{
+			
+				echo 'Error de conexión';
+				echo '<br>';
+			
+			}
+			
+				
+			
+			?>
         </select>
       </div>
       <br>
       <div >
-        <select class="tamannoMascota">
-          <option>Por favor seleccione el tamaño de la mascota</option>
-          <option>Grande</option>
-          <option>Pequeña</option>
-          <option>Mediana</option>
+        <select class="tamannoMascota" Id = "tamannoMascotaPHP">
+          <option>Tamaño</option>
         </select>
       </div>
       <table>
         <tr>
-          <td><input  class ="donacion" type="radio" name="donacion" value="Sí" data-id = "si" required>
+          <td><input  class ="donacion" type="radio" id = "Donaciones.PHP" name="donacion" value="Sí" data-id = "si" required>
             <label id = "labels">Necesito donación</label>
             <input class ="donacion" type="radio" name="donacion" value="No"data-id = "no" required>
             <label id = "labels"> No necesito donación</label></td>
@@ -200,6 +246,27 @@ display:inline;
     </fieldset>
   </form>
 </div>
+
+<script type="text/javascript">
+
+function cambiarTamanos(){
+	//alert('Estoy cambiando Tamanos');
+
+     $.ajax({
+         type: "GET", 
+         url: "ProcedimientosPHP/LlenarTamanosMascota.php",
+         data: "catID="+$("#tipoMascotaPHP").val(),
+         success: function(html) {
+             $("#tamannoMascotaPHP").html(html);
+         }
+		 
+     });
+
+ 
+ 
+ };
+ 
+</script> 
 
 </body>
 </html>
