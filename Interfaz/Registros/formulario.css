@@ -150,7 +150,7 @@ input[type="text"], input[type="email"], input[type="password"], input[type="tel
 	text-shadow: #000 0px 1px 5px;
 }
 
-input.barrio {
+input.barrio{
 	width: 300px;
 	padding-left: 10px;
 	padding-right: 10px;
@@ -186,7 +186,7 @@ input[type="submit"]:hover {
 	opacity: 1;
 	cursor: pointer;
 }
-.nombre-help, .email-help, .pApellido-help, .sApellido-help, .telefono-help, .password-help, .provincias-help, .distritos-help, .barrio-help, .descripcionA-help, .userName-help, .descripcionD-help{
+.nombre-help, .email-help, .pApellido-help, .sApellido-help, .telefono-help, .password-help, .provincias-help, .distritos-help, .barrio-help, .descripcionA-help, .userName-help, .descripcionD-help .existe-persona{
 	display: none;
 	padding: 0px;
 	margin: 0px 0px 15px 0px;

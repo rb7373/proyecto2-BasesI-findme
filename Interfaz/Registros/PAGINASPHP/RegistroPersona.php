@@ -130,15 +130,15 @@ display:inline;
     <form class="form" method="post" action="">
      <fieldset>
        <legend><h1>Regístrate</h1></legend>
-      <input type="text" class="nombre" placeholder="Nombre"required>
+      <input type="text" class="nombre" id ="nombrePHP" placeholder="Nombre"required>
       <div>
         <p class="nombre-help">Por favor ingrese su nombre.</p>
       </div>
-      <input type="text" class="pApellido" placeholder="Primer Apellido"required>
+      <input type="text" class="pApellido" id ="pApellidoPHP"placeholder="Primer Apellido"required>
       <div>
         <p class="pApellido-help">Por favor ingrese su primer apellido.</p>
       </div>
-      <input type="text" class="sApellido" placeholder="Segundo Apellido"required>
+      <input type="text" class="sApellido" id ="sApellidoPHP" placeholder="Segundo Apellido"required>
       <div>
         <p class="sApellido-help">Por favor ingrese su segundo apellido.</p>
       </div>
@@ -156,22 +156,23 @@ display:inline;
       <div>
         <p class="telefono-help">Por favor ingrese su número telefónico.</p>
       </div>
-      <input  type="radio" name="genero" value="femenino" required>
+      <input  type="radio" name="genero" value="femenino" id ="generoPHP"required>
       <img src= "../img/femenino.svg" width="50" height="42" >
-      <input type="radio" name="genero" value="masculino" required>
+      <input type="radio" name="genero" value="masculino" id ="generoPHP"required>
       <img src= "../img/masculino.svg" width="50" height="42" ><br>
       </br>
-      <input type="email" class="email" placeholder="Email"required>
+      <input type="email" class="email" placeholder="Email" id ="emailPHP" onkeyup="existePersona(emailPHP.value)"required>
       <div>
         <p class="email-help">Por favor ingrese su dirección de correo electrónico.</p>
+        <p id = "mensajeExiste-persona"></p>
       </div>
       
-      <input type="text" class="userName" placeholder="Nombre de Usuario"required>
+      <input type="text" class="userName" id ="userNamePHP"placeholder="Nombre de Usuario"required>
       <div>
         <p class="userName-help">Por favor ingrese el nombre de usuario deseado.</p>
       </div>
       
-      <input type="password" class="password" placeholder="Contraseña"required>
+      <input type="password" class="password" id ="passwordPHP"placeholder="Contraseña"required>
       <div>
         <p class="password-help">Por favor ingrese su cantraseña.</p>
       </div>
@@ -198,7 +199,7 @@ display:inline;
         <br>
         </br>
         <div>
-          <select class="paises">
+          <select class="paises" id = "paisesPHP">
             <option>Por favor seleccione un país</option>
             <option>Costa Rica</option>
           </select>
@@ -231,7 +232,7 @@ display:inline;
          </select>
         </div>
         <br>
-        <input type="text" id = "barrio" class="barrio" placeholder="Barrio"required>
+        <input type="text" id = "barrio" class="barrio"  placeholder="Barrio"required>
         <div>
           <p class="barrio-help">Por favor ingrese su barrio.</p>
         </div>
@@ -385,6 +386,35 @@ $(".descripcionD").focus(function(){
  
  
  };
+
+
+
+function existePersona(correo)
+            {
+				alert('Estoy verificando el email');
+                var url = "correo="+correo;
+
+                var xmlhttp;
+                if (window.XMLHttpRequest)
+                  {// code for IE7+, Firefox, Chrome, Opera, Safari
+                  xmlhttp=new XMLHttpRequest();
+                  }
+                else
+                  {// code for IE6, IE5
+                  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                  }
+                xmlhttp.onreadystatechange=function()
+                  {
+                  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                    {
+                    document.getElementById("mensajeExiste-persona").innerHTML=xmlhttp.responseText;
+                    }
+                  }
+                xmlhttp.open("POST","ProcedimientosPHP/verificarPersona.php",true);
+                xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                xmlhttp.send(url);
+            }
+			
     
     </script>
     
