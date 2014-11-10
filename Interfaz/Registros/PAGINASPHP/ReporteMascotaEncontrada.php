@@ -143,6 +143,21 @@ display:inline;
         <p class="chipNumber-help">Por favor ingresa el número de chip de tu mascota.</p>
       </div>
       
+      <!--El primer combobox se llena poniendo este codigo php justo
+      donde va las opciones de select. Pueden usar este mismo ejemplo. Solo
+      asegurense de no cambiar la ruta de los documentos para q no hayan problemas.
+      
+      Luego, la funcion OnChange lo que hace es llamar esas funciones una vez que hayan escogido 
+      un tipo de mascota. 
+      
+      Todas las funciones que empiecen con CAMBIAR, son las que dependen de otro combobox.
+      Por ejemplo, cambiarRaza() depende de lo que la persona escoja en TipoMascota.
+      
+      Las funciones que empiezan con LLENAR no dependen de nadie, solo se llaman de la Base, por
+      lo que las llamamos desde el principio, cuando la persona escoge el tipo de mascota.
+      
+      ABAJO estan todas las funciones que se llaman aca-->
+            
       <select class="tipoMascota" id = "tipoMascotaPHP" onChange="return cambiarRazas(), cambiarColores(), cambiarTamanos(), llenarProvincias()">
       <option value =''>Tipo Mascota</option>
       	 <?php
@@ -158,6 +173,9 @@ display:inline;
 				echo 'Conexion EXE';
 				echo '<br>';
 				
+				/*BlobObj es la conexion, ahi nada mas le ponen
+				el procedimiento que se ocupa llamar*/
+				
 				$resultado = $blobObj->obtenerTiposMascotas();
 			
 				//print_r($resultado);
@@ -166,11 +184,14 @@ display:inline;
 			
 						foreach ($resultado as $row){
 							
-							//$row = $row[0];
-							
+													
+							/*Estas variables rcogen lo que mando 
+							el procedimiento*/
 							$tipo = $row['tipo'];
 							$tipoID = $row['idTipoMascota'];
 							
+							/*Luego hacen un echo para desplegarlo en forma de opciones.
+							No olviden el Break! <br>*/
 							echo '<option value = '.$tipoID.'>'.$tipo.'</option>';
 							
 							echo '<br>';
@@ -239,7 +260,7 @@ display:inline;
         </div>
         <br>
         <div class = "canton-perdida">
-          <select class="canton" id = "cantonPHP">
+          <select class="canton" id = "cantonPHP" onChange="return cambiarDistrito()">
             <option>Por favor seleccione un cantón:</option>
           </select>
         </div>
@@ -357,13 +378,26 @@ $(".barrio").focus(function(){
 
 <script type="text/javascript">
 
+/*Todas estas funciones se hacen igual, son de
+tipo GET xq recibimos data de ellas.
+Le cambian el url, que es el php donde ustedes hacen
+el llamado a la funcion.*/
+
 function cambiarRazas(){
 	//alert('denisse');
 	
      $.ajax({
          type: "GET", 
-         url: "changeTipoMascota.php",
+         url: "ProcedimientosPHP/changeTipoMascota.php",
+		 /*La data es lo que le van a mandar al procedimiento.
+		 Aca por ejemplo, ocupamos mandarle el id de Tipo
+		 para buscar las razas, entonces se mandan de esta
+		 manera. 
+		 CatID es solo la variable donde se va a guardar 
+		 el idTipo(o lo que quieran mandar)*/
          data: "catID="+$("#tipoMascotaPHP").val(),
+		 /*Luego ponen el id del lugar donde se vaa desplegar 
+		 la informacion*/
          success: function(html) {
              $("#razaMascotaPHP").html(html);
          }
@@ -378,7 +412,7 @@ function cambiarTamanos(){
 
      $.ajax({
          type: "GET", 
-         url: "LlenarTamanosMascota.php",
+         url: "ProcedimientosPHP/LlenarTamanosMascota.php",
          data: "catID="+$("#tipoMascotaPHP").val(),
          success: function(html) {
              $("#tamannoMascotaPHP").html(html);
@@ -395,7 +429,7 @@ function cambiarTamanos(){
 
      $.ajax({
          type: "GET", 
-         url: "LlenarColoresMascota.php",
+         url: "ProcedimientosPHP/LlenarColoresMascota.php",
          //data: "catID="+$("#tipoMascotaPHP").val(),
          success: function(html) {
              $("#colorMascotaPHP").html(html);
@@ -412,7 +446,7 @@ function cambiarTamanos(){
 
      $.ajax({
          type: "GET", 
-         url: "LlenarProvincias.php",
+         url: "ProcedimientosPHP/LlenarProvincias.php",
          //data: "catID="+$("#tipoMascotaPHP").val(),
          success: function(html) {
              $("#provinciasPHP").html(html);
@@ -426,14 +460,28 @@ function cambiarTamanos(){
  
   function cambiarCantones(){
 	//alert('Estoy cambiando Colores');
-
-     $.ajax({
+	     $.ajax({
          type: "GET", 
-         url: "changeCanton.php",
+         url: "ProcedimientosPHP/changeCanton.php",
          data: "catID="+$("#provinciasPHP").val(),
-		
-         success: function(html) {
+		 success: function(html) {
              $("#cantonPHP").html(html);
+         }
+		 
+     });
+
+ 
+ 
+ };
+ 
+   function cambiarDistrito(){
+	//alert('Estoy cambiando Distritos');
+	     $.ajax({
+         type: "GET", 
+         url: "ProcedimientosPHP/changeDistrito.php",
+         data: "catID="+$("#cantonPHP").val(),
+		 success: function(html) {
+             $("#distritoPHP").html(html);
          }
 		 
      });
