@@ -7,7 +7,7 @@ DELIMITER //
 CREATE PROCEDURE obtenerTiposMascota()
 
 begin
-	SELECT tipo FROM tipoMascota;
+	SELECT tipo, idTipoMascota FROM tipoMascota;
 end//
 DELIMITER ;
 
@@ -15,15 +15,11 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS obtenerRazasMascota;
 
 DELIMITER //
-CREATE PROCEDURE obtenerRazasMascota(ptipomascota varchar(50))
+CREATE PROCEDURE obtenerRazasMascota(temp_tipoMascotaId int )
 
 begin
 	
-	declare temp_tipoMascotaId int ;
-
-	select obtener_TipoMascota_id(ptipomascota) into temp_tipoMascotaId;
-
-	SELECT raza FROM razamascota 
+	SELECT raza, idRazaMascota FROM razamascota 
 	WHERE idTipoMascota = temp_tipoMascotaId;
 end//
 DELIMITER ;
