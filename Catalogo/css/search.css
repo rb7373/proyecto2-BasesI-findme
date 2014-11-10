@@ -1,0 +1,59 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* reset webkit search input browser style */
+input {
+	outline: none;
+}
+
+form{
+	display:inline;
+}
+input[type=search] {
+	-webkit-appearance: textfield;
+	-webkit-box-sizing: content-box;
+	font-family: inherit;
+	font-size: 100%;
+	margin-top: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+}
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button {
+	display: none; /* remove the search and cancel icon */
+}
+
+/* search input field */
+input[type=search] {
+	background: #ededed url(img/search-icon.png) no-repeat 9px center;
+	border: solid 2px #ccc;
+	padding: 9px 10px 9px 32px;
+	width: 160px;
+
+	
+	-webkit-border-radius: 10em;
+	-moz-border-radius: 10em;
+	border-radius: 10em;
+	
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	transition: all .5s;
+}
+input[type=search]:focus {
+	width: 210px;
+	/*background-color: #fff;*/
+	border-color: #6dcff6;
+	border: solid 2px #1D9DD8;
+	-webkit-box-shadow: 2px 2px 5px rgba(109,207,246,.5);
+	-moz-box-shadow: 2px 2px 5px rgba(109,207,246,.5);
+	box-shadow: 2px 2px 5px rgba(109,207,246,.5);
+}
+
+/* placeholder */
+input:-moz-placeholder {
+	color: #999;
+}
+input::-webkit-input-placeholder {
+	color: #999;
+}
