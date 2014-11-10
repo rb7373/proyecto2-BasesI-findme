@@ -164,8 +164,8 @@ display:inline;
       <input type="email" class="email" placeholder="Email" id ="emailPHP" onkeyup="existePersona(emailPHP.value)"required>
       <div>
         <p class="email-help">Por favor ingrese su dirección de correo electrónico.</p>
-        <p id = "mensajeExiste-persona"></p>
-      </div>
+        <p id ="mensajeExiste-persona"></p>
+     </div>
       
       <input type="text" class="userName" id ="userNamePHP"placeholder="Nombre de Usuario"required>
       <div>
