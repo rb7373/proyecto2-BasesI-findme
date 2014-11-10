@@ -100,7 +100,7 @@ display:inline;
     <!-- Custom styles for this template -->
     <link href="../assets/css/croppic.css" rel="stylesheet">
     
-<script src="jquery-1.11.1.min.js"></script>
+<script src="../jquery-1.11.1.min.js"></script>
 </head>
 
 <body>
@@ -172,33 +172,27 @@ display:inline;
         <br>
         </br>
         <div>
-          <select class="paises" id="paisesPHP">
+          <select class="paises" id="paisesPHP" onChange="return llenarProvincias()">
             <option>Por favor seleccione un país</option>
             <option>Costa Rica</option>
           </select>
         </div>
         <br>
         <div class = "provincia-help">
-          <select class="provincias" id="provinciasPHP">
+          <select class="provincias" id="provinciasPHP" onChange="return cambiarCantones() ">
             <option>Por favor seleccione una provincia</option>
-            <option>San José</option>
-            <option>Alajuela</option>
-            <option>Heredia</option>
-            <option>Cartago</option>
-            <option>Guanacaste</option>
-            <option>Limón</option>
           </select>
         </div>
         <br>
         <div class = "canton-help">
-          <select class="canton" id="cantonPHP">
-            <option>Por favor seleccione un cantón</option>
+          <select class="canton" id = "cantonPHP" onChange="return cambiarDistrito()">
+            <option>Por favor seleccione un cantón:</option>
           </select>
         </div>
         <br>
         <div class = "distrito-help">
-          <select class="distrito" id="distritoPHP">
-            <option>Por favor seleccione un distrito</option>
+          <select class="distrito" id = "distritoPHP">
+            <option>Por favor seleccione un distrito:</option>
           </select>
         </div>
         <br>
@@ -256,9 +250,9 @@ $(".descripcionD").focus(function(){
  
   <!-- Placed at the end of the document so the pages load faster -->
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="croppic.min.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../croppic.min.js"></script>
+<script src="../assets/js/main.js"></script>
 <script>
 		var croppicHeaderOptions = {
 				uploadUrl:'img_save_to_file.php',
@@ -290,6 +284,51 @@ $(".descripcionD").focus(function(){
 		var cropContainerModal = new Croppic('cropContainerModal', croppicContainerModalOptions);
 		
 	</script>
+    
+<script type="text/javascript">
+ 
+ function llenarProvincias(){
+	//alert('Estoy cambiando Colores');
+
+     $.ajax({
+         type: "GET", 
+         url: "ProcedimientosPHP/LlenarProvincias.php",
+         //data: "catID="+$("#tipoMascotaPHP").val(),
+         success: function(html) {
+             $("#provinciasPHP").html(html);
+         }
+		 
+     });
+ };
+ 
+  function cambiarCantones(){
+	//alert('Estoy cambiando Colores');
+	     $.ajax({
+         type: "GET", 
+         url: "ProcedimientosPHP/changeCanton.php",
+         data: "catID="+$("#provinciasPHP").val(),
+		 success: function(html) {
+             $("#cantonPHP").html(html);
+         }
+		 
+     });
+ };
+ 
+   function cambiarDistrito(){
+	//alert('Estoy cambiando Distritos');
+	     $.ajax({
+         type: "GET", 
+         url: "ProcedimientosPHP/changeDistrito.php",
+         data: "catID="+$("#cantonPHP").val(),
+		 success: function(html) {
+             $("#distritoPHP").html(html);
+         }
+		 
+     });
+ };
+
+</script>
+
     
 </body>
 </html>
