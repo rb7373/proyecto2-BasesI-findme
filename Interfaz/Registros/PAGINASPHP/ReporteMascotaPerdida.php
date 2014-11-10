@@ -1,3 +1,4 @@
+<?php include('config.php');?>
 <!doctype html>
 <html>
 <style>
@@ -130,40 +131,83 @@ display:inline;
       <legend id= "direccionPersona">
       <h1><img src= "../img/mascota.svg" width="60" height="60"> Reporta tu mascota perdida</h1>
       </legend><br>
-      <input type="text" class="nombre" placeholder="Nombre"required>
+      <input type="text" class="nombre"  id ="nombrePHP" placeholder="Nombre"required>
       <div>
         <p class="nombre-help">Por favor ingresa el nombre de tu mascota.</p>
       </div>
-      <input type="number" class="chipNumber" placeholder="Número de Chip"required>
+      <input type="number" class="chipNumber" id = "chipNumberPHP" placeholder="Número de Chip"required>
       <div>
         <p class="chipNumber-help">Por favor ingresa el número de chip de tu mascota.</p>
       </div>
-      <select class="tipoMascota">
-        <option>Tipo Mascota</option>
-        <option>Perro</option>
-        <option>Gato</option>
-      </select>
-      <select class="razaMascota">
-        <option>Raza</option>
-        <option>Chihuahua</option>
-        <option>Maltés</option>
-      </select>
-      <select class="tamannoMascota">
-        <option>Tamaño</option>
-        <option>Pequeño</option>
-        <option>Mediano</option>
-        <option>Grande</option>
-      </select>
-      <select class="colorMascota">
-        <option>Color</option>
-        <option>Negro</option>
-        <option>Blanco</option>
-        <option>Café</option>
-        <option>Pintado</option>
+              
+      <select class="tipoMascota" id = "tipoMascotaPHP" onChange="return cambiarRazas(), cambiarColores(), cambiarTamanos(), llenarProvincias()">
+      <option value =''>Tipo Mascota</option>
+      
+      	 <?php
+
+			header('Content-Type: text/html; charset=UTF-8');
+			
+			require("Conexion/conexionBasicaPHP.php");
+			
+			$blobObj = new BobDemo();
+			
+			if ($blobObj){
+			
+				echo 'Conexion EXE';
+				echo '<br>';
+				
+				/*BlobObj es la conexion, ahi nada mas le ponen
+				el procedimiento que se ocupa llamar*/
+				
+				$resultado = $blobObj->obtenerTiposMascotas();
+			
+				//print_r($resultado);
+			
+				if ($resultado!= null){
+			
+						foreach ($resultado as $row){
+							
+													
+							/*Estas variables rcogen lo que mando 
+							el procedimiento*/
+							$tipo = $row['tipo'];
+							$tipoID = $row['idTipoMascota'];
+							
+							/*Luego hacen un echo para desplegarlo en forma de opciones.
+							No olviden el Break! <br>*/
+							echo '<option value = '.$tipoID.'>'.$tipo.'</option>';
+							
+							echo '<br>';
+						}
+				}
+			
+			
+			}
+			else{
+			
+				echo 'Error de conexión';
+				echo '<br>';
+			
+			}
+			
+				
+			
+			?>
       </select>
       
+      <select class="razaMascota" Id = "razaMascotaPHP">
+      <option value =''>Raza</option>
+       </select>
+      <select class="tamannoMascota" Id = "tamannoMascotaPHP">
+        <option>Tamaño</option>
+      
+      </select>
+      <select class="colorMascota" id = "colorMascotaPHP" >
+        <option>Color</option>
+       </select>
+      
      <TEXTAREA class="observacionesM" ROWS=2 COLS=20 
-        type="text field" placeholder="Observaciones" required></TEXTAREA>
+        type="text field" placeholder="Observaciones" id = "observacionesPHP"required></TEXTAREA>
       
       <div>
         <p "Descripción de la asociación" class="observacionesM-help">Por favor ingrese otros rasgos importantes de la mascota.</p>
@@ -196,30 +240,24 @@ display:inline;
         <br>
         <label id = "labels">Dirección: </label>
         <div class = "provincia-perdida">
-          <select class="provincias">
-            <option>Por favor seleccione una provincia:</option>
-            <option>San José</option>
-            <option>Alajuela</option>
-            <option>Heredia</option>
-            <option>Cartago</option>
-            <option>Guanacaste</option>
-            <option>Limón</option>
+          <select class="provincias" id = "provinciasPHP" onChange="return cambiarCantones() ">
+             <option>Por favor seleccione una provincia:</option>
           </select>
         </div>
         <br>
         <div class = "canton-perdida">
-          <select class="canton">
+          <select class="canton" id = "cantonPHP" onChange="return cambiarDistrito()">
             <option>Por favor seleccione un cantón:</option>
           </select>
         </div>
         <br>
         <div class = "distrito-perdida">
-          <select class="distrito">
+           <select class="distrito" id = "distritoPHP">
             <option>Por favor seleccione un distrito:</option>
           </select>
         </div>
         <br>
-        <input type="text" id = "barrio" class="barrio" placeholder="Barrio"required>
+        <input type="text" id = "barrioPHP"  class="barrio" placeholder="Barrio"required>
         <div>
           <p class="barrio-help">Por favor ingrese su barrio.</p>
         </div>
@@ -229,6 +267,10 @@ display:inline;
     </fieldset>
   </form>
 </div>
+
+<script type="text/javascript">
+</script> 
+
 <script>
 
 $(".nombre").focus(function(){
@@ -314,15 +356,121 @@ $(".barrio").focus(function(){
 		var cropContainerModal = new Croppic('cropContainerModal', croppicContainerModalOptions);
 		
 	</script>
-</body>
-</html>
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Untitled Document</title>
-</head>
+<script type="text/javascript">
 
-<body>
+/*Todas estas funciones se hacen igual, son de
+tipo GET xq recibimos data de ellas.
+Le cambian el url, que es el php donde ustedes hacen
+el llamado a la funcion.*/
+
+function cambiarRazas(){
+	//alert('denisse');
+	
+     $.ajax({
+         type: "GET", 
+         url: "ProcedimientosPHP/changeTipoMascota.php",
+		 /*La data es lo que le van a mandar al procedimiento.
+		 Aca por ejemplo, ocupamos mandarle el id de Tipo
+		 para buscar las razas, entonces se mandan de esta
+		 manera. 
+		 CatID es solo la variable donde se va a guardar 
+		 el idTipo(o lo que quieran mandar)*/
+         data: "catID="+$("#tipoMascotaPHP").val(),
+		 /*Luego ponen el id del lugar donde se vaa desplegar 
+		 la informacion*/
+         success: function(html) {
+             $("#razaMascotaPHP").html(html);
+         }
+     });
+
+ 
+ 
+ };
+
+function cambiarTamanos(){
+	//alert('Estoy cambiando Tamanos');
+
+     $.ajax({
+         type: "GET", 
+         url: "ProcedimientosPHP/LlenarTamanosMascota.php",
+         data: "catID="+$("#tipoMascotaPHP").val(),
+         success: function(html) {
+             $("#tamannoMascotaPHP").html(html);
+         }
+		 
+     });
+
+ 
+ 
+ };
+ 
+ function cambiarColores(){
+	//alert('Estoy cambiando Colores');
+
+     $.ajax({
+         type: "GET", 
+         url: "ProcedimientosPHP/LlenarColoresMascota.php",
+         //data: "catID="+$("#tipoMascotaPHP").val(),
+         success: function(html) {
+             $("#colorMascotaPHP").html(html);
+         }
+		 
+     });
+
+ 
+ 
+ };
+
+ function llenarProvincias(){
+	//alert('Estoy cambiando Colores');
+
+     $.ajax({
+         type: "GET", 
+         url: "ProcedimientosPHP/LlenarProvincias.php",
+         //data: "catID="+$("#tipoMascotaPHP").val(),
+         success: function(html) {
+             $("#provinciasPHP").html(html);
+         }
+		 
+     });
+
+ 
+ 
+ };
+ 
+  function cambiarCantones(){
+	//alert('Estoy cambiando Colores');
+	     $.ajax({
+         type: "GET", 
+         url: "ProcedimientosPHP/changeCanton.php",
+         data: "catID="+$("#provinciasPHP").val(),
+		 success: function(html) {
+             $("#cantonPHP").html(html);
+         }
+		 
+     });
+
+ 
+ 
+ };
+ 
+   function cambiarDistrito(){
+	//alert('Estoy cambiando Distritos');
+	     $.ajax({
+         type: "GET", 
+         url: "ProcedimientosPHP/changeDistrito.php",
+         data: "catID="+$("#cantonPHP").val(),
+		 success: function(html) {
+             $("#distritoPHP").html(html);
+         }
+		 
+     });
+
+ 
+ 
+ };
+
+</script>
+
 </body>
 </html>
