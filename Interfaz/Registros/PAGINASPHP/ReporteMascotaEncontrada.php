@@ -1,3 +1,6 @@
+<?php require('config.php');?>
+
+
 <!doctype html>
 <html>
 <style>
@@ -140,8 +143,8 @@ display:inline;
         <p class="chipNumber-help">Por favor ingresa el número de chip de tu mascota.</p>
       </div>
       
-      <select class="tipoMascota" Id = "tipoMascotaPHP">
-      <option>Tipo Mascota</option>
+      <select class="tipoMascota" id = "tipoMascotaPHP" onChange="return cambiarRazas(), cambiarColores(), cambiarTamanos(), llenarProvincias()">
+      <option value =''>Tipo Mascota</option>
       	 <?php
 
 			header('Content-Type: text/html; charset=UTF-8');
@@ -166,8 +169,9 @@ display:inline;
 							//$row = $row[0];
 							
 							$tipo = $row['tipo'];
+							$tipoID = $row['idTipoMascota'];
 							
-							echo '<option>'.$tipo.'</option>';
+							echo '<option value = '.$tipoID.'>'.$tipo.'</option>';
 							
 							echo '<br>';
 						}
@@ -186,61 +190,15 @@ display:inline;
       </select>
       
       <select class="razaMascota" Id = "razaMascotaPHP">
-      	 <?php
-
-			header('Content-Type: text/html; charset=UTF-8');
-			
-			$blobObj = new BobDemo();
-			
-			if ($blobObj){
-			
-				echo 'Conexion EXE';
-				echo '<br>';
-				
-				
-				
-				$resultado = $blobObj->obtenerRazasMascotas('Gato');
-			
-				//print_r($resultado);
-			
-				if ($resultado!= null){
-			
-						foreach ($resultado as $row){
-							
-							//$row = $row[0];
-							
-							$raza = $row['raza'];
-							
-							echo '<option>'.$raza.'</option>';
-							
-							echo '<br>';
-						}
-				}
-			
-			
-			}
-			else{
-			
-				echo 'Error de conexión';
-				echo '<br>';
-			
-			}
-			
-			?>
+      <option value =''>Raza</option>
        </select>
       <select class="tamannoMascota" Id = "tamannoMascotaPHP">
         <option>Tamaño</option>
-        <option>Pequeño</option>
-        <option>Mediano</option>
-        <option>Grande</option>
+      
       </select>
       <select class="colorMascota" id = "colorMascotaPHP" >
         <option>Color</option>
-        <option>Negro</option>
-        <option>Blanco</option>
-        <option>Café</option>
-        <option>Pintado</option>
-      </select>
+       </select>
       <TEXTAREA class="observacionesM" ROWS=2 COLS=20 
         type="text field" placeholder="Observaciones" id = "observacionesPHP"required></TEXTAREA>
       <div>
@@ -275,14 +233,8 @@ display:inline;
         <br>
         <label id = "labels">Dirección: </label>
         <div class = "provincia-perdida">
-          <select class="provincias" id = "provinciasPHP">
+          <select class="provincias" id = "provinciasPHP" onChange="return cambiarCantones() ">
             <option>Por favor seleccione una provincia:</option>
-            <option>San José</option>
-            <option>Alajuela</option>
-            <option>Heredia</option>
-            <option>Cartago</option>
-            <option>Guanacaste</option>
-            <option>Limón</option>
           </select>
         </div>
         <br>
@@ -402,50 +354,96 @@ $(".barrio").focus(function(){
 		
 	</script>
     
-    
-    
-<script>
 
-$( ".tipoMascota" ).change(function() {
+<script type="text/javascript">
+
+function cambiarRazas(){
+	//alert('denisse');
 	
-	var tipo = $(".tipoMascota").val();
+     $.ajax({
+         type: "GET", 
+         url: "changeTipoMascota.php",
+         data: "catID="+$("#tipoMascotaPHP").val(),
+         success: function(html) {
+             $("#razaMascotaPHP").html(html);
+         }
+     });
 
-		//alert('Validando usuario 1');
+ 
+ 
+ };
+
+function cambiarTamanos(){
+	//alert('Estoy cambiando Tamanos');
+
+     $.ajax({
+         type: "GET", 
+         url: "LlenarTamanosMascota.php",
+         data: "catID="+$("#tipoMascotaPHP").val(),
+         success: function(html) {
+             $("#tamannoMascotaPHP").html(html);
+         }
+		 
+     });
+
+ 
+ 
+ };
+ 
+ function cambiarColores(){
+	//alert('Estoy cambiando Colores');
+
+     $.ajax({
+         type: "GET", 
+         url: "LlenarColoresMascota.php",
+         //data: "catID="+$("#tipoMascotaPHP").val(),
+         success: function(html) {
+             $("#colorMascotaPHP").html(html);
+         }
+		 
+     });
+
+ 
+ 
+ };
+
+ function llenarProvincias(){
+	//alert('Estoy cambiando Colores');
+
+     $.ajax({
+         type: "GET", 
+         url: "LlenarProvincias.php",
+         //data: "catID="+$("#tipoMascotaPHP").val(),
+         success: function(html) {
+             $("#provinciasPHP").html(html);
+         }
+		 
+     });
+
+ 
+ 
+ };
+ 
+  function cambiarCantones(){
+	//alert('Estoy cambiando Colores');
+
+     $.ajax({
+         type: "GET", 
+         url: "changeCanton.php",
+         data: "catID="+$("#provinciasPHP").val(),
 		
-  //      // getting the value that user typed
-//        var tipo    = $(".tipoMascota").val();
-//
-//		
-//        // if searchString is not empty
-//        if(tipo != '') {
-//			
-//			alert(tipo);
-//			
-//            // ajax call
-//			
-//			//alert('Validando usuario');
-//			
-//            $.ajax({
-//                type: "POST",
-//                url: "iniciarSesion.php",
-//                data: {nombreUsuario: buscarNombreUsuario, password: buscarContraseñaUsuario},
-//                beforeSend: function(html) { // this happens before actual call
-//                    $("#results").html(''); 
-//                    $("#searchresults").show();
-//                    
-//               },
-//               success: function(html){ // this happens after we get results
-//                    $("#results").show();
-//                    $("#results").append(html);
-//              }
-//            });
-//
-//    
-//        }
-  
-});
+         success: function(html) {
+             $("#cantonPHP").html(html);
+         }
+		 
+     });
+
+ 
+ 
+ };
 
 </script>
+
 
 </body>
 </html>
