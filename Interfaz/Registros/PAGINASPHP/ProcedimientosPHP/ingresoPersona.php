@@ -16,7 +16,8 @@ $canton = $_POST["cantones"];
 $distrito = $_POST["distritos"];
 $barrio = $_POST["barrios"];
 $descripcionD = $_POST["descripcionD"];
-
+$tipoTelefono = 1;
+$tipoUsuario = 2;
 echo $nombre;
 echo "<br>";
 echo $pApellido;
@@ -48,6 +49,7 @@ echo $descripcionD;
 echo "<br>"; 
 echo "Barrio: ";
 echo $barrio;
+echo "<br>"; 
 
 /*La siquiente función verifica que la persona no haya sido registrada anteriormente*/
 
@@ -57,11 +59,30 @@ $stmt = $conn->query('call obtenerPersonas()');
 
 
 foreach ($stmt as $row) {
-	echo $row['email_Persona'];
+	//echo $row['email_Persona']; echo '<br>';
 	if($row['email_Persona'] == $correo){
 		$existePersona = True;
 	}
 
 }
+
+if ($existePersona) {
+	
+	echo '<script language="javascript">';
+	echo 'alert("Esta persona ya fue registrada. Por favor Verifique sus datos.")';
+	echo '</script>';
+	
+}
+else{
+	
+	// Si no existe la persona, la registra
+	$stmt = $conn->query('proc_registrar_persona('.$conn->quote($nombre).','.$conn->quote($pApellido).',
+	'.$conn->quote($sApellido).','.$conn->quote($correo).','.$conn->quote($genero).','.$conn->quote($tipoTelefono).','.$conn->quote($telefono).','.$conn->quote($username).','.$conn->quote($contrasenna).','.$conn->quote($tipoUsuario).','.$conn->quote($provincia).','.$conn->quote($canton).','.$conn->quote($distrito).','.$conn->quote($barrio).','.$conn->quote($descripcionD).')');
+	
+	echo '<script language="javascript">';
+	echo 'alert("$nombre registrado con exito")';
+	echo '</script>';
+	
+	}
 
 ?>
