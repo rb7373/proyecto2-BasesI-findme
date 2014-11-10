@@ -94,8 +94,9 @@ display:inline;
 <head>
 <meta charset="utf-8">
 <!-- Cargar Imagen -->
-<link href="../assets/css/croppic.css" rel="stylesheet">
+<link href="assets/css/croppic.css" rel="stylesheet">
 <link rel="shortcut icon" href="../assets/img/favicon.png">
+
 <title>PetRescue</title>
 <script src="../jquery-1.11.1.min.js"></script>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -105,7 +106,7 @@ display:inline;
 <body>
 <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="../reporteMascotaEncontrada.css" media="screen">
+<link rel="stylesheet" href="../reporteMascotaPerdida.css" media="screen">
 
 
 <div id="header">
@@ -123,144 +124,64 @@ display:inline;
         </nav>
   </div>
   </div>
-
 <div class="wrapper">
-  <form class="form" method="post" action="../yourpage.html">
+  <form class="form" method="post" action="yourpage.html">
     <fieldset>
       <legend id= "direccionPersona">
-      <h1><img src= "../img/mascota.svg" width="60" height="60"> Reporta la mascota encontrada</h1>
-      </legend>
-      <br>
-      <input type="text" class="nombre" id ="nombrePHP" placeholder="Nombre"required>
+      <h1><img src= "../img/mascota.svg" width="60" height="60"> Reporta tu mascota perdida</h1>
+      </legend><br>
+      <input type="text" class="nombre" placeholder="Nombre"required>
       <div>
         <p class="nombre-help">Por favor ingresa el nombre de tu mascota.</p>
       </div>
-      <input type="number" class="chipNumber" id = "chipNumberPHP" placeholder="Número de Chip"required>
+      <input type="number" class="chipNumber" placeholder="Número de Chip"required>
       <div>
         <p class="chipNumber-help">Por favor ingresa el número de chip de tu mascota.</p>
       </div>
-      
-      <select class="tipoMascota" Id = "tipoMascotaPHP">
-      <option>Tipo Mascota</option>
-      	 <?php
-
-			header('Content-Type: text/html; charset=UTF-8');
-			
-			require("Conexion/conexionBasicaPHP.php");
-			
-			$blobObj = new BobDemo();
-			
-			if ($blobObj){
-			
-				echo 'Conexion EXE';
-				echo '<br>';
-				
-				$resultado = $blobObj->obtenerTiposMascotas();
-			
-				//print_r($resultado);
-			
-				if ($resultado!= null){
-			
-						foreach ($resultado as $row){
-							
-							//$row = $row[0];
-							
-							$tipo = $row['tipo'];
-							
-							echo '<option>'.$tipo.'</option>';
-							
-							echo '<br>';
-						}
-				}
-			
-			
-			}
-			else{
-			
-				echo 'Error de conexión';
-				echo '<br>';
-			
-			}
-			
-			?>
+      <select class="tipoMascota">
+        <option>Tipo Mascota</option>
+        <option>Perro</option>
+        <option>Gato</option>
       </select>
-      
-      <select class="razaMascota" Id = "razaMascotaPHP">
-      	 <?php
-
-			header('Content-Type: text/html; charset=UTF-8');
-			
-			$blobObj = new BobDemo();
-			
-			if ($blobObj){
-			
-				echo 'Conexion EXE';
-				echo '<br>';
-				
-				
-				
-				$resultado = $blobObj->obtenerRazasMascotas('Gato');
-			
-				//print_r($resultado);
-			
-				if ($resultado!= null){
-			
-						foreach ($resultado as $row){
-							
-							//$row = $row[0];
-							
-							$raza = $row['raza'];
-							
-							echo '<option>'.$raza.'</option>';
-							
-							echo '<br>';
-						}
-				}
-			
-			
-			}
-			else{
-			
-				echo 'Error de conexión';
-				echo '<br>';
-			
-			}
-			
-			?>
-       </select>
-      <select class="tamannoMascota" Id = "tamannoMascotaPHP">
+      <select class="razaMascota">
+        <option>Raza</option>
+        <option>Chihuahua</option>
+        <option>Maltés</option>
+      </select>
+      <select class="tamannoMascota">
         <option>Tamaño</option>
         <option>Pequeño</option>
         <option>Mediano</option>
         <option>Grande</option>
       </select>
-      <select class="colorMascota" id = "colorMascotaPHP" >
+      <select class="colorMascota">
         <option>Color</option>
         <option>Negro</option>
         <option>Blanco</option>
         <option>Café</option>
         <option>Pintado</option>
       </select>
-      <TEXTAREA class="observacionesM" ROWS=2 COLS=20 
-        type="text field" placeholder="Observaciones" id = "observacionesPHP"required></TEXTAREA>
+      
+     <TEXTAREA class="observacionesM" ROWS=2 COLS=20 
+        type="text field" placeholder="Observaciones" required></TEXTAREA>
+      
       <div>
         <p "Descripción de la asociación" class="observacionesM-help">Por favor ingrese otros rasgos importantes de la mascota.</p>
       </div>
-      <br>
-      <br>
-      <fieldset>
-        <legend id= "fotoMascota">
-        <img src= "../img/foto.svg" width="60" height="60">
-        <h2>Elija una foto de la mascota encontrada</h2>
-        </legend>
-        <br>
-        <div class="row mt ">
-          <div class="col-lg-4 ">
-            <div id="cropContainerModal"></div>
-          </div>
-        </div>
-      </fieldset>
-      <br>
+      
+      <br><br><fieldset>
+      <legend id= "fotoMascota">
+      <img src= "../img/foto.svg" width="60" height="60">
+      <h2>Elija una foto de la mascota perdida</h2>
+      </legend><br>
+      
+      <div class="row mt ">
+			<div class="col-lg-4 ">
+				<div id="cropContainerModal"></div>
+			</div>
+	  </div>
+      </fieldset><br>
+      
       <fieldset>
         <legend id= "direccionPersona">
         <img src= "../img/direccion.svg" width="60" height="60">
@@ -270,12 +191,12 @@ display:inline;
         </br>
         <label id = "labels">Fecha de desaparición:</label>
         <div>
-          <input type="date" id = "fechaPerdida"class="fechaPerdida" id = "fechaPerdidaPHP"placeholder="Fecha de la pérdida"required >
+          <input type="date" id = "fechaPerdida"class="fechaPerdida" placeholder="Fecha de la pérdida"required>
         </div>
         <br>
         <label id = "labels">Dirección: </label>
         <div class = "provincia-perdida">
-          <select class="provincias" id = "provinciasPHP">
+          <select class="provincias">
             <option>Por favor seleccione una provincia:</option>
             <option>San José</option>
             <option>Alajuela</option>
@@ -287,35 +208,27 @@ display:inline;
         </div>
         <br>
         <div class = "canton-perdida">
-          <select class="canton" id = "cantonPHP">
+          <select class="canton">
             <option>Por favor seleccione un cantón:</option>
           </select>
         </div>
         <br>
         <div class = "distrito-perdida">
-          <select class="distrito" id = "distritoPHP">
+          <select class="distrito">
             <option>Por favor seleccione un distrito:</option>
           </select>
         </div>
         <br>
-        <input type="text" id = "barrioPHP" class="barrio" placeholder="Barrio"required>
+        <input type="text" id = "barrio" class="barrio" placeholder="Barrio"required>
         <div>
           <p class="barrio-help">Por favor ingrese su barrio.</p>
         </div>
       </fieldset>
       <p></p>
-      <input type="submit" class="submitMascotaEncontrada" value="Listo">
+      <input type="submit" class="submit" value="Listo">
     </fieldset>
   </form>
 </div>
-
-<!--Funcion Ajax de verificacion a la mysql--> 
-
-<script type="text/javascript">
-
-</script> 
-
-<!--Animaciones de los inputs--> 
 <script>
 
 $(".nombre").focus(function(){
@@ -363,13 +276,13 @@ $(".barrio").focus(function(){
   $(".barrio-help").slideUp(500);
 });
 
-</script> 
+</script>
 
-<!-- Placed at the end of the document so the pages load faster --> 
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script> 
-<script src="../assets/js/bootstrap.min.js"></script> 
-<script src="../croppic.min.js"></script> 
-<script src="../assets/js/main.js"></script> 
+<!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="croppic.min.js"></script>
+<script src="assets/js/main.js"></script>
 <script>
 		var croppicHeaderOptions = {
 				uploadUrl:'img_save_to_file.php',
@@ -401,51 +314,15 @@ $(".barrio").focus(function(){
 		var cropContainerModal = new Croppic('cropContainerModal', croppicContainerModalOptions);
 		
 	</script>
-    
-    
-    
-<script>
+</body>
+</html>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
 
-$( ".tipoMascota" ).change(function() {
-	
-	var tipo = $(".tipoMascota").val();
-
-		//alert('Validando usuario 1');
-		
-  //      // getting the value that user typed
-//        var tipo    = $(".tipoMascota").val();
-//
-//		
-//        // if searchString is not empty
-//        if(tipo != '') {
-//			
-//			alert(tipo);
-//			
-//            // ajax call
-//			
-//			//alert('Validando usuario');
-//			
-//            $.ajax({
-//                type: "POST",
-//                url: "iniciarSesion.php",
-//                data: {nombreUsuario: buscarNombreUsuario, password: buscarContraseñaUsuario},
-//                beforeSend: function(html) { // this happens before actual call
-//                    $("#results").html(''); 
-//                    $("#searchresults").show();
-//                    
-//               },
-//               success: function(html){ // this happens after we get results
-//                    $("#results").show();
-//                    $("#results").append(html);
-//              }
-//            });
-//
-//    
-//        }
-  
-});
-
-</script>
-
+<body>
 </body>
 </html>
