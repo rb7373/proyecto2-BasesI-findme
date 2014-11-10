@@ -1,3 +1,4 @@
+<?php include('config.php');?>
 <!doctype html>
 <html>
 <style>
@@ -204,14 +205,17 @@ display:inline;
         </div>
         <br>
         <div class = "provincia-help">
-          <select class="provincias">
-            <option>Por favor seleccione una provincia</option>
-            <option>San José</option>
-            <option>Alajuela</option>
-            <option>Heredia</option>
-            <option>Cartago</option>
-            <option>Guanacaste</option>
-            <option>Limón</option>
+          <select class="provincias" >
+           <?php
+				
+			$stmt = $conn->query('call proc_obtenerProvincia();');
+				
+				echo "<option value=''>Por favor seleccione una provincia:</option>";
+				//loop through all returned rows
+				while($row = $stmt->fetch(PDO::FETCH_OBJ)) {
+					echo "<option value='$row->idProvincia'>$row->nombre_provincia</option>";
+					}
+			?>
           </select>
         </div>
         <br>
