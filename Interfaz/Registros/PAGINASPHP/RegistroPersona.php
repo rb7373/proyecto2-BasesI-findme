@@ -127,57 +127,59 @@ display:inline;
   </div>
 
   <div class="wrapper">
-    <form class="form" method="post" action="">
+    <form class="form" method="post" action="ProcedimientosPHP/ingresoPersona.php">
      <fieldset>
        <legend><h1>Regístrate</h1></legend>
-      <input type="text" class="nombre" id ="nombrePHP" placeholder="Nombre"required>
+      <input type="text" name = "nombre" class="nombre" id ="nombrePHP" placeholder="Nombre"required>
       <div>
         <p class="nombre-help">Por favor ingrese su nombre.</p>
       </div>
-      <input type="text" class="pApellido" id ="pApellidoPHP"placeholder="Primer Apellido"required>
+      <input type="text"  name ="pApellido"class="pApellido" id ="pApellidoPHP"placeholder="Primer Apellido"required>
       <div>
         <p class="pApellido-help">Por favor ingrese su primer apellido.</p>
       </div>
-      <input type="text" class="sApellido" id ="sApellidoPHP" placeholder="Segundo Apellido"required>
+      <input type="text"  name ="sApellido" class="sApellido" id ="sApellidoPHP" placeholder="Segundo Apellido"required>
       <div>
         <p class="sApellido-help">Por favor ingrese su segundo apellido.</p>
       </div>
       <div class="item">
         <table>
           <tr>
-            <td><select id = "tipoTelefono" class="tipoTelefono"required>
-                <option>Casa</option>
-                <option>Celular </option>
+            <td><select nombre = "tipoTelefono" id = "tipoTelefono" class="tipoTelefono"required>
+                <option value = "1">Casa</option>
+                <option value = "2">Celular </option>
               </select></td>
-            <td><input type="tel" class="telefono" placeholder="Teléfono"></td>
+            <td><input type="tel" name ="telefono" class="telefono" placeholder="Teléfono"></td>
           </tr>
         </table>
       </div>
       <div>
         <p class="telefono-help">Por favor ingrese su número telefónico.</p>
       </div>
-      <input  type="radio" name="genero" value="femenino" id ="generoPHP"required>
+      <input  type="radio" name="genero" value="2" id ="generoPHP"required>
       <img src= "../img/femenino.svg" width="50" height="42" >
-      <input type="radio" name="genero" value="masculino" id ="generoPHP"required>
+      <input type="radio" name="genero" value="1" id ="generoPHP"required>
       <img src= "../img/masculino.svg" width="50" height="42" ><br>
       </br>
-      <input type="email" class="email" placeholder="Email" id ="emailPHP" onkeyup="existePersona(emailPHP.value)"required>
+      <p id = "mensajeExistePersona"></p>
+      <input type="email" name = "email"class="email" placeholder="Email" id ="emailPHP" onkeyup="existePersona(emailPHP.value)"required>
       <div>
         <p class="email-help">Por favor ingrese su dirección de correo electrónico.</p>
-        <p id ="mensajeExiste-persona"></p>
      </div>
       
-      <input type="text" class="userName" id ="userNamePHP"placeholder="Nombre de Usuario"required>
+      <input type="text" name="userName" class="userName" id ="userNamePHP"placeholder="Nombre de Usuario" onKeyUp="existeUsuario(userNamePHP.value)"required>
       <div>
         <p class="userName-help">Por favor ingrese el nombre de usuario deseado.</p>
+        <p id = "mensajeExiste-usuario"></p>
       </div>
       
-      <input type="password" class="password" id ="passwordPHP"placeholder="Contraseña"required>
+      <input type="password" name="password" class="password" id ="passwordPHP"placeholder="Contraseña"required>
       <div>
-        <p class="password-help">Por favor ingrese su cantraseña.</p>
+        <p class="password-help">Por favor ingrese su contraseña.</p>
       </div>
       
-      <br><fieldset>
+      
+      <fieldset>
       <legend id= "fotoPersona">
       <img src= "../img/foto.svg" width="60" height="60">
       <h2>Elija una foto de perfil</h2>
@@ -206,7 +208,7 @@ display:inline;
         </div>
         <br>
         <div class = "provincia-help">
-          <select class="provincias" id = "provinciasPHP" onChange="return cambiarCantones()">
+          <select class="provincias" name = "provincias" id = "provinciasPHP" onChange="return cambiarCantones()">
            <?php
 				
 			$stmt = $conn->query('call proc_obtenerProvincia();');
@@ -221,23 +223,23 @@ display:inline;
         </div>
         <br>
         <div class = "canton-help">
-          <select class="distrito" id = "cantonPHP"  onChange="return cambiarDistrito()">
+          <select class="distrito" name = "cantones" id = "cantonPHP"  onChange="return cambiarDistrito()">
           <option>Por favor seleccione un cantón:</option>
           </select>
         </div>
         <br>
         <div class = "distrito-help">
-          <select class="distrito" id = "distritoPHP">
+          <select class="distrito" name = "distritos" id = "distritoPHP">
           <option>Por favor seleccione un distrito:</option>
          </select>
         </div>
         <br>
-        <input type="text" id = "barrio" class="barrio"  placeholder="Barrio"required>
+        <input type="text" name = "barrios" id = "barrio" class="barrio"  placeholder="Barrio"required>
         <div>
           <p class="barrio-help">Por favor ingrese su barrio.</p>
         </div>
         
-        <TEXTAREA class="descripcionD" ROWS=2 COLS=20 
+        <TEXTAREA class="descripcionD"  name = "descripcionD"ROWS=2 COLS=20 
         type="text field" placeholder="Detalle la dirección" required></TEXTAREA>
       
       <div>
@@ -356,7 +358,7 @@ $(".descripcionD").focus(function(){
     
  <script>
     function cambiarCantones(){
-	alert('Estoy cambiando Colores');
+	//alert('Estoy cambiando Colores');
 	     $.ajax({
          type: "GET", 
          url: "ProcedimientosPHP/changeCanton.php",
@@ -372,7 +374,7 @@ $(".descripcionD").focus(function(){
  };
  
    function cambiarDistrito(){
-	alert('Estoy cambiando Distritos');
+	//alert('Estoy cambiando Distritos');
 	     $.ajax({
          type: "GET", 
          url: "ProcedimientosPHP/changeDistrito.php",
@@ -387,11 +389,35 @@ $(".descripcionD").focus(function(){
  
  };
 
+function existeUsuario(username)
+            {
+				//alert('Estoy verificando el username');
+                var url = "username="+username;
 
+                var xmlhttp;
+                if (window.XMLHttpRequest)
+                  {// code for IE7+, Firefox, Chrome, Opera, Safari
+                  xmlhttp=new XMLHttpRequest();
+                  }
+                else
+                  {// code for IE6, IE5
+                  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                  }
+                xmlhttp.onreadystatechange=function()
+                  {
+                  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                    {
+                    document.getElementById("mensajeExiste-usuario").innerHTML=xmlhttp.responseText;
+                    }
+                  }
+                xmlhttp.open("POST","ProcedimientosPHP/verificarUsername.php",true);
+                xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                xmlhttp.send(url);
+            }
 
 function existePersona(correo)
             {
-				alert('Estoy verificando el email');
+				//alert('Estoy verificando el username');
                 var url = "correo="+correo;
 
                 var xmlhttp;
@@ -407,14 +433,26 @@ function existePersona(correo)
                   {
                   if (xmlhttp.readyState==4 && xmlhttp.status==200)
                     {
-                    document.getElementById("mensajeExiste-persona").innerHTML=xmlhttp.responseText;
+                    document.getElementById("mensajeExistePersona").innerHTML=xmlhttp.responseText;
                     }
                   }
                 xmlhttp.open("POST","ProcedimientosPHP/verificarPersona.php",true);
                 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
                 xmlhttp.send(url);
             }
-			
+ function send(existePersona, existeU){
+	  alert('existeP ' + existeP);
+	  alert('existeU ' + existeU);
+  if (existeP == 1 && existeU== 1) {
+	  alert('Verdadero');
+
+	return true;
+  }
+  else{
+	   alert('Falso');
+	return false;
+  }
+ }
     
     </script>
     

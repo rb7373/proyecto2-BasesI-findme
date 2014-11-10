@@ -20,19 +20,12 @@ foreach ($stmt as $row){ {
 }
 
 if ($existePersona) {
-	
-/*	echo '<script language="javascript">';
-	echo 'alert("Esta persona ya fue registrada. Por favor Verifique sus datos.")';
-	echo '</script>';*/
-
-	echo "<p>Este correo ya existe</p>";
-	echo "<input name='existe' id='existe' type='hidden' value='0'>";
+	echo "<p>Esta persona ya se encuentra registrada.</p>";
+	echo "<input name='existePersona' id='existePersona' type='hidden' value='0'>";
 }
 else{
-	echo "<p>El correo no ha sido registrado aún</p>";
-	echo "<input name='existe' id='existe' type='hidden' value='1'>";
+	echo "<p>Esta persona no se encuentra registrada.</p>";
+	echo "<input name='existePersona' id='existePersona' type='hidden' value='1'>";
 }
 
 }
-
-?>
