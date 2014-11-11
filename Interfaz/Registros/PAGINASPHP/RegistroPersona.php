@@ -468,12 +468,7 @@ beforeSend: function(html) { // this happens before actual call
 	
 	
  $("#registroPersonaForm").submit(function() {
-		
-		
-		
-		//alert('validando persona');
-		
-        // getting the value that user typed
+
         var valorEmail    = $("#existeEmail").val();
         var valorUsuario    = $("#existeUsername").val();
 		
@@ -483,30 +478,7 @@ beforeSend: function(html) { // this happens before actual call
 			}
 				
 		}
-		
-		
-/*        // if searchString is not empty
-        if(buscarNombreUsuario != '' & buscarContraseñaUsuario != '') {
-            // ajax call
 			
-			//alert('Validando usuario');
-			
-            $.ajax({
-                type: "POST",
-                url: "iniciarSesion.php",
-                data: {nombreUsuario: buscarNombreUsuario, password: buscarContraseñaUsuario},
-                beforeSend: function(html) { // this happens before actual call
-                    $("#results").html(''); 
-                    $("#searchresults").show();
-                    
-               },
-               success: function(html){ // this happens after we get results
-                    $("#results").show();
-                    $("#results").append(html);
-              }
-            });    
-        }*/
-		
 		alert("Verifique los datos ingresados por favor");
 		
         return false;
