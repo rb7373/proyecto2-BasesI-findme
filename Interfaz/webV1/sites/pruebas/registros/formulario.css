@@ -1,0 +1,250 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*dark background to support form theme*/
+body {
+/*	background: url("img/purpleBackground.jpg");
+	text-align: center;
+	background-color: transparent;
+	background-repeat: repeat, no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+	-webkit-background-size: auto, cover;
+	-moz-background-size: auto, cover;
+	-o-background-size: auto, cover;
+	background-size: auto, cover;*/
+}
+
+/*Formulario*/
+
+
+. 
+
+/*sass variables used*/
+$full:100%;
+$auto:0 auto;
+$align:center;
+ @mixin disable {
+ outline:none;
+ border:none;
+}
+ @mixin easeme {
+ -webkit-transition:1s ease;
+ -moz-transition:1s ease;
+ -o-transition:1s ease;
+ -ms-transition:1s ease;
+ transition:1s ease;
+}
+/*site container*/
+.wrapper {
+	width: 420px;
+	display: inline-block;
+	text-align: center;
+}
+h1 {
+ text-align:$align;
+	padding: 30px 0px 0px 0px;
+	font: 25px Oswald;
+	color: #FFF;
+	text-transform: uppercase;
+	text-shadow: #000 0px 1px 5px;
+	margin: 0px;
+}
+h2 {
+ text-align:$align;
+	padding: 30px 0px 0px 0px;
+	font: 20px Oswald;
+	color: #FFF;
+	text-transform: uppercase;
+	text-shadow: #000 0px 1px 5px;
+	margin: 0px;
+}
+p {
+	font: 13px Open Sans;
+	color: #6E6E6E;
+	text-shadow: #000 0px 1px 5px;
+	margin-bottom: 30px;
+}
+.form {
+	width: 100%;
+}
+.form {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding-left: 35px;
+	padding-right: 35px;
+	padding-top: 5px;
+	padding-bottom: 50px;
+	width: 450px;
+	float: left;
+	left: 50%;
+	/*position: absolute;*/
+	margin-top: 30px;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+}
+.form select.tipoTelefono {
+	/*background-color: #000;*/
+	
+	text-align: left;
+	background: rgba(0,0,0,0.2);
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid rgba(0,0,0,1);
+	width: 100px;
+	color: #a9a9a9;
+	text-shadow: #000 0px 1px 5px;
+	text-indent: 0.01px;
+	text-overflow: "";
+	box-shadow: inset 0 0 5px rgba(000,000,000, 0.5);
+	;
+}
+.form select.paises, select.provincias, select.distrito {
+	text-align: left;
+	background: rgba(0,0,0,0.2);
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid rgba(0,0,0,1);
+	width: 250px;
+	color: #a9a9a9;
+	text-shadow: #000 0px 1px 5px;
+	text-indent: 0.01px;
+	text-overflow: "";
+	padding-top: 10px;
+	padding-left: 5px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	box-shadow: inset 0 0 5px rgba(000,000,000, 0.5);
+}
+.form select.tipoTelefono :hover {
+	opacity: 1;
+	cursor: pointer;
+}
+input[type="text"], input[type="email"], input[type="password"], input[type="tel"] {
+	width: 98%;
+	padding: 15px 0px 15px 8px;
+	border-radius: 5px;
+	box-shadow: inset 4px 6px 10px -4px rgba(0,0,0,0.3), 0 1px 1px -1px rgba(255,255,255,0.3);
+	background: rgba(0,0,0,0.2);
+ @include disable;
+	border: 1px solid rgba(0,0,0,1);
+	margin-bottom: 10px;
+	color: #6E6E6E;
+	text-shadow: #000 0px 1px 5px;
+}
+input.barrio {
+	width: 300px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+input[type="submit"] {
+	width: 100%;
+	padding: 15px;
+	border-radius: 5px;
+ @include disable;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#28D2DE), to(#1A878F));
+	background-image: -webkit-linear-gradient(#28D2DE 0%, #1A878F 100%);
+	background-image: -moz-linear-gradient(#28D2DE 0%, #1A878F 100%);
+	background-image: -o-linear-gradient(#28D2DE 0%, #1A878F 100%);
+	background-image: linear-gradient(#28D2DE 0%, #1A878F 100%);
+	font: 14px Oswald;
+	color: #FFF;
+	text-transform: uppercase;
+	text-shadow: #000 0px 1px 5px;
+	border: 1px solid #000;
+	opacity: 0.7;
+	-webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.7);
+	-moz-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.7);
+	box-shadow: 0 8px 6px -6px rgba(0,0,0,0.7);
+	border-top: 1px solid rgba(255,255,255,0.8)!important;
+	-webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(50%, transparent), to(rgba(255,255,255,0.2)));
+}
+input:focus {
+	box-shadow: inset 4px 6px 10px -4px rgba(0,0,0,0.7), 0 1px 1px -1px rgba(255,255,255,0.3);
+	background: rgba(0,0,0,0.3);
+ @include easeme;
+}
+input[type="submit"]:hover {
+	opacity: 1;
+	cursor: pointer;
+}
+.nombre-help, .email-help, .pApellido-help, .sApellido-help, .telefono-help, .password-help, .provincias-help, .distritos-help, .barrio-help, .descripcionA-help, .userName-help, .descripcionD-help {
+	display: none;
+	padding: 0px;
+	margin: 0px 0px 15px 0px;
+	color: #FFF;
+}
+.optimize {
+	position: fixed;
+	right: 3%;
+	top: 0px;
+}
+.item {
+	padding-top: 10px;
+	display: block;
+	text-align: left;
+}
+.item input.telefono {
+	padding-top: 10px;
+	padding-left: -10px;
+	padding-right: 64px;
+	text-align: left;
+}
+#direccionPersona {
+	font: 14px Oswald;
+	color: #FFF;
+}
+#barrio {
+	width: 230px;
+}
+#fotoPersona {
+	font: 14px Oswald;
+	color: #FFF;
+}
+textarea {
+	height: 100px;
+	line-height: 150%;
+	resize: vertical;
+	width: 240px;
+	padding: 15px 0px 15px 8px;
+	border-radius: 5px;
+	box-shadow: inset 4px 6px 10px -4px rgba(0,0,0,0.3), 0 1px 1px -1px rgba(255,255,255,0.3);
+	background: rgba(0,0,0,0.2);
+ @include disable;
+	border: 1px solid rgba(0,0,0,1);
+	margin-bottom: 10px;
+	color: #6E6E6E;
+	text-shadow: #000 0px 1px 5px;
+}
+/*****************Cargar Imagen*****************/
+
+.cropHeaderWrapper {
+	overflow: hidden;
+	height: 420px;
+}
+#cropContainerHeaderButton {
+	color: #FFF;
+	margin: 10px 0 30px 71px;
+	padding: 15px 50px;
+	width: 407px;
+	display: block;
+	text-align: center;
+	font-weight: 400;
+	background: #2CE987;
+	text-transform: uppercase;
+	border-radius: 2px;
+	box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+	font-size: 20px;
+}
+#cropContainerHeaderButton:hover {
+	background: #1CD139;
+}
+#cropContainerModal {
+	width: 100%;
+	height: 200px;
+	position: relative;
+	border: 1px solid #ccc;
+}
