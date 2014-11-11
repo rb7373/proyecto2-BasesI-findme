@@ -32,3 +32,14 @@ begin
 	SELECT email_Persona FROM persona where lower(email_Persona) = lower(email) limit 1;
 end//
 DELIMITER ;
+
+# verifica la existencia de un username
+DROP PROCEDURE IF EXISTS existeUsername;
+
+DELIMITER //
+CREATE PROCEDURE existeUsernameproc_registrar_mascota_Perdidaproc_registrar_mascota_Perdida(pusername varchar(100))
+
+begin
+	SELECT username FROM usuario where lower(username) = lower(pusername) limit 1;
+end//
+DELIMITER ;
