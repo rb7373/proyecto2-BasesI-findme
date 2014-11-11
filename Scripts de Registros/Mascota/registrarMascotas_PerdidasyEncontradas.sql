@@ -6,9 +6,9 @@ DROP PROCEDURE IF EXISTS proc_registrar_mascota;
 
 DELIMITER //
 
-CREATE PROCEDURE proc_registrar_mascota(pnombre_mascota varchar(100), chipNumber_mascota int, estado_mascota varchar(100), 
+CREATE PROCEDURE proc_registrar_mascota(pnombre_mascota varchar(100), chipNumber_mascota int, estado_mascota int, 
 
-raza_mascota varchar(100), tamano_mascota varchar(100), tipo_mascota varchar(100), color_mascota varchar(100))
+raza_mascota int, tamano_mascota int, tipo_mascota int, color_mascota int)
 
 begin
 	#Declaracion de variables temporales
@@ -27,8 +27,8 @@ begin
 	select obtener_RazaMascota_id(raza_mascota, temp_tipoID) into temp_razaID;
 
 	#Se registra la mascota
-	call proc_insertar_mascota(pnombre_mascota, chipNumber_mascota, temp_estadoID, temp_razaID, temp_tamanoID,
-	temp_tipoID, temp_colorID);
+	call proc_insertar_mascota(pnombre_mascota, chipNumber_mascota, estado_mascota, raza_mascota, tamano_mascota,
+	tipo_mascota, color_mascota);
 	
 
 
@@ -42,14 +42,17 @@ DROP PROCEDURE IF EXISTS proc_registrar_mascota_Perdida;
 
 DELIMITER //
 
-CREATE PROCEDURE proc_registrar_mascota_Perdida(pnombre_mascota varchar(100), chipNumber_mascota int, estado_mascota varchar(100), 
+CREATE PROCEDURE proc_registrar_mascota_Perdida(pnombre_mascota varchar(100), chipNumber_mascota int, estado_mascota int, 
 
-raza_mascota varchar(100), tamano_mascota varchar(100), tipo_mascota varchar(100), color_mascota varchar(100), pid_Dueno int,
-pFecha_Perdida date, pRecompensa int, pObservaciones varchar(2000), pidFotoMascotaPerdida blob)
-
+raza_mascota int, tamano_mascota int, tipo_mascota int, color_mascota int, pid_Dueno int,
+pFecha_Perdida date, pRecompensa int, pObservaciones varchar(2000), provincia int, 
+canton int, distrito int, barrio varchar(100), descripcion_direccion varchar(1000))
 begin
 	#Declaracion de variables temporales
 	declare temp_mascotaID int;
+    declare temp_reportePerdida int;
+	declare temp_barrioID int;
+	declare temp_direccionID int;
 
 	#Se registra en primera instancia la mascota
 	call proc_registrar_mascota(pnombre_mascota, chipNumber_mascota, estado_mascota, raza_mascota, tamano_mascota,
@@ -59,9 +62,19 @@ begin
 	select last_insert_id() into temp_mascotaID;
 
 	#Se registra la mascota perdida
-	call proc_insertar_mascota_perdida( temp_mascotaID, pid_Dueno, pidFotoMascotaPerdida, 
+	call proc_insertar_mascota_perdida( temp_mascotaID, pid_Dueno,  
 	pFecha_Perdida, pRecompensa , pObservaciones );
 
+    #Se obtiene el ID del reporte recien registrada
+	select last_insert_id() into temp_reportePerdida;
+	
+	call proc_insertar_barrio(barrio,distrito);
+    select last_insert_id() into temp_barrioID;
+
+	call proc_insertar_direccion(provincia,canton, distrito,temp_barrioID,descripcion_direccion);
+	select last_insert_id() into temp_direccionID;
+	
+	call proc_insertar_direccionXreportePerdida(temp_direccionID,temp_reportePerdida);
 
 
 end  //
@@ -74,14 +87,18 @@ DROP PROCEDURE IF EXISTS proc_registrar_mascota_Encontrada;
 
 DELIMITER //
 
-CREATE PROCEDURE proc_registrar_mascota_Encontrada(pnombre_mascota varchar(100), chipNumber_mascota int, estado_mascota varchar(100), 
+CREATE PROCEDURE proc_registrar_mascota_Encontrada(pnombre_mascota varchar(100), chipNumber_mascota int, estado_mascota int, 
 
-raza_mascota varchar(100), tamano_mascota varchar(100), tipo_mascota varchar(100), color_mascota varchar(100), pid_Rescatador int,
-pFecha_Encontrada date,  pObservaciones varchar(2000), pidFotoMascotaEncontrada blob)
+raza_mascota int, tamano_mascota int, tipo_mascota int, color_mascota int, pid_Rescatador int,
+pFecha_Encontrada date,  pObservaciones varchar(2000), provincia int, 
+canton int, distrito int, barrio varchar(100), descripcion_direccion varchar(1000))
 
 begin
 	#Declaracion de variables temporales
 	declare temp_mascotaID int;
+    declare temp_reporteEncontrada int;
+	declare temp_barrioID int;
+	declare temp_direccionID int;
 
 	#Se registra en primera instancia la mascota
 	call proc_registrar_mascota(pnombre_mascota, chipNumber_mascota, estado_mascota, raza_mascota, tamano_mascota,
@@ -91,8 +108,18 @@ begin
 	select last_insert_id() into temp_mascotaID;
 
 	#Se registra la mascota encontrada
-	call proc_insertar_mascota_encontrada( temp_mascotaID, pid_Rescatador, pidFotoMascotaEncontrada, 
+	call proc_insertar_mascota_encontrada( temp_mascotaID, pid_Rescatador, 
 	pFecha_Encontrada ,  pObservaciones );
+	#Se obtiene el ID del reporte recien registrada
+	select last_insert_id() into temp_reporteEncontrada;
+
+	call proc_insertar_barrio(barrio,distrito);
+    select last_insert_id() into temp_barrioID;
+
+	call proc_insertar_direccion(provincia,canton, distrito,temp_barrioID,descripcion_direccion);
+	select last_insert_id() into temp_direccionID;
+	
+	call proc_insertar_direccionXreporteEncuentro(temp_direccionID,temp_reporteEncontrada);
 
 
 

@@ -1,0 +1,42 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `proc_registrar_mascota_Perdida`(pnombre_mascota varchar(100), chipNumber_mascota int, estado_mascota int, 
+
+raza_mascota int, tamano_mascota int, tipo_mascota int, color_mascota int, pid_Dueno int,
+pFecha_Perdida date, pRecompensa int, pObservaciones varchar(2000), provincia int, 
+canton int, distrito int, barrio varchar(100), descripcion_direccion varchar(1000))
+begin
+	#Declaracion de variables temporales
+	declare temp_mascotaID int;
+    declare temp_reportePerdida int;
+	declare temp_barrioID int;
+	declare temp_direccionID int;
+
+	#Se registra en primera instancia la mascota
+	call proc_registrar_mascota(pnombre_mascota, chipNumber_mascota, estado_mascota, raza_mascota, tamano_mascota,
+	tipo_mascota, color_mascota);
+	
+	#Se obtiene el ID de la mascota recien registrada
+	select last_insert_id() into temp_mascotaID;
+
+	#Se registra la mascota perdida
+	call proc_insertar_mascota_perdida( temp_mascotaID, pid_Dueno,  
+	pFecha_Perdida, pRecompensa , pObservaciones );
+
+    #Se obtiene el ID del reporte recien registrada
+	select last_insert_id() into temp_reportePerdida;
+	
+	call proc_insertar_barrio(barrio,distrito);
+    select last_insert_id() into temp_barrioID;
+
+	call proc_insertar_direccion(provincia,canton, distrito,temp_barrioID,descripcion_direccion);
+	select last_insert_id() into temp_direccionID;
+	
+	call proc_insertar_direccionXreportePerdida(temp_direccionID,temp_reportePerdida);
+
+
+end

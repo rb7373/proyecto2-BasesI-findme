@@ -122,7 +122,7 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS proc_insertar_mascota_perdida;
 
 DELIMITER //
-CREATE PROCEDURE proc_insertar_mascota_perdida( pidMascota int, pidDueno int, pidFotoMascotaPerdida int, 
+CREATE PROCEDURE proc_insertar_mascota_perdida( pidMascota int, pidDueno int,  
 pFechaPerdida date, pRecompensa int, pObservaciones varchar(2000)
 
 )
@@ -130,10 +130,10 @@ pFechaPerdida date, pRecompensa int, pObservaciones varchar(2000)
 begin
 
 INSERT INTO mascotasperdidas(
-  idMascota, idDueno, idFotoMascotaPerdida, fecha_perdida, recompensa, Observaciones
+  idMascota, idDueno, fecha_perdida, recompensa, Observaciones
 )
 VALUES(
-pidMascota, pidDueno, pidFotoMascotaPerdida, 
+pidMascota, pidDueno, 
 pFechaPerdida, pRecompensa, pObservaciones
  
 );
@@ -144,19 +144,18 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS proc_insertar_mascota_encontrada;
 
 DELIMITER //
-CREATE PROCEDURE proc_insertar_mascota_encontrada( pidMascota int, pidRescatador int, pidFotoMascotaEncontrada int, 
+CREATE PROCEDURE proc_insertar_mascota_encontrada( pidMascota int, pidRescatador int,  
 pFechaEncontrada date, pObservaciones varchar(2000)
-
 )
 
 begin
 
 INSERT INTO mascotasencontradas(
-  idMascota, idRescatador, fecha_encuentro, idFotoMascotaEncontrada, Observaciones
+  idMascota, idRescatador, fecha_encuentro,  Observaciones
 )
 VALUES(
 pidMascota, pidRescatador,pFechaEncontrada, 
- pidFotoMascotaEncontrada, pObservaciones
+  pObservaciones
  
 );
 end//

@@ -128,17 +128,17 @@ display:inline;
   </div>
 
 <div class="wrapper">
-  <form class="form" method="post" action="../yourpage.html">
+  <form class="form" method="post" action="ProcedimientosPHP/ingresoMascotaEncontrada.php">
     <fieldset>
       <legend id= "direccionPersona">
       <h1><img src= "../img/mascota.svg" width="60" height="60"> Reporta la mascota encontrada</h1>
       </legend>
       <br>
-      <input type="text" class="nombre" id ="nombrePHP" placeholder="Nombre"required>
+      <input type="text" class="nombre" name= "nombre"  id ="nombrePHP" placeholder="Nombre"required>
       <div>
         <p class="nombre-help">Por favor ingresa el nombre de tu mascota.</p>
       </div>
-      <input type="number" class="chipNumber" id = "chipNumberPHP" placeholder="Número de Chip"required>
+      <input type="number" class="chipNumber" name = "chipNumber" id = "chipNumberPHP" placeholder="Número de Chip"required>
       <div>
         <p class="chipNumber-help">Por favor ingresa el número de chip de tu mascota.</p>
       </div>
@@ -158,7 +158,7 @@ display:inline;
       
       ABAJO estan todas las funciones que se llaman aca-->
             
-      <select class="tipoMascota" id = "tipoMascotaPHP" onChange="return cambiarRazas(), cambiarColores(), cambiarTamanos(), llenarProvincias()">
+      <select class="tipoMascota" name ="tipoMascota"   id = "tipoMascotaPHP" onChange="return cambiarRazas(), cambiarColores(), cambiarTamanos(), llenarProvincias()">
       <option value =''>Tipo Mascota</option>
       	 <?php
 
@@ -212,17 +212,17 @@ display:inline;
 			?>
       </select>
       
-      <select class="razaMascota" Id = "razaMascotaPHP">
+      <select class="razaMascota" name = "razaMascota" Id = "razaMascotaPHP">
       <option value =''>Raza</option>
        </select>
-      <select class="tamannoMascota" Id = "tamannoMascotaPHP">
+      <select class="tamannoMascota" name = "tamannoMascota"  Id = "tamannoMascotaPHP">
         <option>Tamaño</option>
       
       </select>
-      <select class="colorMascota" id = "colorMascotaPHP" >
+      <select class="colorMascota" name ="colorMascota" id = "colorMascotaPHP" >
         <option>Color</option>
        </select>
-      <TEXTAREA class="observacionesM" ROWS=2 COLS=20 
+      <TEXTAREA class="observacionesM" name = "observacionesM" ROWS=2 COLS=20 
         type="text field" placeholder="Observaciones" id = "observacionesPHP"required></TEXTAREA>
       <div>
         <p "Descripción de la asociación" class="observacionesM-help">Por favor ingrese otros rasgos importantes de la mascota.</p>
@@ -251,29 +251,29 @@ display:inline;
         </br>
         <label id = "labels">Fecha de desaparición:</label>
         <div>
-          <input type="date" id = "fechaPerdida"class="fechaPerdida" id = "fechaPerdidaPHP"placeholder="Fecha de la pérdida"required >
+          <input type="date" id = "fechaPerdida"class="fechaPerdida" name ="fechaEncontrada" placeholder="Fecha de la pérdida"required >
         </div>
         <br>
         <label id = "labels">Dirección: </label>
         <div class = "provincia-perdida">
-          <select class="provincias" id = "provinciasPHP" onChange="return cambiarCantones() ">
+          <select class="provincias" name = "provincias" id = "provinciasPHP" onChange="return cambiarCantones() ">
             <option>Por favor seleccione una provincia:</option>
           </select>
         </div>
         <br>
         <div class = "canton-perdida">
-          <select class="canton" id = "cantonPHP" onChange="return cambiarDistrito()">
+          <select class="canton" name = "canton" id = "cantonPHP" onChange="return cambiarDistrito()">
             <option>Por favor seleccione un cantón:</option>
           </select>
         </div>
         <br>
         <div class = "distrito-perdida">
-          <select class="distrito" id = "distritoPHP">
+          <select class="distrito" name = "distrito" id = "distritoPHP">
             <option>Por favor seleccione un distrito:</option>
           </select>
         </div>
         <br>
-        <input type="text" id = "barrioPHP" class="barrio" placeholder="Barrio"required>
+        <input type="text" id = "barrioPHP" class="barrio"  name ="barrio"  placeholder="Barrio"required>
         <div>
           <p class="barrio-help">Por favor ingrese su barrio.</p>
         </div>
