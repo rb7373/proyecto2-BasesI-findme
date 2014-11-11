@@ -76,9 +76,29 @@ if ($existePersona) {
 else{
 	
 	// Si no existe la persona, la registra
-	$stmt = $conn->query('proc_registrar_persona('.$conn->quote($nombre).','.$conn->quote($pApellido).',
-	'.$conn->quote($sApellido).','.$conn->quote($correo).','.$conn->quote($genero).','.$conn->quote($tipoTelefono).','.$conn->quote($telefono).','.$conn->quote($username).','.$conn->quote($contrasenna).','.$conn->quote($tipoUsuario).','.$conn->quote($provincia).','.$conn->quote($canton).','.$conn->quote($distrito).','.$conn->quote($barrio).','.$conn->quote($descripcionD).')');
+	/*$stmt = $conn->query('proc_registrar_persona('.$conn->quote($nombre).','.$conn->quote($pApellido).','.$conn->quote($sApellido).','.$conn->quote($correo).','.$conn->quote($genero).','.$conn->quote($tipoTelefono).','.$conn->quote($telefono).','.$conn->quote($username).','.$conn->quote($contrasenna).','.$conn->quote($tipoUsuario).','.$conn->quote($provincia).','.$conn->quote($canton).','.$conn->quote($distrito).','.$conn->quote($barrio).','.$conn->quote($descripcionD).')');*/
 	
+	
+$stmt = $conn->prepare('proc_registrar_persona(:nombre, :papellido,:sapellido,:email,:genero,:tipo_telefono,:numTelefono,:username,:password,:tipoUsuario,:provincia,:canton,:distrito,:barrio,:direccion');
+
+$stmt->bindParam(':nombre', $nombre);
+$stmt->bindParam(':papellido', $pApellido);
+$stmt->bindParam(':sapellido', $sApellido);	
+$stmt->bindParam(':email', $correo);
+$stmt->bindParam(':genero', $genero);	
+$stmt->bindParam(':tipo_telefono', $tipoTelefono);
+$stmt->bindParam(':numTelefono', $telefono);	
+$stmt->bindParam(':username', $username);
+$stmt->bindParam(':password', $contrasenna);	
+$stmt->bindParam(':tipoUsuario', $tipoUsuario);
+$stmt->bindParam(':provincia', $provincia);	
+$stmt->bindParam(':canton', $canton);
+$stmt->bindParam(':distrito', $distrito);	
+$stmt->bindParam(':barrio', $barrio);
+$stmt->bindParam(':direccion', $descripcionD);	
+	
+$stmt->execute();
+
 	echo '<script language="javascript">';
 	echo 'alert("$nombre registrado con exito")';
 	echo '</script>';
