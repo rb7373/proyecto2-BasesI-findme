@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* CSS Document */
+
+#floating-social-icons {
+  position: fixed;
+  left: 10px;
+  top: 5px;
+}
+#floating-social-icons li img {
+  max-width: 250px;
+}
+#floating-social-icons li:hover {
+  opacity: .95;
+}
+

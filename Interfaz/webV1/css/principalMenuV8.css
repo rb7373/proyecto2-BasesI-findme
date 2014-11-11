@@ -48,7 +48,7 @@ h1 span{
 	font-family:'Arial Narrow', Arial, sans-serif;
 	line-height: 24px;
 	font-size: 11px;
-	background: #000;
+	background: #FFFFFF;
 	opacity: 0.9;
 	/*text-transform: uppercase;*/
 	z-index: 9999;
@@ -126,11 +126,11 @@ h1 span{
     margin: 0 auto;
     position: relative;
     background: rgba(0,0,0,0.7);
-    width: 600px;
-    height: 500px;
-    -webkit-border-radius: 300px; /*Debe ser la mitad del ancho*/
-    -moz-border-radius: 300px; /*Debe ser la mitad del ancho*/
-    border-radius: 300px; /*Debe ser la mitad del ancho*/
+    width: 560px;
+    height: 460px;
+    -webkit-border-radius: 280px; /*Debe ser la mitad del ancho*/
+    -moz-border-radius: 280px; /*Debe ser la mitad del ancho*/
+    border-radius: 280px; /*Debe ser la mitad del ancho*/
 	
     -webkit-transition: background-color 0.5s ease-in-out;
     -moz-transition: background-color 0.5s ease-in-out;
@@ -146,7 +146,7 @@ h1 span{
 .bmenu li{
     font-size: 40px;
     display: block;
-    line-height: 66px;
+    line-height: 50px;
 }
 
 .bmenu li a{
