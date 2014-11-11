@@ -16,7 +16,7 @@ $canton = $_POST['canton'];
 $distrito = $_POST['distrito'];
 $barrio= $_POST['barrio'];
 $recompensa = $_POST['recompensa'];
-$idDueno = 1;
+$idDueno = 1; //CAMBIAR
 $estado = 1;
 $descripcionD = '';
 //id dueno temporal
