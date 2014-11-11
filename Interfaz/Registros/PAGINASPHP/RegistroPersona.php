@@ -138,7 +138,7 @@ li {
   </div>
 </div>
 <div class="wrapper">
-  <form class="form" method="post"  action="ProcedimientosPHP/ingresoPersona.php">
+  <form class="form" id = "registroPersonaForm"method="post"  action="ProcedimientosPHP/ingresoPersona.php">
     <fieldset>
       <legend>
       <h1>Regístrate</h1>
@@ -259,7 +259,7 @@ li {
         </div>
       </fieldset>
       <p></p>
-      <input type="submit" class="submit" value="Listo">
+      <input type="submit" class="submit" value="Listo" id = "botonRegistrarPersona">
     </fieldset>
   </form>
   <p id = mensajeConfirmacion> </p>
@@ -465,6 +465,53 @@ beforeSend: function(html) { // this happens before actual call
         }
         return false;
     });
+	
+	
+ $("#registroPersonaForm").submit(function() {
+		
+		
+		
+		//alert('validando persona');
+		
+        // getting the value that user typed
+        var valorEmail    = $("#existeEmail").val();
+        var valorUsuario    = $("#existeUsername").val();
+		
+		if (valorEmail != null & valorUsuario != null){
+			if (valorEmail == 1 & valorUsuario == 1){
+				return true;
+			}
+				
+		}
+		
+		
+/*        // if searchString is not empty
+        if(buscarNombreUsuario != '' & buscarContraseñaUsuario != '') {
+            // ajax call
+			
+			//alert('Validando usuario');
+			
+            $.ajax({
+                type: "POST",
+                url: "iniciarSesion.php",
+                data: {nombreUsuario: buscarNombreUsuario, password: buscarContraseñaUsuario},
+                beforeSend: function(html) { // this happens before actual call
+                    $("#results").html(''); 
+                    $("#searchresults").show();
+                    
+               },
+               success: function(html){ // this happens after we get results
+                    $("#results").show();
+                    $("#results").append(html);
+              }
+            });    
+        }*/
+		
+		alert("Verifique los datos ingresados por favor");
+		
+        return false;
+    });
+
 
 //function send(existeEmail, existeUsername){
 //	alert("Existe email: " + existeEmail + " ExisteUsername: " + existeUsername);
