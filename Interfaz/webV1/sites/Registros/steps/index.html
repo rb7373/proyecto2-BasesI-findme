@@ -1,0 +1,337 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>PetRescue</title>
+<link rel="stylesheet" type="text/css" href="css/style.css" media="all" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/jquery.inputfocus-0.9.min.js"></script>
+<script type="text/javascript" src="js/jquery.main.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="formulario.css" media="screen">
+</head>
+<body>
+
+<div class="wrapper">
+  <form class="form" method="post" action="">
+  <!-- #first_step -->
+    <div id="first_step">
+    <fieldset>
+      <h1>Regístrate</h1>
+      </legend>
+      <input type="text" class="nombre" placeholder="Nombre"required>
+      <div>
+        <p class="nombre-help">Por favor ingrese su nombre.</p>
+      </div>
+      <input type="text" class="pApellido" placeholder="Primer Apellido"required>
+      <div>
+        <p class="pApellido-help">Por favor ingrese su primer apellido.</p>
+      </div>
+      <input type="text" class="sApellido" placeholder="Segundo Apellido"required>
+      <div>
+        <p class="sApellido-help">Por favor ingrese su segundo apellido.</p>
+      </div>
+      
+      <input type="submit" class="submitPersona" value="Listo">
+    </fieldset>
+    
+    <!-- clearfix -->
+      <div class="clear"></div>
+      <!-- /clearfix -->
+      <input class="submit" type="submit" name="submit_first" id="submit_first" value="Continuar" />
+    </div>
+    <!-- clearfix -->
+    <div class="clear"></div>
+    <!-- /clearfix --> 
+    
+  </form>
+  
+
+
+</div>
+
+  <div id="progress_bar">
+  <div id="progress"></div>
+  <div id="progress_text">0% Complete</div>
+</div>
+
+<script>
+
+$(".nombre").focus(function(){
+  $(".nombre-help").slideDown(500);
+  //alert('hola');
+}).blur(function(){
+  $(".nombre-help").slideUp(500);
+});
+
+$(".pApellido").focus(function(){
+  $(".pApellido-help").slideDown(500);
+  //alert('hola');
+}).blur(function(){
+  $(".pApellido-help").slideUp(500);
+});
+
+$(".sApellido").focus(function(){
+  $(".sApellido-help").slideDown(500);
+  //alert('hola');
+}).blur(function(){
+  $(".sApellido-help").slideUp(500);
+});
+
+$(".userName").focus(function(){
+  $(".userName-help").slideDown(500);
+  //alert('hola');
+}).blur(function(){
+  $(".userName-help").slideUp(500);
+});
+
+$(".email").focus(function(){
+  $(".email-help").slideDown(500);
+}).blur(function(){
+  $(".email-help").slideUp(500);
+});
+
+$(".telefono").focus(function(){
+  $(".telefono-help").slideDown(500);
+}).blur(function(){
+  $(".telefono-help").slideUp(500);
+});
+
+$(".password").focus(function(){
+  $(".password-help").slideDown(500);
+}).blur(function(){
+  $(".password-help").slideUp(500);
+});
+
+$(".barrio").focus(function(){
+  $(".barrio-help").slideDown(500);
+}).blur(function(){
+  $(".barrio-help").slideUp(500);
+});
+
+$(".descripcionD").focus(function(){
+  $(".descripcionD-help").slideDown(500);
+  //alert('hola');
+}).blur(function(){
+  $(".descripcionD-help").slideUp(500);
+});
+
+</script> 
+
+<!-- Placed at the end of the document so the pages load faster --> 
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script> 
+<script src="assets/js/bootstrap.min.js"></script> 
+<script src="croppic.min.js"></script> 
+<script src="assets/js/main.js"></script> 
+<script>
+		var croppicHeaderOptions = {
+				uploadUrl:'img_save_to_file.php',
+				cropData:{
+					"dummyData":1,
+					"dummyData2":"asdas"
+				},
+				cropUrl:'img_crop_to_file.php',
+				customUploadButtonId:'cropContainerHeaderButton',
+				modal:false,
+				loaderHtml:'<div class="loader bubblingG"><span id="bubblingG_1"></span><span id="bubblingG_2"></span><span id="bubblingG_3"></span></div> ',
+				onBeforeImgUpload: function(){ console.log('onBeforeImgUpload') },
+				onAfterImgUpload: function(){ console.log('onAfterImgUpload') },
+				onImgDrag: function(){ console.log('onImgDrag') },
+				onImgZoom: function(){ console.log('onImgZoom') },
+				onBeforeImgCrop: function(){ console.log('onBeforeImgCrop') },
+				onAfterImgCrop:function(){ console.log('onAfterImgCrop') }
+		}	
+		var croppic = new Croppic('croppic', croppicHeaderOptions);
+		
+		
+		var croppicContainerModalOptions = {
+				uploadUrl:'img_save_to_file.php',
+				cropUrl:'img_crop_to_file.php',
+				modal:true,
+				imgEyecandyOpacity:0.4,
+				loaderHtml:'<div class="loader bubblingG"><span id="bubblingG_1"></span><span id="bubblingG_2"></span><span id="bubblingG_3"></span></div> '
+		}
+		var cropContainerModal = new Croppic('cropContainerModal', croppicContainerModalOptions);
+		
+	</script> 
+<script type="text/javascript">
+ 
+$(function() {
+ 
+    $(".submitPersona").click(function() {
+		
+		//alert('Validando usuario 1');
+		
+        // getting the value that user typed
+        var buscarNombreUsuario    = $("#usernamePHP").val();
+        var buscarContraseñaUsuario    = $("#passwordPHP").val();
+		
+		
+        // if searchString is not empty
+        if(buscarNombreUsuario != '' & buscarContraseñaUsuario != '') {
+            // ajax call
+			
+			//alert('Validando usuario');
+			
+            $.ajax({
+                type: "POST",
+                url: "iniciarSesion.php",
+                data: {nombreUsuario: buscarNombreUsuario, password: buscarContraseñaUsuario},
+                beforeSend: function(html) { // this happens before actual call
+                    $("#results").html(''); 
+                    $("#searchresults").show();
+                    
+               },
+               success: function(html){ // this happens after we get results
+                    $("#results").show();
+                    $("#results").append(html);
+              }
+            });    
+        }
+        return false;
+    });
+});
+
+
+$(function(){
+    //original field values
+    var field_values = {
+            //id        :  value
+            'username'  : 'username',
+            'password'  : 'password',
+            'cpassword' : 'password',
+            'firstname'  : 'first name',
+            'lastname'  : 'last name',
+            'email'  : 'email address'
+    };
+
+
+    //inputfocus
+    $('input#username').inputfocus({ value: field_values['username'] });
+    $('input#password').inputfocus({ value: field_values['password'] });
+    $('input#cpassword').inputfocus({ value: field_values['cpassword'] }); 
+    $('input#lastname').inputfocus({ value: field_values['lastname'] });
+    $('input#firstname').inputfocus({ value: field_values['firstname'] });
+    $('input#email').inputfocus({ value: field_values['email'] }); 
+
+
+
+
+    //reset progress bar
+    $('#progress').css('width','0');
+    $('#progress_text').html('0% Complete');
+
+    //first_step
+    $('form').submit(function(){ return false; });
+    $('#submit_first').click(function(){
+        //remove classes
+        $('#first_step input').removeClass('error').removeClass('valid');
+
+        //ckeck if inputs aren't empty
+        var fields = $('#first_step input[type=text], #first_step input[type=password]');
+        var error = 0;
+        fields.each(function(){
+            var value = $(this).val();
+            if( value.length<4 || value==field_values[$(this).attr('id')] ) {
+                $(this).addClass('error');
+                $(this).effect("shake", { times:3 }, 50);
+                
+                error++;
+            } else {
+                $(this).addClass('valid');
+            }
+        });        
+        
+        if(!error) {
+            if( $('#password').val() != $('#cpassword').val() ) {
+                    $('#first_step input[type=password]').each(function(){
+                        $(this).removeClass('valid').addClass('error');
+                        $(this).effect("shake", { times:3 }, 50);
+                    });
+                    
+                    return false;
+            } else {   
+                //update progress bar
+                $('#progress_text').html('33% Complete');
+                $('#progress').css('width','113px');
+                
+                //slide steps
+                $('#first_step').slideUp();
+                $('#second_step').slideDown();     
+            }               
+        } else return false;
+    });
+
+
+    $('#submit_second').click(function(){
+        //remove classes
+        $('#second_step input').removeClass('error').removeClass('valid');
+
+        var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;  
+        var fields = $('#second_step input[type=text]');
+        var error = 0;
+        fields.each(function(){
+            var value = $(this).val();
+            if( value.length<1 || value==field_values[$(this).attr('id')] || ( $(this).attr('id')=='email' && !emailPattern.test(value) ) ) {
+                $(this).addClass('error');
+                $(this).effect("shake", { times:3 }, 50);
+                
+                error++;
+            } else {
+                $(this).addClass('valid');
+            }
+        });
+
+        if(!error) {
+                //update progress bar
+                $('#progress_text').html('66% Complete');
+                $('#progress').css('width','226px');
+                
+                //slide steps
+                $('#second_step').slideUp();
+                $('#third_step').slideDown();     
+        } else return false;
+
+    });
+
+
+    $('#submit_third').click(function(){
+        //update progress bar
+        $('#progress_text').html('100% Complete');
+        $('#progress').css('width','339px');
+
+        //prepare the fourth step
+        var fields = new Array(
+            $('#username').val(),
+            $('#password').val(),
+            $('#email').val(),
+            $('#firstname').val() + ' ' + $('#lastname').val(),
+            $('#age').val(),
+            $('#gender').val(),
+            $('#country').val()                       
+        );
+        var tr = $('#fourth_step tr');
+        tr.each(function(){
+            //alert( fields[$(this).index()] )
+            $(this).children('td:nth-child(2)').html(fields[$(this).index()]);
+        });
+                
+        //slide steps
+        $('#third_step').slideUp();
+        $('#fourth_step').slideDown();            
+    });
+
+
+    $('#submit_fourth').click(function(){
+        //send information to server
+        alert('Data sent');
+    });
+
+});
+
+</script>
+
+</body>
+</html>

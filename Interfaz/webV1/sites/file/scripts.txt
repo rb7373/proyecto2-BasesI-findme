@@ -1,0 +1,38 @@
+<?php
+function validate($allSubmitted)
+{
+
+    $message = "";
+
+    $passwords = $allSubmitted["pword"];
+    $firstPass = $passwords[0];
+    $secondPass = $passwords[1];
+    $username = $allSubmitted["name"];
+
+    if ($firstPass != $secondPass) {
+        $message = $message . "Passwords don't match<br />";
+    }
+    if (strlen($username) < 5 || strlen($username) > 50) {
+        $message = $message . "Username must be \
+            between 5 and 50 characters<br />";
+    }
+
+    if ($message == "") {
+        $message = "OK";
+    }
+
+    return $message;
+
+}
+
+function checkPasswords($firstPass, $secondPass)
+{
+
+    if ($firstPass == $secondPass) {
+        echo "<p>Passwords match. Thank you.</p>";
+    } else {
+        echo "<p>Passwords don't match. Please try again.</p>";
+    }
+
+}
+?>
