@@ -2,30 +2,27 @@
 
 include('../config.php');
 
-$correo = $_POST["correo"];
+$correo = $_GET["keyword"];
 
-$existePersona = False;
-
-$stmt = $conn->query('call obtenerPersonas()');
-
-
-
-foreach ($stmt as $row) {
+$stmt = $conn->prepare("call existeEmail(:correo)");
+$stmt->bindValue(':correo',$correo );	
 	
-	$email = $row['email_Persona']; // se debe poner exactamente el mismo nombre de columna.
-	if($email == $correo){
-		$existePersona = True;
-	}
+$stmt->execute();
 
-}
+$resultado =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-if ($existePersona) {
-	echo "<p>Esta persona ya se encuentra registrada.</p>";
-	echo "<input name='existePersona' id='existePersona' type='hidden' value='0'>";
+//print_r ($resultado);
+
+if ($resultado != null){
+	
+	echo "El correo no se encuentra disponible";
+	echo "<input name='existeEmail' id='existeEmail' type='hidden' value='0'>";
 }
 else{
-	echo "<p>Esta persona no se encuentra registrada.</p>";
-	echo "<input name='existePersona' id='existePersona' type='hidden' value='1'>";
+	//echo "El usuario NO existe";
+	echo "<input name='existeEmail' id='existeEmail' type='hidden' value='1'>";
 }
+
+
 
 ?>

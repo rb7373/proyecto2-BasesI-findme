@@ -2,31 +2,27 @@
 
 include('../config.php');
 
-$usuario = $_POST["username"];
+$username = $_GET["keyword"];
 
-$existeUsuario = False;
-
-$stmt = $conn->query('call obtenerUsernames()');
-
-
-
-foreach ($stmt as $row) {
+$stmt = $conn->prepare("call existeUsername(:username)");
+$stmt->bindValue(':username',$username);	
 	
-	$username = $row['username']; // se debe poner exactamente el mismo nombre de columna.
-	if($username == $usuario){
-		$existeUsuario = True;
-	}
+$stmt->execute();
 
-}
+$resultado =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-if ($existeUsuario) {
-	echo "<p>Este username no esta disponible.</p>";
-	echo "<input name='existeU' id='existeU' type='hidden' value='0'>";
+//print_r ($resultado);
+
+if ($resultado != null){
+	
+	echo "El username no se encuentra disponible";
+	echo "<input name='existeUsername' id='existeUsername' type='hidden' value='0'>";
 }
 else{
-	echo "<p>Puede utilizar este username</p>";
-	echo "<input name='existeU' id='existeU' type='hidden' value='1'>";
+	//echo "El usuario NO existe";
+	echo "<input name='existeUsername' id='existeUsername' type='hidden' value='1'>";
 }
+
 
 
 ?>

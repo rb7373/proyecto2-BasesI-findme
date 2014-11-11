@@ -69,38 +69,52 @@
 #menuSuperior nav ul li:nth-child(4) a span {
 	color: #ff7a85;
 }
-
-
-ul.update { list-style:none;font-size:1.1em; margin-top:10px }
-ul.update li{ height:30px; border-bottom:#dedede solid 1px; text-align:left;}
-ul.update li:first-child{ border-top:#dedede solid 1px; height:30px; text-align:left; }
-#flash { margin-top:20px; text-align:left; }
-#searchresults { text-align:left; margin-top:20px; display:none; }
+/*ul.update {
+	list-style: none;
+	font-size: 1.1em;
+	margin-top: 10px
+}
+ul.update li {
+	height: 30px;
+	border-bottom: #dedede solid 1px;
+	text-align: left;
+}
+ul.update li:first-child {
+	border-top: #dedede solid 1px;
+	height: 30px;
+	text-align: left;
+}*/
+#flash {
+	margin-top: 20px;
+	text-align: left;
+}
+#searchresults {
+	text-align: left;
+	margin-top: 20px;
+	display: none;
+}
 #floating-social-icons {
-  position: fixed;
-  left: 10px;
-  top: 5px;
+	position: fixed;
+	left: 10px;
+	top: 5px;
 }
 #floating-social-icons li img {
-  max-width: 250px;
+	max-width: 250px;
 }
 #floating-social-icons li:hover {
-  opacity: .95;
+	opacity: .95;
 }
- li{
-display:inline;
+li {
+	display: inline;
 }
 </style>
-
 <head>
 <meta charset="utf-8">
 <title>PetRescue</title>
- <link rel="shortcut icon" href="../assets/img/favicon.png">
- 
- 
-    <!-- Custom styles for this template -->
-    <link href="../assets/css/croppic.css" rel="stylesheet">
-    
+<link rel="shortcut icon" href="../assets/img/favicon.png">
+
+<!-- Custom styles for this template -->
+<link href="../assets/css/croppic.css" rel="stylesheet">
 <script src="../jquery-1.11.1.min.js"></script>
 </head>
 
@@ -108,29 +122,28 @@ display:inline;
 <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="../formulario.css" media="screen">
-
-
 <div id="header">
   <ul id="floating-social-icons">
     <li><a href=""><img src="../img/logoV5.png" alt="" /></a></li>
   </ul>
-      <div id="menuSuperior">
+  <div id="menuSuperior">
     <nav>
-          <ul>
+      <ul>
         <li> <a href="#"> <span>Ajustes</span> </a> </li>
         <li> <a href="#"> <span>Contactos</span> </a> </li>
         <li> <a href=""> <span>Registrar</span> </a> </li>
         <li> <a id="loginLink" href="#"> <span>Ingresar</span> </a> </li>
       </ul>
-        </nav>
+    </nav>
   </div>
-  </div>
-
-  <div class="wrapper">
-    <form class="form" method="post" action="ProcedimientosPHP/ingresoPersona.php">
-     <fieldset>
-       <legend><h1>Regístrate</h1></legend>
-      <input type="text" name = "nombre" class="nombre" id ="nombrePHP" placeholder="Nombre"required>
+</div>
+<div class="wrapper">
+  <form class="form" method="post"  action="ProcedimientosPHP/ingresoPersona.php">
+    <fieldset>
+      <legend>
+      <h1>Regístrate</h1>
+      </legend>
+      <input type="text" name = "nombre" class="nombre" id ="nombrePHP" placeholder="Nombre" required>
       <div>
         <p class="nombre-help">Por favor ingrese su nombre.</p>
       </div>
@@ -161,40 +174,39 @@ display:inline;
       <input type="radio" name="genero" value="1" id ="generoPHP"required>
       <img src= "../img/masculino.svg" width="50" height="42" ><br>
       </br>
-      
-      <input type="email" name = "email"class="email" placeholder="Email" id ="emailPHP"  required>
+      <input autocomplete="off" type="email" name = "email"class="email" placeholder="Email" id ="emailPHP"  required>
+      <div class="resultadosValidaciones" style="display:none" id="searchresultsEmail"><!--Resultados :--></div>
+      <ul id="resultsEmail" class="update resultadosValidaciones">
+      </ul>
       <div>
         <p class="email-help">Por favor ingrese su dirección de correo electrónico.</p>
-        <p id = mensajeConfirmacion>
-   		</p>
-     </div>
+      </div>
+      <input autocomplete="off" type="text" name="userName" class="userName" id ="userNamePHP"placeholder="Nombre de Usuario"required>
       
-      <input type="text" name="userName" class="userName" id ="userNamePHP"placeholder="Nombre de Usuario"required>
+      <div class="resultadosValidaciones" style="display:none" id="searchresultsUsername"><!--Resultados :--></div>
+      <ul id="resultsUsername" class="update resultadosValidaciones">
+      </ul>
+      
       <div>
         <p class="userName-help">Por favor ingrese el nombre de usuario deseado.</p>
-      
       </div>
-      
       <input type="password" name="password" class="password" id ="passwordPHP"placeholder="Contraseña"required>
       <div>
         <p class="password-help">Por favor ingrese su contraseña.</p>
       </div>
-      
-      
       <fieldset>
-      <legend id= "fotoPersona">
-      <img src= "../img/foto.svg" width="60" height="60">
-      <h2>Elija una foto de perfil</h2>
-      </legend><br>
-      
-      <div class="row mt ">
-			<div class="col-lg-4 ">
-				<div id="cropContainerModal"></div>
-			</div>
-	  </div>
-      </fieldset><br>
-      
-      
+        <legend id= "fotoPersona">
+        <img src= "../img/foto.svg" width="60" height="60">
+        <h2>Elija una foto de perfil</h2>
+        </legend>
+        <br>
+        <div class="row mt ">
+          <div class="col-lg-4 ">
+            <div id="cropContainerModal"></div>
+          </div>
+        </div>
+      </fieldset>
+      <br>
       <fieldset>
         <legend id= "direccionPersona">
         <img src= "../img/direccion.svg" width="60" height="60">
@@ -211,7 +223,7 @@ display:inline;
         <br>
         <div class = "provincia-help">
           <select class="provincias" name = "provincias" id = "provinciasPHP" onChange="return cambiarCantones()">
-           <?php
+            <?php
 				
 			$stmt = $conn->query('call proc_obtenerProvincia();');
 				
@@ -226,38 +238,32 @@ display:inline;
         <br>
         <div class = "canton-help">
           <select class="distrito" name = "cantones" id = "cantonPHP"  onChange="return cambiarDistrito()">
-          <option>Por favor seleccione un cantón:</option>
+            <option>Por favor seleccione un cantón:</option>
           </select>
         </div>
         <br>
         <div class = "distrito-help">
           <select class="distrito" name = "distritos" id = "distritoPHP">
-          <option>Por favor seleccione un distrito:</option>
-         </select>
+            <option>Por favor seleccione un distrito:</option>
+          </select>
         </div>
         <br>
         <input type="text" name = "barrios" id = "barrio" class="barrio"  placeholder="Barrio"required>
         <div>
           <p class="barrio-help">Por favor ingrese su barrio.</p>
         </div>
-        
         <TEXTAREA class="descripcionD"  name = "descripcionD"ROWS=2 COLS=20 
         type="text field" placeholder="Detalle la dirección" required></TEXTAREA>
-      
-      <div>
-        <p class="descripcionD-help">Por favor ingrese más detalles sobre la dirección.</p>
-      </div>
-      
+        <div>
+          <p class="descripcionD-help">Por favor ingrese más detalles sobre la dirección.</p>
+        </div>
       </fieldset>
       <p></p>
       <input type="submit" class="submit" value="Listo">
-      </fieldset>
-    </form>
-   <p id = mensajeConfirmacion>
-   </p>
-    
-  </div>
-
+    </fieldset>
+  </form>
+  <p id = mensajeConfirmacion> </p>
+</div>
 <script>
 
 $(".nombre").focus(function(){
@@ -319,14 +325,13 @@ $(".descripcionD").focus(function(){
   $(".descripcionD-help").slideUp(500);
 });
 
-</script>
+</script> 
 
-
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="../assets/js/bootstrap.min.js"></script>
-<script src="../croppic.min.js"></script>
-<script src="../assets/js/main.js"></script>
+<!-- Placed at the end of the document so the pages load faster --> 
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script> 
+<script src="../assets/js/bootstrap.min.js"></script> 
+<script src="../croppic.min.js"></script> 
+<script src="../assets/js/main.js"></script> 
 <script>
 		var croppicHeaderOptions = {
 				uploadUrl:'img_save_to_file.php',
@@ -357,10 +362,8 @@ $(".descripcionD").focus(function(){
 		}
 		var cropContainerModal = new Croppic('cropContainerModal', croppicContainerModalOptions);
 		
-	</script>
-    
-    
- <script>
+	</script> 
+<script>
     function cambiarCantones(){
 	//alert('Estoy cambiando Colores');
 	     $.ajax({
@@ -393,73 +396,86 @@ $(".descripcionD").focus(function(){
  
  };
  
+ 
+$("#emailPHP").keyup(function() {
+		
+        var faq_search_input = $(this).val();
+		
+		//alert(faq_search_input);
+		
+        var dataString = 'keyword=' + faq_search_input;
+        if (faq_search_input.length > 3)
+//
+        {
+            $.ajax({
+                type: "GET",
+                url: "ProcedimientosPHP/verificarPersona.php",
+                data: dataString,
+beforeSend: function(html) { // this happens before actual call
+                    $("#resultsEmail").html('');
+					$("#searchresultsEmail").html(''); 
+                    $("#searchresultsEmail").show();
+					
+					
+					
+                    
+               },
+               success: function(html){ // this happens after we get results
+                    $("#resultsEmail").show();
+                    $("#searchresultsEmail").append(html);
+					
+					//alert("DESP");
+              }
+            });    
+        }
+        return false;
+    });
 
-function existeUsuario(username)
-            {
-				//alert('Estoy verificando el username');
-                var url = "username="+username;
-
-                var xmlhttp;
-                if (window.XMLHttpRequest)
-                  {// code for IE7+, Firefox, Chrome, Opera, Safari
-                  xmlhttp=new XMLHttpRequest();
-                  }
-                else
-                  {// code for IE6, IE5
-                  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-                  }
-                xmlhttp.onreadystatechange=function()
-                  {
-                  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-                    {
-                    document.getElementById("mensajeConfirmacion").innerHTML=xmlhttp.responseText;
-                    }
-                  }
-                xmlhttp.open("POST","ProcedimientosPHP/verificarUsername.php",true);
-                xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-                xmlhttp.send(url);
-            }
-
-function existePersona(correo)
-            {
-				//alert('Estoy verificando el username');
-                var url = "correo="+correo;
-
-                var xmlhttp;
-                if (window.XMLHttpRequest)
-                  {// code for IE7+, Firefox, Chrome, Opera, Safari
-                  xmlhttp=new XMLHttpRequest();
-                  }
-                else
-                  {// code for IE6, IE5
-                  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-                  }
-                xmlhttp.onreadystatechange=function()
-                  {
-                  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-                    {
-                    document.getElementById("mensajeConfirmacion").innerHTML=xmlhttp.responseText;
-                    }
-                  }
-                xmlhttp.open("POST","ProcedimientosPHP/verificarPersona.php",true);
-                xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-                xmlhttp.send(url);
-            }
- function send(existePersona, existeU){
-	  alert('existeP ' + existeP);
-	  alert('existeU ' + existeU);
-  if (existeP == 1 && existeU== 1) {
-	  alert('Verdadero');
-
-	return true;
-  }
-  else{
-	   alert('Falso');
-	return false;
-  }
- }
     
+$("#userNamePHP").keyup(function() {
+		
+        var faq_search_input = $(this).val();
+		
+		//alert(faq_search_input);
+		
+        var dataString = 'keyword=' + faq_search_input;
+        if (faq_search_input.length > 3)
+//
+        {
+            $.ajax({
+                type: "GET",
+                url: "ProcedimientosPHP/verificarUsername.php",
+                data: dataString,
+beforeSend: function(html) { // this happens before actual call
+                    $("#resultsUsername").html(''); 
+					$("#searchresultsUsername").html('');
+                    $("#searchresultsUsername").show();
+					
+					
+					
+                    
+               },
+               success: function(html){ // this happens after we get results
+                    $("#resultsUsername").show();
+                    $("#searchresultsUsername").append(html);
+					
+					//alert("DESP");
+              }
+            });    
+        }
+        return false;
+    });
+
+//function send(existeEmail, existeUsername){
+//	alert("Existe email: " + existeEmail + " ExisteUsername: " + existeUsername);
+//  if (existeEmail == 1 && existeUsername == 1) {
+//	return true;
+//  }
+//  else{
+//	return false;
+//  }
+// }
+	
     </script>
-    
 </body>
 </html>
