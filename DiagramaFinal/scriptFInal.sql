@@ -3,9 +3,6 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
--- -----------------------------------------------------
 -- Schema petsrescue
 -- -----------------------------------------------------
 DROP SCHEMA IF EXISTS `petsrescue` ;
@@ -26,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `petsrescue`.`provincia` (
   `ModificadoPor` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`idProvincia`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
+AUTO_INCREMENT = 8
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -51,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `petsrescue`.`canton` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
+AUTO_INCREMENT = 8
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -76,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `petsrescue`.`distrito` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -101,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `petsrescue`.`barrio` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
+AUTO_INCREMENT = 23
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -118,7 +115,6 @@ CREATE TABLE IF NOT EXISTS `petsrescue`.`bitacora` (
   `FechaDeModificacion` DATE NULL DEFAULT NULL,
   PRIMARY KEY (`idBitacora`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -136,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `petsrescue`.`colormascota` (
   `ModificadoPor` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idColorMascota`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -182,7 +178,7 @@ CREATE TABLE IF NOT EXISTS `petsrescue`.`direccion` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
+AUTO_INCREMENT = 18
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -200,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `petsrescue`.`genero` (
   `ModificadoPor` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`idGenero`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -228,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `petsrescue`.`persona` (
     FOREIGN KEY (`idGenero`)
     REFERENCES `petsrescue`.`genero` (`idGenero`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
+AUTO_INCREMENT = 12
 DEFAULT CHARACTER SET = utf8
 COMMENT = 'Contiene los datos de una persona que se registra como usuario en el Sistema';
 
@@ -260,7 +256,7 @@ CREATE TABLE IF NOT EXISTS `petsrescue`.`direccionxpersona` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
+AUTO_INCREMENT = 8
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -275,9 +271,10 @@ CREATE TABLE IF NOT EXISTS `petsrescue`.`tipofoto` (
   `FechaDeCreacion` DATE NULL DEFAULT NULL,
   `FechaDeModificacion` DATE NULL DEFAULT NULL,
   `CreadoPor` INT(11) NULL DEFAULT NULL,
+  `mime` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`idTipoFoto`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8
 COMMENT = 'Contiene los tipos de fotos';
 
@@ -306,7 +303,6 @@ CREATE TABLE IF NOT EXISTS `petsrescue`.`foto` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = utf8
 COMMENT = 'Colección de fotos';
 
@@ -325,7 +321,7 @@ CREATE TABLE IF NOT EXISTS `petsrescue`.`estadomascota` (
   `ModificadoPor` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`idEstadoMascota`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
+AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -343,7 +339,7 @@ CREATE TABLE IF NOT EXISTS `petsrescue`.`tipomascota` (
   `ModificadoPor` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`idTipoMascota`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
+AUTO_INCREMENT = 9
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -368,7 +364,7 @@ CREATE TABLE IF NOT EXISTS `petsrescue`.`razamascota` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
+AUTO_INCREMENT = 14
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -440,7 +436,7 @@ CREATE TABLE IF NOT EXISTS `petsrescue`.`mascota` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
+AUTO_INCREMENT = 18
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -480,7 +476,7 @@ CREATE TABLE IF NOT EXISTS `petsrescue`.`mascotasencontradas` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
+AUTO_INCREMENT = 8
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -511,7 +507,7 @@ CREATE TABLE IF NOT EXISTS `petsrescue`.`direccionxreporteencuentro` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
+AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -552,7 +548,7 @@ CREATE TABLE IF NOT EXISTS `petsrescue`.`mascotasperdidas` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -583,7 +579,7 @@ CREATE TABLE IF NOT EXISTS `petsrescue`.`direccionxreporteperdida` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -601,7 +597,7 @@ CREATE TABLE IF NOT EXISTS `petsrescue`.`tipotelefono` (
   `ModificadoPor` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`idTipoTelefono`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8
 COMMENT = 'Contiene los tipos de telefono que una persona puede tener';
 
@@ -634,7 +630,7 @@ CREATE TABLE IF NOT EXISTS `petsrescue`.`telefonoxpersona` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
+AUTO_INCREMENT = 11
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -652,7 +648,7 @@ CREATE TABLE IF NOT EXISTS `petsrescue`.`tipousuario` (
   `ModificadoPor` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`idTipoUsuario`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -692,7 +688,7 @@ CREATE TABLE IF NOT EXISTS `petsrescue`.`usuario` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
+AUTO_INCREMENT = 10
 DEFAULT CHARACTER SET = utf8;
 
 USE `petsrescue` ;
@@ -3375,39 +3371,5 @@ BEGIN
      values (SYSDATE(),'Usuario', 'Insert');
 END$$
 
-
-DELIMITER ;
-
-
-#Procedimientos para el login
-
-USE `petsrescue`;
-DROP procedure IF EXISTS `petsrescue`.`proc_getID_Usuario`;
-
-DELIMITER $$
-USE `petsrescue`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `proc_getID_Usuario`(
-   nombre_usuario varchar(100))
-begin
-
-select idUsuario from usuario where username = nombre_usuario limit 1;
-
-end$$
-
-DELIMITER ;
-
-
-USE `petsrescue`;
-DROP procedure IF EXISTS `petsrescue`.`proc_getID_Persona`;
-
-DELIMITER $$
-USE `petsrescue`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `proc_getID_Persona`(
-   id_Usuario int(11), pass_user varchar(200))
-begin
-
-select usuario_idPersona from usuario where idUsuario = id_Usuario and password_usuario = PASSWORD(pass_user) limit 1;
-
-end$$
 
 DELIMITER ;
