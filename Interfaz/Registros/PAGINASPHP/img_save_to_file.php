@@ -31,6 +31,14 @@ $rutaFotoActual;
 
 		  $rutaFotoActual = $_FILES["img"]["name"];
 
+		  session_start(); // Starting Session
+
+		  $_SESSION['foto_path']=$_FILES["img"]["name"]; // Initializing Session User name
+
+		  
+		
+
+
 		  $response = array(
 			"status" => 'success',
 			"url" => $imagePath.$_FILES["img"]["name"],

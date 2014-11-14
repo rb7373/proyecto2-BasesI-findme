@@ -8,6 +8,8 @@ require("conexionPHP.php");
 
 $blobObj = new BobDemo();
 
+console.log('Hello console!');
+
 if ($blobObj){
 
 	//echo 'Conexion EXE';
@@ -56,7 +58,6 @@ if ($blobObj){
  <script languaje="javascript">
   alert("El nombre de usuario es incorrecto!");
   
-  //location.href = "../../perfiUsuario/PerfilUsuario.php";
  </script>
 <?*/  
 					

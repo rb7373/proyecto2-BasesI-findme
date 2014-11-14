@@ -4,6 +4,8 @@ include('../config.php');
 
 include('../../../webV1/sites/conexionPHP.php');
 
+session_start(); // Starting Session
+
 
 $blobObj = new BobDemo();
 
@@ -86,7 +88,7 @@ if ($existePersona) {
 		
 		if ($blobObj){
 			
-			//$blobObj->insertBlob($rutaFotoActual,"image/jpg",1);
+			$blobObj->insertBlob( $imagePath.$_SESSION['foto_path'],"image/jpg",1);
 		}
         
         
@@ -120,9 +122,7 @@ if ($existePersona) {
 		
 		
         
-        echo '<script language="javascript">';
-        echo 'alert("$nombre se ha registrado con éxito")';
-        echo '</script>';
+
         
         $conn->commit();
     }
