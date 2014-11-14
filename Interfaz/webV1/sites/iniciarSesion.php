@@ -1,5 +1,7 @@
 <?php
 
+session_start(); // Starting Session
+
 header('Content-Type: text/html; charset=UTF-8');
 
 require("conexionPHP.php");
@@ -31,6 +33,8 @@ if ($blobObj){
 
 				$id = $row['idUsuario'];
 				$pass = $_POST['password'];
+				
+				
 
 				//echo $pass;
 
@@ -40,6 +44,22 @@ if ($blobObj){
 					//print_r($personaID);
 					echo 'Bienvenido';
 					echo '<br>';
+					
+					$_SESSION['login_user']=$usuario; // Initializing Session User name
+					$_SESSION['login_id']=$id; // Initializing Session User ID
+					
+					echo '<script type="text/javascript">
+					location.href = "../../perfiUsuario/PerfilUsuario.php";</script>';
+					
+/*?>
+ <script languaje="javascript">
+  alert("El nombre de usuario es incorrecto!");
+  
+  //location.href = "../../perfiUsuario/PerfilUsuario.php";
+ </script>
+<?*/  
+					
+					
 				}
 				else{
 					echo 'Contraseña incorrecta';

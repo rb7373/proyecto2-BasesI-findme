@@ -1973,7 +1973,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `proc_insertar_usuario`(
 begin
 
 INSERT INTO usuario(usuario_idPersona,username,password_usuario,idTipoUsuario,idFotoPerfilUsuario)
-VALUES(ppersona_id,pusername,ppassword, ptipoUsuario,pfotoPerfil_id);
+VALUES(ppersona_id,pusername,PASSWORD(ppassword), ptipoUsuario,pfotoPerfil_id);
 
 end$$
 

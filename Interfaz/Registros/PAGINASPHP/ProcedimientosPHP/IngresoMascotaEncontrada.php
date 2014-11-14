@@ -21,29 +21,29 @@ $descripcionD = '';
 //id dueno temporal
 
 
-echo $nombre ;
-echo '<br>';
-echo $chipNumber ;
-echo '<br>';
-echo $tipo ;
-echo '<br>';
-echo $raza ;
-echo '<br>';
-echo $tamanno ;
-echo '<br>';
-echo $color ;
-echo '<br>';
-echo $observaciones ;
-echo '<br>';
-echo $fecha ;
-echo '<br>';
-echo $provincia ;
-echo '<br>';
-echo $canton ;
-echo '<br>';
-echo $distrito ;
-echo '<br>';
-echo $barrio ;
+//echo $nombre ;
+//echo '<br>';
+//echo $chipNumber ;
+//echo '<br>';
+//echo $tipo ;
+//echo '<br>';
+//echo $raza ;
+//echo '<br>';
+//echo $tamanno ;
+//echo '<br>';
+//echo $color ;
+//echo '<br>';
+//echo $observaciones ;
+//echo '<br>';
+//echo $fecha ;
+//echo '<br>';
+//echo $provincia ;
+//echo '<br>';
+//echo $canton ;
+//echo '<br>';
+//echo $distrito ;
+//echo '<br>';
+//echo $barrio ;
 
 
 
@@ -68,7 +68,11 @@ $stmt->bindValue(':descripcionD', $descripcionD);
 $stmt->execute();
 
 	echo '<script language="javascript">';
-	echo 'alert("La mascota ENCONTRADA se ha registrado con exito")';
+	echo 'alert("La mascota encontrada se ha registrado con éxito")';
 	echo '</script>';
+	
+echo '<script type="text/javascript">
+					location.href = "../../../webV1/sites/indexV10.php";</script>';
+					
 
 ?>

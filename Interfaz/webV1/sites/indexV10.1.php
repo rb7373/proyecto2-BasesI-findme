@@ -1,3 +1,7 @@
+<?php
+include('iniciarSesion.php'); // Includes Login Script
+?>
+
 
 <!doctype html>
 <html class="loading">
@@ -288,7 +292,7 @@ ul.update li:first-child{ border-top:#dedede solid 1px; height:30px; text-align:
 	<script src="../js/jquery-ui.js"></script>
 	<script type="text/javascript" src="../vendors/jquery.slimscroll.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.fullPage.js"></script>
-	<script type="text/javascript" src="../vendors/jquery.easings.min.js"></script>
+	<script type="text/javascript" src="../../perfiUsuario/PerfilUsuario.php"></script>
 	</script>
 	<script type="text/javascript">
 
