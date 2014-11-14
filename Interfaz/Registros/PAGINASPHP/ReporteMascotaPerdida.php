@@ -1,4 +1,8 @@
 <?php include('config.php');?>
+<?php include('../../webV1/sites/getUserInfo.php');?>
+
+
+
 <!doctype html>
 <html>
 <style>
@@ -131,11 +135,11 @@ display:inline;
       <legend id= "direccionPersona">
       <h1><img src= "../img/mascota.svg" width="60" height="60"> Reporta tu mascota perdida</h1>
       </legend><br>
-      <input type="text" class="nombre" name ="nombre" id ="nombrePHP" placeholder="Nombre"required>
+      <input type="text" class="nombre" name ="nombre" id ="nombrePHP" placeholder="Nombre"required autocomplete="off">
       <div>
         <p class="nombre-help">Por favor ingresa el nombre de tu mascota.</p>
       </div>
-      <input type="number" class="chipNumber" name ="chipNumber"id = "chipNumberPHP" placeholder="Número de Chip"required>
+      <input type="number" class="chipNumber" name ="chipNumber"id = "chipNumberPHP" placeholder="Número de Chip"required autocomplete="off">
       <div>
         <p class="chipNumber-help">Por favor ingresa el número de chip de tu mascota.</p>
       </div>
@@ -206,7 +210,7 @@ display:inline;
         <option>Color</option>
        </select>
       
-      <input type="number" class="chipNumber" name ="recompensa"id = "chipNumberPHP" placeholder="Recompensa">
+      <input type="number" class="recompensa" name ="recompensa"id = "recompensaPHP" placeholder="Recompensa" autocomplete="off">
       
      <TEXTAREA class="observacionesM" name ="observacionesM" ROWS=2 COLS=20 
         type="text field" placeholder="Observaciones" id = "observacionesPHP"required></TEXTAREA>
@@ -259,7 +263,7 @@ display:inline;
           </select>
         </div>
         <br>
-        <input type="text" id = "barrioPHP"  class="barrio"  name ="barrio" placeholder="Barrio"required>
+        <input type="text" id = "barrioPHP"  class="barrio"  name ="barrio" placeholder="Barrio"required autocomplete="off">
         <div>
           <p class="barrio-help">Por favor ingrese su barrio.</p>
         </div>
@@ -320,13 +324,14 @@ $(".barrio").focus(function(){
   $(".barrio-help").slideUp(500);
 });
 
+
 </script>
 
 <!-- Placed at the end of the document so the pages load faster -->
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="croppic.min.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../croppic.min.js"></script>
+<script src="../assets/js/main.js"></script>
 <script>
 		var croppicHeaderOptions = {
 				uploadUrl:'img_save_to_file.php',

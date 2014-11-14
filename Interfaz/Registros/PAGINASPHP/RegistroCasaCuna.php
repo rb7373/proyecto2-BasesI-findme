@@ -144,7 +144,7 @@ display:inline;
   </div>
   </div>
 <div class="wrapper">
-  <form class="form" method="post" action="yourpage.html">
+  <form class="form" method="post" action="../../perfiUsuario/PerfilUsuario.php">
     <fieldset>
       <legend>
       <h1> Casa Cuna </h1>

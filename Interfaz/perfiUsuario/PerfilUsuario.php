@@ -56,7 +56,8 @@ padding: 0;
 </div>
     <nav id="profiletabs">
       <ul class="clearfix">
-        <li><a href="#inicio" class="sel">Inicio</a></li>
+        
+        <li><a href="#inicio">Perfil</a></li>
         <li><a href="#mPerdida">Mascotas Perdidas</a></li>
         <li><a href="#mEncontrada">Mascotas Encontradas</a></li>
         <li><a href="#mAdoptadas">Adopciones</a></li>
@@ -70,27 +71,20 @@ padding: 0;
       <p class="setting"><span>Otros <img src="images/edit.png" alt="*Edit*"></span> None</p>
     </section>
     <section id="mPerdida" class="hidden">
-      <p>Aqui van los links de las mascotas que han reportado como perdidas.</p>
+      <p></p>
       <ul id="listaPerfiles" class="clearfix">
-        <li><a href="#"><img src="images/dogAvatar.svg" width="22" height="22"> Doggy</a></li>
-        <li><a href="#"><img src="images/dogAvatar.svg" width="22" height="22"> Poppy</a></li>
-        <li><a href="#"><img src="images/dogAvatar.svg" width="22" height="22"> Handsome</a></li>
+        <li><a href="../Registros/PAGINASPHP/ReporteMascotaPerdida.php"><img src="images/dogAvatar.svg" width="256" height="256">Ir a formulario</a></li>
       </ul>
     </section>
     <section id="mEncontrada" class="hidden">
-      <p>Aqui van los links de las mascotas que han reportado como encontradas.</p>
       <ul id="listaPerfiles" class="clearfix">
-        <li><a href="#"><img src="images/dogAvatar.svg" width="22" height="22"> Doggy</a></li>
-        <li><a href="#"><img src="images/dogAvatar.svg" width="22" height="22"> Poppy</a></li>
-        <li><a href="#"><img src="images/dogAvatar.svg" width="22" height="22"> Handsome</a></li>
+        <li><a href="../Registros/PAGINASPHP/ReporteMascotaEncontrada.php"><img src="images/dogAvatar.svg" width="256" height="256">Ir a formulario</a></li>
       </ul>
     </section>
     <section id="mAdoptadas" class="hidden">
-      <p>Aqui van los links de las mascotas que han sido adoptadas.</p>
+      <p>Para aceptar mascotar</p>
       <ul id="listaPerfiles" class="clearfix">
-        <li><a href="#"><img src="images/dogAvatar.svg" width="22" height="22"> Doggy</a></li>
-        <li><a href="#"><img src="images/dogAvatar.svg" width="22" height="22"> Poppy</a></li>
-        <li><a href="#"><img src="images/dogAvatar.svg" width="22" height="22"> Handsome</a></li>
+      <li><a href="../Registros/PAGINASPHP/RegistroCasaCuna.php"><img src="images/dogAvatar.svg" width="256" height="256">Ir a formulario</a></li>
       </ul>
     </section>
   </div>

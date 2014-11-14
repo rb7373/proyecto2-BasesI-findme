@@ -468,7 +468,10 @@ ul.update li:first-child{ border-top:#dedede solid 1px; height:30px; text-align:
     <div class="slide" id="slide2"> </div>
   </div>
       <div class="section" id="sectionDonaciones"> </div>
-      <div class="section" id="sectionAyuda"> </div>
+      <div class="section" id="sectionAyuda">
+      <h2>Para mayor información</h2>
+     <a href="http://petrescue.wikia.com/wiki/PetRescue_Wiki">Presione acá<a> </div>
+      
     </div>
 <script type="text/javascript">
  

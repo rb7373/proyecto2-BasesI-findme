@@ -1,4 +1,7 @@
 <?php
+
+$rutaFotoActual;
+
 /*
 *	!!! THIS IS JUST AN EXAMPLE !!!, PLEASE USE ImageMagick or some other quality image processing libraries
 */
@@ -25,6 +28,8 @@
 		  list($width, $height) = getimagesize( $filename );
 
 		  move_uploaded_file($filename,  $imagePath . $_FILES["img"]["name"]);
+
+		  $rutaFotoActual = $_FILES["img"]["name"];
 
 		  $response = array(
 			"status" => 'success',

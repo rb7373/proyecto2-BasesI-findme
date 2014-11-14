@@ -5,8 +5,6 @@
 
 header('Content-Type: text/html; charset=UTF-8');
 
-$blobObj = new BobDemo();
-
 session_start();// Starting Session
 // Storing Session
 $user_check=$_SESSION['login_user'];

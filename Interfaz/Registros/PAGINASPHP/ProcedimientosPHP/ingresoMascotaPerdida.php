@@ -2,6 +2,10 @@
 header('Content-Type: text/html; charset=ISO-8859-1');
 include('../config.php');
 
+include('../../../webV1/sites/getUserInfo.php');
+
+
+
 // declaracion de variables
 $nombre = $_POST['nombre'];
 $chipNumber = $_POST['chipNumber'];
@@ -21,32 +25,32 @@ $estado = 1;
 $descripcionD = '';
 //id dueno temporal
 
-
-echo $nombre ;
-echo '<br>';
-echo $chipNumber ;
-echo '<br>';
-echo $tipo ;
-echo '<br>';
-echo $raza ;
-echo '<br>';
-echo $tamanno ;
-echo '<br>';
-echo $color ;
-echo '<br>';
-echo $observaciones ;
-echo '<br>';
-echo $fecha ;
-echo '<br>';
-echo $provincia ;
-echo '<br>';
-echo $canton ;
-echo '<br>';
-echo $distrito ;
-echo '<br>';
-echo $barrio ;
-echo '<br>';
-echo $recompensa ;
+//
+//echo $nombre ;
+//echo '<br>';
+//echo $chipNumber ;
+//echo '<br>';
+//echo $tipo ;
+//echo '<br>';
+//echo $raza ;
+//echo '<br>';
+//echo $tamanno ;
+//echo '<br>';
+//echo $color ;
+//echo '<br>';
+//echo $observaciones ;
+//echo '<br>';
+//echo $fecha ;
+//echo '<br>';
+//echo $provincia ;
+//echo '<br>';
+//echo $canton ;
+//echo '<br>';
+//echo $distrito ;
+//echo '<br>';
+//echo $barrio ;
+//echo '<br>';
+//echo $recompensa ;
 
 
 $stmt = $conn->prepare('call proc_registrar_mascota_Perdida(:nombre,:chip,:estado,:raza,:tamano,:tipo, :color, :dueno,:fecha, :recompensa, :observaciones, :provincia,:canton , :distrito, :barrio, :descripcionD)');
@@ -70,9 +74,11 @@ $stmt->bindValue(':descripcionD', $descripcionD);
 
 $stmt->execute();
 
-	echo '<script language="javascript">';
-	echo 'alert("La mascota se ha registrado con exito")';
-	echo '</script>';
+	/*echo '<script language="javascript">';
+	//echo 'alert("La mascota se ha registrado con exito")';
+	//echo '</script>';*/
+	
+	header('Location: ../../../perfiUsuario/PerfilUsuario.php'); // Redirecting 
 
 
 

@@ -2,6 +2,14 @@
 header('Content-Type: text/html; charset=ISO-8859-1');
 include('../config.php');
 
+include('../../../webV1/sites/conexionPHP.php');
+
+
+$blobObj = new BobDemo();
+
+ $imagePath = "../temp/";
+ 
+
 
 $nombre       = $_POST["nombre"];
 $pApellido    = $_POST["pApellido"];
@@ -18,7 +26,7 @@ $barrio       = $_POST["barrios"];
 $descripcionD = $_POST["descripcionD"];
 $tipoTelefono = 1;
 $tipoUsuario  = 2;
-echo $nombre;
+/*echo $nombre;
 echo "<br>";
 echo $pApellido;
 echo "<br>";
@@ -49,7 +57,7 @@ echo $descripcionD;
 echo "<br>";
 echo "Barrio: ";
 echo $barrio;
-echo "<br>";
+echo "<br>";*/
 
 /*La siquiente función verifica que la persona no haya sido registrada anteriormente*/
 
@@ -75,6 +83,11 @@ if ($existePersona) {
 } else {
     
     try {
+		
+		if ($blobObj){
+			
+			//$blobObj->insertBlob($rutaFotoActual,"image/jpg",1);
+		}
         
         
         // Si no existe la persona, la registra
@@ -102,6 +115,10 @@ if ($existePersona) {
         $conn->beginTransaction();
         
         $stmt->execute();
+		
+
+		
+		
         
         echo '<script language="javascript">';
         echo 'alert("$nombre se ha registrado con éxito")';

@@ -47,6 +47,7 @@ if ($blobObj){
 					
 					$_SESSION['login_user']=$usuario; // Initializing Session User name
 					$_SESSION['login_id']=$id; // Initializing Session User ID
+					$_SESSION['persona_id']=$personaID; // Initializing Session User ID
 					
 					echo '<script type="text/javascript">
 					location.href = "../../perfiUsuario/PerfilUsuario.php";</script>';
