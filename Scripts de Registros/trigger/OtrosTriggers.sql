@@ -1,3 +1,29 @@
+drop trigger if exists before_insAdopcion;
+
+DELIMITER //
+
+CREATE TRIGGER before_insAdopcion
+BEFORE INSERT
+   ON adopciones FOR EACH ROW
+   
+BEGIN
+
+   DECLARE vUser varchar(50);
+
+   -- Find username of person performing INSERT into table
+   SELECT USER() INTO vUser;
+   
+   -- Update create_date field to current system date
+   SET NEW.FechaDeCreacion = SYSDATE();
+   
+   -- Update created_by field to the username of the person performing the INSERT
+   SET NEW.CreadoPor= vUser;
+   
+END; //
+
+DELIMITER ;
+
+
 drop trigger if exists before_insAsociacion;
 
 DELIMITER //
