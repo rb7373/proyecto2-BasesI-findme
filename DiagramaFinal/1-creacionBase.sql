@@ -695,6 +695,85 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = utf8;
 
+
+USE petsrescue;
+
+DROP TABLE IF EXISTS `petsrescue`.`Asociaciones` ;
+
+CREATE TABLE IF NOT EXISTS `petsrescue`.`Asociaciones` (
+  `idAsociaciones` INT NOT NULL AUTO_INCREMENT,
+  `nombre_asociacion` VARCHAR(100) NOT NULL,
+  `Descripcion_Asociacion` VARCHAR(1000) NOT NULL,
+  `FechaDeCreacion` DATE NULL,
+  `FechaDeModificacion` DATE NULL,
+  `CreadoPor` INT NULL,
+  `ModificadoPor` INT NULL,
+  PRIMARY KEY (`idAsociaciones`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 0
+DEFAULT CHARACTER SET = utf8;
+
+
+DROP TABLE IF EXISTS `petsrescue`.`DonacionesxAsociacion` ;
+
+
+CREATE TABLE IF NOT EXISTS `petsrescue`.`DonacionesxAsociacion` (
+  `idDonacionesxAsociacion` INT NOT NULL AUTO_INCREMENT,
+  `idDonador` INT NOT NULL,
+  `idAsociacion` INT NOT NULL,
+  `FechaDonacion` DATE NOT NULL,
+  `Monto` INT NOT NULL,
+  `FechaDeCreacion` DATE NULL,
+  `FechaDeModificacion` DATE NULL,
+  `CreadoPor` INT NULL,
+  `ModificadoPor` INT NULL,
+  PRIMARY KEY (`idDonacionesxAsociacion`),
+  INDEX `fk_idAsociacion_idx` (`idAsociacion` ASC),
+  INDEX `fk_idDonador_idx` (`idDonador` ASC),
+  CONSTRAINT `fk_idDonador`
+    FOREIGN KEY (`idDonador`)
+    REFERENCES `petsrescue`.`Persona` (`idPersona`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_idAsociacion`
+    FOREIGN KEY (`idAsociacion`)
+    REFERENCES `petsrescue`.`Asociaciones` (`idAsociaciones`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 0
+DEFAULT CHARACTER SET = utf8;
+
+
+DROP TABLE IF EXISTS `petsrescue`.`Adopciones`;
+
+CREATE TABLE IF NOT EXISTS `petsrescue`.`Adopciones` (
+  `idAdopciones` INT NOT NULL AUTO_INCREMENT,
+  `idAdoptante` INT NULL,
+  `idMascota` INT NULL,
+  `calificacion` INT NULL,
+  `FechaDeCreacion` DATE NULL,
+  `FechaDeModificacion` DATE NULL,
+  `CreadoPor` INT NULL,
+  `ModificadoPor` INT NULL,
+  PRIMARY KEY (`idAdopciones`),
+  INDEX `fk_idMascota_idx` (`idMascota` ASC),
+  INDEX `fk_idAdoptante_idx` (`idAdoptante` ASC),
+  CONSTRAINT `fk_idAdoptante`
+    FOREIGN KEY (`idAdoptante`)
+    REFERENCES `petsrescue`.`Persona` (`idPersona`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_idMascota`
+    FOREIGN KEY (`idMascota`)
+    REFERENCES `petsrescue`.`Mascota` (`idMascota`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 0
+DEFAULT CHARACTER SET = utf8;
+
+
 USE `petsrescue` ;
 
 -- -----------------------------------------------------
@@ -3411,3 +3490,5 @@ select usuario_idPersona from usuario where idUsuario = id_Usuario and password_
 end$$
 
 DELIMITER ;
+
+

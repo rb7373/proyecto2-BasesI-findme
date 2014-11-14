@@ -69,6 +69,9 @@
 #menuSuperior nav ul li:nth-child(4) a span {
 	color: #ff7a85;
 }
+
+
+
 /*ul.update {
 	list-style: none;
 	font-size: 1.1em;
@@ -122,6 +125,9 @@ li {
 <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="../formulario.css" media="screen">
+
+<link href="../../webV1/css/selectbox.css" rel="stylesheet">
+
 <div id="header">
   <ul id="floating-social-icons">
     <li><a href=""><img src="../img/logoV5.png" alt="" /></a></li>

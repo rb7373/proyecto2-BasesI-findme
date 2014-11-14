@@ -14,6 +14,32 @@
 <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 
+<style>
+#logout{
+float:right;
+padding:5px;
+border:dashed 1px gray
+	font-size: 26px;
+	font-weight: normal;
+	color: #58ebd3;
+	text-align: center;
+	padding: 20px 0;
+	margin-bottom: 40px;
+color: rgb(0,0,0);
+font-family: 'Josefin Slab', sans-serif;
+font-size: 1.8em;
+margin: 0 0 1.25em;
+padding: 0;
+}
+
+#welcome{
+	color: rgb(0,0,0);
+font-family: 'Josefin Slab', sans-serif;
+font-size: 1.8em;
+margin: 0 0 1.25em;
+padding: 0;
+}
+</style>
 
 </head>
 
@@ -25,8 +51,8 @@
     <div id="userphoto"><img src="images/avatar.png" alt="default avatar"></div>
     <h1>Bienvenid@</h1>
 <div id="profile">
-<b id="welcome">Welcome : <i><?php echo $login_session; ?></i></b>
-<b id="logout"><a href="logout.php">Log Out</a></b>
+<b id="welcome"><i><?php echo $_SESSION['login_user']; ?></i></b>
+<b id="logout"><a href="../webV1/sites/logout.php">Cerrar sesión</a></b>
 </div>
     <nav id="profiletabs">
       <ul class="clearfix">
